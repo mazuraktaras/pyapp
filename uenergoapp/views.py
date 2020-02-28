@@ -7,7 +7,7 @@ from uenergoapp.adsbobject.adsbobject import ADSBDB, credentials
 
 @app.route('/')
 def index():
-    return render_template('adsb_bootstrap.html.j2', title='UENERGO',
+    return render_template('ue_bootstrap.j2', title='UENERGO',
                            range_=['test', 'another', 'third', 'test', 'another', 'third', ])
 
 
