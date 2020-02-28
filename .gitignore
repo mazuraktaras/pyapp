@@ -1,0 +1,5 @@
+/.idea/
+/venv/
+/adsbapp/adsbobject/adsbdb.log
+/adsbapp/adsbobject/adsbdb.cfg
+adsbdb.log

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Request</title>
+
+
+</head>
+<body>
+<div>
+    <p id="live_flights_count"> Count</p>
+
+</div>
+
+<script>
+
+    /*let anyelement = document.getElementById('live_flights_count');
+    anyelement.innerHTML = '<a>Link</a>';
+    anyelement.innerText += 'lorem ipsum sed';*/
+
+    /*alert('Testing');
+    console.log('Testing console');*/
+
+    function getLiveFlightsCount() {
+
+        let request = new XMLHttpRequest();
+
+        request.onload = function () {
+
+            /*let count_placeholder = document.getElementById('live_flights_count');*/
+            document.getElementById('live_flights_count').innerText = this.responseText;
+            /*count_placeholder.innerText += request.responseText;
+            console.log(`Response> ${this.getAllResponseHeaders()}\n ${request.status}, ${request.responseText}`);*/
+        };
+
+        request.open('GET', '/terminal', true);
+        request.send();
+
+    }
+
+    /*
+
+    let request = new XMLHttpRequest();
+
+    request.onload = function () {
+        console.log(`Response> ${this.getAllResponseHeaders()}\n ${request.status}, ${request.responseText}`);
+    };
+
+    request.open('GET', '/terminal', true);
+    request.send();
+
+    */
+    /*console.log(`Response> ${request.responseText}, ${request.response.code}`);*/
+    setInterval(getLiveFlightsCount, 300);
+
+</script>
+
+</body>
+</html>

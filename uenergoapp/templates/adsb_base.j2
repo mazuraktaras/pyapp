@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/style_adsb.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style_adsb.css', _external=True) }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename = 'cards_content_style.css', _external=True) }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
+    <script src="{{ url_for('static', filename = 'request_script.js') }}"></script>
+</head>
+
+<body>
+
+<div class="main-container">
+
+    <div class="dropdown-menu">
+        {# Dynamicaly created dropdown menu in Jinja2 #}
+
+        {# Logo #}
+        <div class="logo">
+            <h4>ADSB:DATA></h4>
+        </div>
+
+        {# List of the tuples of the menu and submenu items properties as: class, link, name, submenu #}
+        {% set menu_items = [('menu-item', '/home', 'Home', []), ('menu-item', '/flights', 'Flights', ()),
+                             ('menu-item', '/flights/1', 'Map', [('/', 'Home'), ('/', 'API how to')]), ('menu-item', '/terminal', 'API', []),
+                             ('menu-item', 'flights/1', 'About', [('/', 'About project'), ('/', 'Contacts')])] %}
+
+        {# Iterate over the items #}
+        {% for class, link, name, submenu in menu_items %}
+
+            <div class="{{ class }}">
+
+                {% if submenu %}
+                    {# If submenu exist create  a button with dropdown #}
+                    <button type="button" name="button"
+                            {# Create the active button accordingly active_item variable inherited from a child template#}
+                            {% if name == active_item %} class="active" {% endif %}>{{ name }}</button>
+
+                    <ul>
+                        {# Iterate over the submenu items to create dropdown list #}
+                        {% for link, item in submenu %}
+                            <li><a href="{{ link }}">{{ item }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    {# If submenu not exist create a simple href button #}
+                    <button type="button" name="button"
+                            {% if name == active_item %} class="active" {% endif %}
+                            onclick="window.location.href='{{ link }}'">{{ name }}</button>
+
+                {% endif %}
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="flights-count-bar">
+        <p class="description">Live flights in database</p>
+        <p id="live_flights_count"></p>
+    </div>
+
+
+    {% block service_cards %}{% endblock %}
+    {% block flights_table %}{% endblock %}
+
+    <!-- <div class="flights-count-bar">
+         <h0 class="">Actual live flights in database</h0>
+         <h0 id="live_flights_count">7777</h0>
+         <h1 id="live_flights_count">7777</h1>
+         <h2 id="live_flights_count">7777</h2>
+         <h4 id="live_flights_count">7777</h4>
+         <h5 id="live_flights_count">7777</h5>
+         <h6 id="live_flights_count">7777</h6>
+     </div> -->
+
+
+</div>
+
+</body>

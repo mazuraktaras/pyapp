@@ -1,0 +1,128 @@
+/*
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, serif;
+    box-sizing: border-box;
+    border-width: thin;
+    border-color: green;
+    border-style: dotted;
+}
+*/
+
+.adsb-services-section {
+    height: 100%;
+    padding: 60px;
+    background-color: #192a56;
+}
+
+.adsb-services-content {
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0;
+    padding: 0 0;
+    background-color: #718093;
+    border-color: red;
+
+}
+
+.adsb-services-section-title {
+    font-family: Arial, serif;
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #e1b12c;
+}
+
+.adsb-services-border {
+    width: 200px;
+    height: 3px;
+    margin: 30px auto;
+    border-color: blue;
+    background: #192a56
+}
+
+.adsb-services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 20px 30px;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 6px;
+    border-color: #192a56;
+}
+
+.adsb-service-box {
+    max-width: 33.33%;
+    padding: 12px;
+    text-align: center;
+    color: #dcdde1;
+    border-color: blue;
+    cursor: pointer;
+}
+
+.service-icon {
+    display: inline-block;
+    /*align-items: center;
+    justify-content: center;*/
+    width: 70px;
+    height: 70px;
+    margin: 30px;
+    color: #192a56;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 6px;
+    border-color: #192a56;
+    transform: rotate(45deg);
+    transition-duration: 0.4s;
+}
+
+.service-icon i {
+    line-height: 65px;
+    transform: rotate(-45deg);
+    font-size: 26px;
+}
+
+.adsb-service-box:hover .service-icon {
+    color: #e1b12c;
+    background-color: #192a56;
+    /*transform: rotate(405deg);*/
+}
+
+.adsb-services-title {
+    margin-bottom: 12px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #192a56;
+}
+
+.adsb-services-describe {
+}
+
+/*
+
+@media screen and (max-width: 480px) {
+    .adsb-service-box {
+        max-width: 100%;
+    }
+
+    .adsb-services-describe {
+        display: none;
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .adsb-service-box {
+        max-width: 100%;
+    }
+
+    .adsb-services-describe {
+        font-size: 10px;
+    }
+}
+*/
