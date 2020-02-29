@@ -1,8 +1,26 @@
-from flask import render_template
+from flask import render_template, jsonify
 from uenergoapp import app
 from uenergoapp.adsbobject.adsbobject import ADSBDB, credentials
+from bs4 import BeautifulSoup
+import requests
+
 
 # from .adsbobject import *
+
+
+def parse_html_tags(url: str) -> dict:
+    """
+    Parse html document to find each tag count
+
+    :param url: URL for parsing
+    :return: A dictionary of tag:count pairs
+    """
+    request = requests.get(url)
+    soup = BeautifulSoup(request.text, 'html.parser')
+    all_tags = soup.find_all()
+    tags_count_dictionary = {tag.name: len(soup.find_all(tag.name)) for tag in all_tags}
+
+    return tags_count_dictionary
 
 
 @app.route('/')
@@ -11,23 +29,17 @@ def index():
                            range_=['test', 'another', 'third', 'test', 'another', 'third', ])
 
 
-@app.route('/flights')
-def flights():
-    database = ADSBDB(**credentials)
-    flight_states = database.get_flight_states()
-    flights_count = database.get_flight_states_count()
-    database.close()
-    return render_template('flights_adsb.html.j2', title='UENERGO Flights', flight_states=flight_states,
-                           count=flights_count)
+@app.route('/tagscount')
+def tagscount():
+    url_ = 'https://www.python.org'
 
-'''
-@app.route('/jumbo')
-def jumbo():
-    response = database.get_flight_states()
-    return render_template('index.html.j2', title='UENERGO',
-                           range_=response, )
-'''
-                           
+    return jsonify(parse_html_tags(url_))
+
+
+@app.route('/chart')
+def chart():
+    return render_template('ue_charts.j2')
+
 
 @app.route('/terminal')
 def terminal():
