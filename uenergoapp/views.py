@@ -18,7 +18,10 @@ def parse_html_tags(url: str) -> dict:
     request = requests.get(url)
     soup = BeautifulSoup(request.text, 'html.parser')
     all_tags = soup.find_all()
-    tags_count_dictionary = {tag.name: len(soup.find_all(tag.name)) for tag in all_tags}
+    # tags_count_dictionary = {tag.name: len(soup.find_all(tag.name)) for tag in all_tags}
+    tags_count_dictionary = \
+        [{'tag_name': key, 'tag_count': value} for key, value in
+         {tag.name: len(soup.find_all(tag.name)) for tag in all_tags}.items()]
 
     return tags_count_dictionary
 
@@ -38,7 +41,7 @@ def tagscount():
 
 @app.route('/chart')
 def chart():
-    return render_template('ue_charts.j2')
+    return render_template('ue_canvasjs.j2')
 
 
 @app.route('/terminal')
