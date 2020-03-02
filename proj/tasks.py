@@ -5,3 +5,4 @@ from proj.celapp import celapp
 @celapp.task()
 def mess():
     return 2 + 2
+
