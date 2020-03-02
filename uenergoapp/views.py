@@ -8,7 +8,7 @@ import requests
 # from .adsbobject import *
 
 
-def parse_html_tags(url: str) -> dict:
+def parse_html_tags(url: str) -> list:
     """
     Parse html document to find each tag count
 
@@ -32,7 +32,7 @@ def index():
                            range_=['test', 'another', 'third', 'test', 'another', 'third', ])
 
 
-@app.route('/tagscount')
+@app.route('/tagscount', methods=['GET', 'POST'])
 def tagscount():
     url_ = 'https://www.python.org'
 
