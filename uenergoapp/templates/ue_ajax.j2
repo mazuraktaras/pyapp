@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="{{ url_for('static', filename = 'ue_ajax.js') }}"></script>
+
+</head>
+<style>
+    .error {
+        color: red;
+    }
+</style>
+<body>
+
+<form id="frm" action="javascript: startTask($('#URLinput').val())" method="post">
+    <input id="URLinput" name="URLinput" type="url" size="64" placeholder="http://www.anyurl.com" required>
+    <button id="jax-button">AJAX by POST</button>
+</form>
+<script>
+    $("#frm").validate();
+</script>
+
+<script>
+    let url = 'http://'
+
+    function startTask(url) {
+
+
+        $.ajax({
+            type: 'POST',
+            url: '/start2',
+            data: {'name': url},
+            success: function (result, status, xhr) {
+                status_url = xhr.getResponseHeader('Location');
+                console.log(result, status, status_url);
+
+            },
+            error: function () {
+                alert('Unexpected error');
+            }
+        });
+
+    };
+
+    //startTask(url);
+
+    $('#ajax-button').click(function () {
+
+        //event.preventDefault();
+        startTask($('#URLinput').val());
+
+    });
+
+    /*
+        $.ajax({
+            type: 'POST',
+            url: '/start2',
+            data: {'name': url},
+
+
+            error: function () {
+                alert('Unexpected error');
+            }
+        });
+        /*
+        $.ajax({
+            type: 'POST',
+            url: '/start2/' + encodeURIComponent(url),
+            success: function (result, status, xhr) {
+                //status_url = xhr.getResponseHeader('Location');
+                console.log(result, status, xhr)
+
+            },
+            error: function () {
+                alert('Unexpected error');
+            }
+        });
+        $(function () {
+            $('#ajax-button').click(function () {
+                alert($('#URLinput').val())
+            });
+        });
+        // $('#ajax-button').click(function() {alert('Button clicked')});
+        /*$.ajax({
+                    type: 'POST',
+                    url: '/longtask',
+                    success: function(data, status, request) {
+                        status_url = request.getResponseHeader('Location');
+
+                    },
+                    error: function() {
+                        alert('Unexpected error');
+                    }
+                });*/
+
+</script>
+</body>
+</html>
