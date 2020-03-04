@@ -1,5 +1,13 @@
 window.onload = function () {
 
+    $('#inputURL').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        }
+    });
+
     let dataPoints = [];
 
     let chart = new CanvasJS.Chart("chartContainer", {

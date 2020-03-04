@@ -28,8 +28,7 @@ def parse_html_tags(url: str) -> list:
 
 @app.route('/')
 def index():
-    return render_template('ue_bootstrap.j2', title='UENERGO',
-                           range_=['test', 'another', 'third', 'test', 'another', 'third', ])
+    return render_template('ue_bootstrap.j2', title='UENERGO')
 
 
 @app.route('/tagscount', methods=['GET', 'POST'])

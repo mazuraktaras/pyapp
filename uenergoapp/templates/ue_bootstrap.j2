@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="{{ url_for('static', filename = 'ue_chart.js') }}"></script>
 </head>
@@ -33,24 +37,17 @@
 
     </nav>
 
-    <!--<div class="jumbotron jumbotron-fluid">
-      <h1 class="display-4">Testing</h1>
-      <hr class="my-4">
-      {% for ind in range_ %}
-        <p>Test {{ ind }}</p>
-      {% endfor %}
-    </div>
-    {% block jumbotron %}{% endblock %}-->
-
 
     <div id="chartContainer" style="height: 400px; width: 100%;"></div>
     <!--<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>-->
 
 
-    <form class="form-inline" action="/tagscount" method="post">
+    <form id="inputURL" class="form-inline" action="/tagscount" method="post">
         <div class="form-group">
             <label for="url">URL: </label>
-            <input type="url" class="form-control" id="url" name="url">
+            <input id="url" type="url" class="form-control" name="url" size="100"
+                   required data-bv-notempty-message="The URL is required"
+                   data-bv-uri-message="The website address is not valid">
         </div>
 
         <button type="submit" class="btn btn-default">Submit</button>
