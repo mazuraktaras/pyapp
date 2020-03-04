@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="{{ url_for('static', filename = 'ue_chart.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'ue_ajax.js') }}"></script>
 
 </head>
 <body>
@@ -11,6 +11,93 @@
 <div id="chartContainer" style="height: 600px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script>
+    let someth = []
+    window.onload = function () {
 
+
+        var dps = [{
+            y: 100,
+            legendText: "PS 3",
+            indexLabel: "PlayStation 3"
+        },
+            {
+                y: 200,
+                legendText: "Wii",
+                indexLabel: "Wii"
+            },
+            {
+                y: 300,
+                legendText: "360",
+                indexLabel: "Xbox 360"
+            }
+        ]
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            theme: "theme2",
+            animationEnabled: true,
+            title: {
+                text: "Gaming Consoles Sold in 2012"
+            },
+            legend: {
+                verticalAlign: "bottom",
+                horizontalAlign: "center"
+            },
+            data: [{
+                type: "pie",
+                showInLegend: true,
+                dataPoints: dps
+            }]
+        });
+
+        chart.render();
+
+        var updateInterval = 2000;
+        var newdps = [{
+
+            y: 100,
+            legendText: "PS 3",
+            indexLabel: "PlayStation 3"
+        },
+
+        ];
+        console.log(someth);
+        someth.push({'name': 3});
+        someth.push({'nam': 4});
+        someth = [];
+        console.log(someth);
+        var updateChart = function () {
+            var newDP = newdps[0];
+            newdps.shift();
+
+            //dps.push(newDP);
+
+
+            //chart.render();
+            // $.ajax({
+            //url: "/echo/json/",
+            // type: 'json',
+            //success: function (data) {
+            //dps.push(data);
+
+            //chart.render();
+
+            // update chart after specified time.
+            // }
+            //});
+        };
+        //console.log(updateChart)
+
+        //var timerId = setInterval(function () {
+        //  updateChart()
+        //}, updateInterval);
+
+
+    }
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+</script>
 </body>
 </html>

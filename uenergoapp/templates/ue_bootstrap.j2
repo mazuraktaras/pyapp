@@ -42,15 +42,14 @@
     <!--<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>-->
 
 
-    <form id="inputURL" class="form-inline" action="/tagscount" method="post">
+    <form id="inputURLform" class="form-inline" action="javascript:void(0);" method="post">
         <div class="form-group">
             <label for="url">URL: </label>
             <input id="url" type="url" class="form-control" name="url" size="100"
                    required data-bv-notempty-message="The URL is required"
                    data-bv-uri-message="The website address is not valid">
         </div>
-
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button id="ajax-button" type="submit" class="btn btn-default">Submit</button>
     </form>
 
 
