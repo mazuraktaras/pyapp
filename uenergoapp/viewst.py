@@ -1,6 +1,6 @@
 from flask import request, render_template, url_for, jsonify
 
-from proj.tasks import mess, url_tags_counting, parse_html_tags
+from uenergoapp.tasks import mess, parse_html_tags
 from uenergoapp import app
 
 

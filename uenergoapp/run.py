@@ -1,5 +1,4 @@
-from time import sleep
-from proj.tasks import mess, parse_html_tags
+from uenergoapp.tasks import mess, parse_html_tags
 
 res = mess.delay()
 # sleep(2)

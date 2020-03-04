@@ -1,7 +1,7 @@
 # from __future__ import absolute_import, unicode_literals
 import time
 
-from proj.celapp import celapp
+from uenergoapp.celapp import celapp
 from bs4 import BeautifulSoup
 import requests
 
