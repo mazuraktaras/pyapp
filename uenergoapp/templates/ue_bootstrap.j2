@@ -6,19 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet"
-          href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript"
-            src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+            src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.9.0/validator.min.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script src="{{ url_for('static', filename = 'ue_chart.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'ue_ajax.js') }}"></script>
 </head>
 
 <body>
 
-<div class="container">
+<div class="container-fluid">
 
     <nav class="navbar navbar-inverse">
 
@@ -42,14 +40,17 @@
     <!--<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>-->
 
 
-    <form id="inputURLform" class="form-inline" action="javascript:void(0);" method="post">
-        <div class="form-group">
+    <form id="inputURLform" class="form-inline" action="javascript:void(0);" method="post" data-toggle="validator">
+        <div class="form-group has-feedback" style="vertical-align: top;">
             <label for="url">URL: </label>
-            <input id="url" type="url" class="form-control" name="url" size="100"
-                   required data-bv-notempty-message="The URL is required"
-                   data-bv-uri-message="The website address is not valid">
+            <input id="URLinput" type="url" class="form-control" name="url" size="100" required>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors">Good job!</div>
+
         </div>
         <button id="ajax-button" type="submit" class="btn btn-default">Submit</button>
+
+
     </form>
 
 

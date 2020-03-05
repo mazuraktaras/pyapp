@@ -6,7 +6,7 @@ from uenergoapp import app
 
 @app.route('/')
 def index():
-    return render_template('ue_ajax.j2')
+    return render_template('ue_bootstrap.j2')
 
 
 @app.route('/s')

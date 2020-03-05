@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="{{ url_for('static', filename = 'ue_ajax.js') }}"></script>
 
 </head>
-<body>
+
 
 <div id="chartContainer" style="height: 600px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<form action="javascript: void(0);">
+    <input id="URLinput" type="url"></input>
+    <button id="ajax-button" name="">AJAX</button>
+</form>
 <script>
-    let someth = []
+
+
+    /*let someth = []
     window.onload = function () {
 
 
@@ -97,7 +103,7 @@
 
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    }*/
 </script>
 </body>
 </html>
