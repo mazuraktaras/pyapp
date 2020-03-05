@@ -1,7 +1,17 @@
 from flask import request, render_template, url_for, jsonify
 
-from uenergoapp.tasks import mess, parse_html_tags
-from uenergoapp import app
+from uenergoapp.tasks import parse_html_tags
+from uenergoapp import app, database, Tags
+import json
+from datetime import datetime
+
+
+@app.route('/test')
+def test():
+    tags_row = Tags(asked_time=datetime.now(), asked_url='Test', tags=json.dumps([{'test': 3}]))
+    database.session.add(tags_row)
+    database.session.commit()
+    return str(json.dumps({'test': 3}))
 
 
 @app.route('/')
