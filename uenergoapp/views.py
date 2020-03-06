@@ -1,52 +1,49 @@
-from flask import render_template, jsonify
-from uenergoapp import app
-from uenergoapp.adsbobject.adsbobject import ADSBDB, credentials
-from bs4 import BeautifulSoup
-import requests
+from flask import request, render_template, url_for, jsonify
 
-
-# from .adsbobject import *
-
-
-def parse_html_tags(url: str) -> list:
-    """
-    Parse html document to find each tag count
-
-    :param url: URL for parsing
-    :return: A dictionary of tag:count pairs
-    """
-    request = requests.get(url)
-    soup = BeautifulSoup(request.text, 'html.parser')
-    all_tags = soup.find_all()
-    # tags_count_dictionary = {tag.name: len(soup.find_all(tag.name)) for tag in all_tags}
-    tags_count_dictionary = \
-        [{'tag_name': key, 'tag_count': value} for key, value in
-         {tag.name: len(soup.find_all(tag.name)) for tag in all_tags}.items()]
-
-    return tags_count_dictionary
+from uenergoapp.tasks import parse_html_tags
+from uenergoapp import app, database, Tags
 
 
 @app.route('/')
-def index():
-    return render_template('ue_bootstrap.j2', title='UENERGO')
+def index() -> object:
+    """
+    Render the main page
+    @return: response object for main page
+    """
+    return render_template('ue_bootstrap.j2', title='UENERGO TAGS')
 
 
-@app.route('/tagscount', methods=['GET', 'POST'])
-def tagscount():
-    url_ = 'https://www.python.org'
+@app.route('/start', methods=['POST'])
+def start():
+    """
+    Take URL for task and start background task
+    Return the HTTP response object with background task id, response code, and URL
+    for task state in Location HTTP header
+    @rtype: object
+    """
+    url = request.form['url']
+    tag_task = parse_html_tags.delay(url)
+    return jsonify({'taskid': tag_task.id}), 202, {'Location': url_for('task_state', task_id=tag_task.id)}
 
-    return jsonify(parse_html_tags(url_))
+
+@app.route('/task_state/<task_id>', methods=['POST', 'GET'])
+def task_state(task_id):
+    """
+    Take the task id
+    Return the HTTP response object with task result status
+    @rtype: object
+    """
+    tag_task = parse_html_tags.AsyncResult(task_id)
+    return jsonify({'task_id': task_id, 'task_state': tag_task.state,
+                    'result_url': url_for('task_result', task_id=tag_task.id)}), 202, {}
 
 
-@app.route('/chart')
-def chart():
-    return render_template('ue_canvasjs.j2')
-
-
-@app.route('/terminal')
-def terminal():
-    database = ADSBDB(**credentials)
-    response = database.get_flight_states_count()
-    database.close()
-    # return app.config["TERMINAL"]
-    return str(response)
+@app.route('/task_result/<task_id>', methods=['POST', 'GET'])
+def task_result(task_id):
+    """
+    Take the task id
+    Return the HTTP response object with task result
+    @rtype: object
+    """
+    tag_task = parse_html_tags.AsyncResult(task_id)
+    return jsonify(tag_task.get())

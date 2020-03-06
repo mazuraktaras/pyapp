@@ -1,6 +1,8 @@
 window.onload = function () {
-
+    //Assign a global for datapoints  in chart
     let dataPoints = [];
+
+    //Initialise chart object
     let chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
         title: {
@@ -34,45 +36,24 @@ window.onload = function () {
             dataPoints: dataPoints
         }]
     });
+    //Render an empty chart
     chart.render();
 
-
+    //Handler for the button
     $('#ajax-button').click(function () {
+        //Empty chart datapoints on each request
         dataPoints.length = 0;
-        //var newDP = [{label: "div1", y: 200}, {label: "div2", y: 100}, {label: "div3", y: 300}];
-        //dataPoints.push({label: "div3", y: 300});
-        //dataPoints.push({label: "div2", y: 200});
-        //chart.render();
-        //dataPoints.length = 0;
-        console.log('DATAPOINTS', dataPoints);
-        //dataPoints.push({label: "div", y: 200})
-        //event.preventDefault();
+        //Get input URL value and start a task function
         startTask($('#URLinput').val());
-        //chart.render();
 
     });
 
 
-    /*
-    function addData(data) {
-        for (let i = 0; i < data.length; i++) {
-            dataPoints.push({
-                label: data[i].tag_name,
-                y: data[i].tag_count
-            });
-        }
-        //console.log(dataPoints);
-        chart.render();
-
-    }
-
-
-     */
-
-    //$.getJSON("/tagscount", addData);
-
     function startTask(url) {
 
+        //Send the POST with desired URL to backend to start
+        // a background task and obtain URL where a task status is.
+        //URL with task id returned in Location header
 
         $.ajax({
             type: 'POST',
@@ -80,51 +61,40 @@ window.onload = function () {
             data: {'url': url},
             success: function (result, status, xhr) {
                 status_url = xhr.getResponseHeader('Location');
+                //If request with no errors start obtain result
                 getTaskResult(status_url);
-
             },
+            //If a backend error, popup alert
             error: function () {
-                alert('Unexpected error');
+                alert('Unexpected error on backend');
             }
         });
-        console.log('Datapoints after STARTTask', dataPoints);
-
-    };
+    }
 
 
     function getTaskResult(status_url) {
 
+        //Obtain result from background tas as the JSON
         $.getJSON(status_url, function (data) {
-            //console.log('DATAPOINTS', dataPoints)
-            if (data.task_state = 'SUCCESS') {
-                //console.log('Task state ===>', data.task_state);
-                //console.log('Task state ===>', data.result_url);
+            //Check is the background task performed, if yes get JSON data
+            if (data.task_state == 'SUCCESS') {
 
                 $.getJSON(data.result_url, function (data) {
+                    //Get data and reassign the datapoints array with new values
                     $.each(data, function (key, value) {
                         dataPoints.push({label: value.tag_name, y: value.tag_count});
-                        //console.log('Its key', key, 'Its value', value.tag_name);
-                        console.log('Datapoints before each', dataPoints);
-                        //chart.render();
                     });
-                    //console.log('Datapoints after each', dataPoints);
+                    //Rerender chart
                     chart.render();
                 });
-                //console.log('Datapoints after If', dataPoints);
 
             } else {
-
-                console.log('Task state ===>', data.task_state)
-                console.log('Task state ===>', data.task_id);
+                //If the background task not ready invoke getting the task status each 1 s
                 setTimeout(function () {
                     getTaskResult(status_url);
                 }, 1000);
-                //setTimeout(getTaskResult(status_url), 1000);
-
             }
-
         });
 
-
-    };
+    }
 };
