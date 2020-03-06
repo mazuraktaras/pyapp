@@ -2,8 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ueuser:uepass@localhost:3306/uedatabase'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:1234567-vV@localhost:3306/adsb'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ueuser:uepass@localhost:3306/uedatabase'
 
 database = SQLAlchemy(app)
 
