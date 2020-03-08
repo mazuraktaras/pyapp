@@ -8,6 +8,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV FLASK_APP "uetag.py"
 ENV FLASK_ENV "development"
 ENV FLASK_DEBUG True
+ENV C_FORCE_ROOT true
 
 RUN mkdir /uenergo
 WORKDIR /uenergo

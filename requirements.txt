@@ -16,8 +16,6 @@ Jinja2==2.10.3
 kombu==4.6.7
 MarkupSafe==1.1.1
 mysql==0.0.2
-mysql-connector-python==8.0.19
-mysqlclient==1.4.6
 protobuf==3.11.2
 pytz==2019.3
 redis==3.4.1
