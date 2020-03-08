@@ -1,6 +1,13 @@
 # UENERGO counting tags in html document
 
-# Start Celery
-celery -A uenergoapp.celapp worker -l info
-# Redis in container
-docker run -d -p 6379:6379 --name redisserv redis
+# Run in docker containers:
+
+docker-compose up
+
+# Wait for the full launch of the services.
+
+http://127.0.0.1:5000/
+
+
+
+
