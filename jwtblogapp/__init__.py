@@ -17,7 +17,8 @@ class Tags(database.Model):
     def __repr__(self):
         return f'{self.asked_url}'
 
+
 database.create_all()
 
 # Views must be imported after app object created due Flask developers recommendation
-from uenergoapp import views
+from jwtblogapp import views

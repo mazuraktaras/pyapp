@@ -12,7 +12,7 @@ services:
     environment:
       C_FORCE_ROOT: 'true'
     restart: always
-    command: celery -A uenergoapp.celapp worker -l info
+    command: celery -A jwtblogapp.celapp worker -l info
     depends_on:
       - mysqlserver
       - redis
