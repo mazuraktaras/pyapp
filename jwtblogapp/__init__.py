@@ -11,22 +11,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 database = SQLAlchemy(app)
 blog_api = Api(app)
 
-
-class Tags(database.Model):
-    id = database.Column(database.Integer, primary_key=True)
-    asked_time = database.Column(database.DateTime, nullable=True)
-    asked_url = database.Column(database.String(2048), nullable=True)
-    tags = database.Column(database.JSON, nullable=True)
-
-    def __repr__(self):
-        return f'{self.asked_url}'
-
+# Views must be imported after app object created due Flask developers recommendation
+from jwtblogapp import views, models
+from jwtblogapp.resources import RegUser, LogUser, AllUsers
 
 database.create_all()
 
-# Views must be imported after app object created due Flask developers recommendation
-from jwtblogapp import views
-from jwtblogapp.resources import RegUser, LogUser
-
 blog_api.add_resource(RegUser, '/register')
 blog_api.add_resource(LogUser, '/login')
+blog_api.add_resource(AllUsers, '/all')
