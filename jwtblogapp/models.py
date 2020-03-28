@@ -3,7 +3,7 @@ from passlib.hash import pbkdf2_sha512
 
 
 class User(database.Model):
-    __tablename_ = 'blog_users'
+    __tablename__ = 'blog_users'
 
     id = database.Column(database.Integer, primary_key=True)
     username = database.Column(database.String(128), unique=True)
@@ -30,7 +30,7 @@ class User(database.Model):
 
 
 class RevokedToken(database.Model):
-    __tablename_ = 'revoked_tokens'
+    __tablename__ = 'revoked_tokens'
 
     id = database.Column(database.Integer, primary_key=True)
     jti = database.Column(database.String(128))
