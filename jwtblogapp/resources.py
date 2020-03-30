@@ -73,7 +73,7 @@ class AllUsers(Resource):
     @jwt_required
     def get(self):
         users_json = [{'username': user.username, 'password': user.password} for user in User.query.all()]
-        print(get_raw_jwt())
+        # print(get_raw_jwt())
         return {'users': users_json}
 
     @staticmethod
