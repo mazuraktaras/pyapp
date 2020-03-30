@@ -1,8 +1,8 @@
 import requests
 from flask import request, render_template, url_for, jsonify
 from flask_wtf import FlaskForm
-from wtforms import StringField
-from wtforms.validators import DataRequired
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired, Email
 
 from jwtblogapp import app
 from jwtblogapp import jwt
@@ -10,7 +10,9 @@ from flask_jwt_extended import jwt_required, create_access_token, get_raw_jwt
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired(), Email()])
+    password = StringField('Password')
+    submit = SubmitField('Submit')
 
 
 @app.route('/')
@@ -19,5 +21,21 @@ def index():
     payload = {'username': 'mazurak', 'password': 'protractor'}
     response = requests.post('http://127.0.0.1:5000/login', data=payload)
     token = response.json()['token']
-    return token
-    # return render_template('ue_bootstrap.j2')
+    # TODO: return str(url_for(AllUsers))
+    return render_template('ue_bootstrap.j2')
+    # return str(app.url_map)
+
+
+@app.route('/weblogin', methods=['GET', 'POST'])
+# @jwt_required
+def web_login():
+    form = LoginForm()
+    name = None
+    # username = 'email'
+
+    if form.validate_on_submit():
+        name = form.username.data
+        form.username.data = ''
+
+    return render_template('ue_bootstrap.j2', form=form, name=name)
+    # return str(app.url_map)

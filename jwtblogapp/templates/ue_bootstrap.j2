@@ -27,7 +27,7 @@
 
             <ul class="nav navbar-nav">
 
-
+                <li><a href="#aboutModal" data-toggle="modal">About</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu
                         <span class="caret"></span></a>
@@ -42,21 +42,59 @@
 
     </nav>
 
+    <div>
+        <h1>{{ name }} </h1>
+    </div>
 
-    <div id="chartContainer" style="height: 400px; width: 100%;"></div>
-
-    <form id="inputURLform" class="form-inline" action="javascript:void(0);" method="post" data-toggle="validator">
-        <div class="form-group has-feedback" style="vertical-align: top;">
-            <label for="url">URL: </label>
-            <input id="URLinput" type="url" class="form-control" name="url" size="100" required>
-            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-            <div class="help-block with-errors">Good job!</div>
-
-        </div>
-        <button id="ajax-button" type="submit" class="btn btn-default">Send POST by AJAX</button>
+    <div style="height: auto; width: auto;">
 
 
-    </form>
+    </div>
+
+
+
+    {% if form.errors %}
+        {{ form.errors }}
+    {% endif %}
+
+    <div style="height: auto; width: auto;">
+
+        <form data-toggle="validator" role="form" method="post">
+            {{ form.csrf_token }}
+            <div class="form-group has-feedback">
+                {{ form.username.label(class='control-label') }}
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    {{ form.username(id='username', type='email', class='form-control') }}
+                </div>
+                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                <div class="help-block with-errors">Enter you email here</div>
+            </div>
+
+
+            <div class="form-group">
+                {{ form.password.label(class='control-label') }}
+
+                <div class="form-inline row">
+                    <div class="form-group col-sm-6">
+                        {{ form.password(id='password', type='password', class='form-control', placeholder='Password', **{'data-minlength': '1'}) }}
+                        <div class="help-block">Minimum of 7 characters</div>
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <input type="password" class="form-control" id="inputPasswordConfirm"
+                               data-match="#inputPassword"
+                               data-match-error="These passwords don't match" placeholder="Confirm" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
 
 
     <div class="modal fade" id="aboutModal" role="dialog">
