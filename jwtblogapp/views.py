@@ -1,5 +1,5 @@
 import requests
-from flask import request, render_template, url_for, jsonify
+from flask import request, render_template, redirect, session, url_for, jsonify
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Email
@@ -22,20 +22,26 @@ def index():
     response = requests.post('http://127.0.0.1:5000/login', data=payload)
     token = response.json()['token']
     # TODO: return str(url_for(AllUsers))
-    return render_template('ue_bootstrap.j2')
-    # return str(app.url_map)
+    # return render_template('blog_base.j2')
+    return str(url_for('loguser'))
 
 
 @app.route('/weblogin', methods=['GET', 'POST'])
 # @jwt_required
-def web_login():
+def weblogin():
+    token = None
     form = LoginForm()
-    name = None
+    username = None
     # username = 'email'
 
     if form.validate_on_submit():
-        name = form.username.data
+        username = form.username.data
+        password = form.password.data
+        payload = {'username': username, 'password': password}
+        response = requests.post('http://127.0.0.1:5000/login', data=payload)
+        token = response.json()['token']
         form.username.data = ''
+        form.password.data = ''
 
-    return render_template('ue_bootstrap.j2', form=form, name=name)
+    return render_template('blog_base.j2', form=form, name=token)
     # return str(app.url_map)
