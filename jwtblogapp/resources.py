@@ -32,7 +32,7 @@ class RegUser(Resource):
             fresh_user.store()
             return {'message': f'User {fresh_user.username} stored'}
         except IntegrityError:
-            return {'message': f'User {fresh_user.username} already exist'}
+            return {'message': f'User {fresh_user.username} already exist'}, 202
 
 
 # define a class for user login

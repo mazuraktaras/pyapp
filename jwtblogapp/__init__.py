@@ -11,6 +11,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = 'bmnkvsk'
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
+app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+app.config['JWT_COOKIE_CSRF_PROTECT'] = True
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ueuser:12345678@mysqlserver:3306/uedatabase'
 
 database = SQLAlchemy(app)
@@ -23,7 +25,7 @@ from jwtblogapp.resources import RegUser, LogUser, LogoutUser, AllUsers
 
 database.create_all()
 
-blog_api.add_resource(RegUser, '/register')
+blog_api.add_resource(RegUser, '/signup')
 blog_api.add_resource(LogUser, '/login')
 blog_api.add_resource(LogoutUser, '/logout')
 blog_api.add_resource(AllUsers, '/all')
