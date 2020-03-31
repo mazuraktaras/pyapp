@@ -27,7 +27,7 @@
 
             <ul class="nav navbar-nav">
 
-                <li><a href="#aboutModal" data-toggle="modal">About</a></li>
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu
                         <span class="caret"></span></a>
@@ -36,17 +36,28 @@
                         <li><a href="#aboutModal" data-toggle="modal">About</a></li>
                     </ul>
                 </li>
+                <li><a href="#aboutModal" data-toggle="modal">About</a></li>
+                {% if not session.logged %}
+                    <li><a href="/weblogin" data-toggle="modal">Log In</a></li>
+                {% else %}
+                    <li><a href="/weblogout" data-toggle="modal">Log Out</a></li>
+                {% endif %}
             </ul>
 
         </div>
 
     </nav>
 
-    <div>
-        <h1>{{ name }} </h1>
-    </div>
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+    {% endfor %}
 
     {% block signup_form %}{% endblock %}
+
+    {% block posts %}{% endblock %}
 
 
     <div class="modal fade" id="aboutModal" role="dialog">

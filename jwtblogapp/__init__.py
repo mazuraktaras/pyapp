@@ -11,7 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = 'bmnkvsk'
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
-app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+app.config['JWT_TOKEN_LOCATION'] = ['headers', 'cookies']
 app.config['JWT_COOKIE_CSRF_PROTECT'] = True
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ueuser:12345678@mysqlserver:3306/uedatabase'
 

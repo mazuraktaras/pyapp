@@ -30,7 +30,7 @@ class RegUser(Resource):
 
         try:
             fresh_user.store()
-            return {'message': f'User {fresh_user.username} stored'}
+            return {'message': f'User {fresh_user.username} successfully signed up'}
         except IntegrityError:
             return {'message': f'User {fresh_user.username} already exist'}, 202
 
@@ -43,7 +43,7 @@ class LogUser(Resource):
         arguments = arguments_parser.parse_args()
         if not User.query.filter_by(username=arguments['username']).first():
 
-            return {'message': 'No such user. Login again'}
+            return {'message': 'No such user. Login again or signup'}, 202
 
         else:
             user = User.query.filter_by(username=arguments['username']).first()
