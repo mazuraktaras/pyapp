@@ -40,3 +40,21 @@ class RevokedToken(database.Model):
     def store(self):
         database.session.add(self)
         database.session.commit()
+
+
+class Post(database.Model):
+    __tablename__ = 'posts'
+
+    id = database.Column(database.Integer, primary_key=True)
+    user_id = database.Column(database.Integer)
+    text = database.Column(database.UnicodeText)
+    created_time = database.Column(database.DateTime)
+
+    def store(self):
+        database.session.add(self)
+        database.session.commit()
+
+    @classmethod
+    def del_all_posts(cls):
+        database.session.query(cls).delete()
+        database.session.commit()

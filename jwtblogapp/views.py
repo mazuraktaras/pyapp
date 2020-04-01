@@ -1,18 +1,24 @@
 import requests
 from flask import flash, jsonify, make_response, request, render_template, redirect, session, url_for
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email
 
 from jwtblogapp import app
 from jwtblogapp import jwt
-from flask_jwt_extended import jwt_required, create_access_token, get_raw_jwt, set_access_cookies, unset_jwt_cookies
+from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity, get_raw_jwt, set_access_cookies, \
+    unset_jwt_cookies
 
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Email()])
-    password = StringField('Password')
-    submit = SubmitField('Submit')
+    password = StringField('Password', validators=[DataRequired()])
+    submit = SubmitField('Sign me up')
+
+
+class PostForm(FlaskForm):
+    post_text = TextAreaField('Message', validators=[DataRequired()])
+    submit = SubmitField('Post')
 
 
 @app.before_first_request
@@ -21,10 +27,8 @@ def session_init():
 
 
 @app.route('/')
-# @jwt_required
 def index():
     return render_template('blog_base.j2')
-    # return str(url_for('loguser'))
 
 
 @app.route('/websignup', methods=['GET', 'POST'])
@@ -32,6 +36,7 @@ def websignup():
     form = LoginForm()
 
     if form.validate_on_submit():
+
         username = form.username.data
         password = form.password.data
         payload = {'username': username, 'password': password}
@@ -77,21 +82,44 @@ def weblogin():
 
 
 @app.route('/weblogout', methods=['GET', 'POST'])
-# @jwt_required
+@jwt_required
 def weblogout():
     if not session['logged']:
         flash('User do not logged in yet')
         return redirect(url_for('index'))
+
+    token = request.cookies.get('access_token_cookie')
+    headers = {'Authorization': f'Bearer {token}'}
+    response = requests.post('http://127.0.0.1:5000/logout', headers=headers)
+    print(response.status_code)
 
     response = make_response(redirect(url_for('index')))
     unset_jwt_cookies(response)
     session['logged'] = False
     flash('You are successfully logged out')
     return response
-    # return render_template('blog_posts.j2')
 
 
 @app.route('/posts', methods=['GET', 'POST'])
 # @jwt_required
 def posts():
-    return render_template('blog_posts.j2')
+    current_user = get_jwt_identity()
+
+    print(current_user)
+
+    form = PostForm()
+
+    if form.validate_on_submit():
+        post_text = form.post_text.data
+
+        token = request.cookies.get('access_token_cookie')
+        headers = {'Authorization': f'Bearer {token}'}
+
+        payload = {'post_text': post_text}
+        response = requests.post('http://127.0.0.1:5000/blog', headers=headers, data=payload)
+        return redirect(url_for('posts'))
+
+    response = requests.get('http://127.0.0.1:5000/blog')
+    posts = response.json()['posts']
+    # print(posts)
+    return render_template('blog_posts.j2', form=form, posts=posts)

@@ -37,12 +37,18 @@
                     </ul>
                 </li>
                 <li><a href="#aboutModal" data-toggle="modal">About</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
                 {% if not session.logged %}
-                    <li><a href="/weblogin" data-toggle="modal">Log In</a></li>
+                    <li><a href="/weblogin"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+                    <li><a href="/websignup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 {% else %}
-                    <li><a href="/weblogout" data-toggle="modal">Log Out</a></li>
+                    <li><a href="/weblogout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+
                 {% endif %}
             </ul>
+
 
         </div>
 
