@@ -1,7 +1,7 @@
 import requests
 from flask import flash, jsonify, make_response, request, render_template, redirect, session, url_for
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField
+from wtforms import HiddenField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email
 
 from jwtblogapp import app
@@ -19,6 +19,12 @@ class LoginForm(FlaskForm):
 class PostForm(FlaskForm):
     post_text = TextAreaField('Message', validators=[DataRequired()])
     submit = SubmitField('Post')
+
+
+class RateForm(FlaskForm):
+    post_id = HiddenField()
+    like = HiddenField()
+    # submit = SubmitField('Like')
 
 
 @app.before_first_request
@@ -57,6 +63,7 @@ def websignup():
 @app.route('/weblogin', methods=['GET', 'POST'])
 def weblogin():
     form = LoginForm()
+    form.submit.label.text = 'Login'
 
     if form.validate_on_submit():
         username = form.username.data
@@ -78,7 +85,7 @@ def weblogin():
         flash('Loged in. Here posts')
         return response
 
-    return render_template('blog_signup.j2', form=form, name='')
+    return render_template('blog_login.j2', form=form, name='')
 
 
 @app.route('/weblogout', methods=['GET', 'POST'])
@@ -103,11 +110,26 @@ def weblogout():
 @app.route('/posts', methods=['GET', 'POST'])
 # @jwt_required
 def posts():
-    current_user = get_jwt_identity()
+    # current_user = get_jwt_identity()
 
-    print(current_user)
+    # print(current_user)
 
     form = PostForm()
+    rate_form = RateForm()
+    print(rate_form.data)
+    print(form.data)
+
+    if rate_form.is_submitted() and rate_form.like.data:
+        print('Submited Rate')
+        post_id = rate_form.post_id.data
+        like = rate_form.like.data
+        token = request.cookies.get('access_token_cookie')
+        headers = {'Authorization': f'Bearer {token}'}
+        payload = {'post_id': post_id, 'like': like}
+        print(payload)
+        response = requests.post('http://127.0.0.1:5000/rating', headers=headers, data=payload)
+        flash(response.text)
+        return redirect(url_for('posts'))
 
     if form.validate_on_submit():
         post_text = form.post_text.data
@@ -116,10 +138,12 @@ def posts():
         headers = {'Authorization': f'Bearer {token}'}
 
         payload = {'post_text': post_text}
+        print(payload)
         response = requests.post('http://127.0.0.1:5000/blog', headers=headers, data=payload)
+        flash(response.text)
         return redirect(url_for('posts'))
 
     response = requests.get('http://127.0.0.1:5000/blog')
-    posts = response.json()['posts']
+    posts_ = response.json()['posts']
     # print(posts)
-    return render_template('blog_posts.j2', form=form, posts=posts)
+    return render_template('blog_posts.j2', form=form, rate_form=rate_form, posts=posts_)

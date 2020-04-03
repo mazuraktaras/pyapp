@@ -21,7 +21,7 @@ jwt = JWTManager(app)
 
 # Views must be imported after app object created due Flask developers recommendation
 from jwtblogapp import views, models
-from jwtblogapp.resources import RegUser, LogUser, LogoutUser, AllUsers, Blog
+from jwtblogapp.resources import RegUser, LogUser, LogoutUser, AllUsers, Blog, PostRating
 
 database.create_all()
 
@@ -30,3 +30,4 @@ blog_api.add_resource(LogUser, '/login')
 blog_api.add_resource(LogoutUser, '/logout')
 blog_api.add_resource(AllUsers, '/all')
 blog_api.add_resource(Blog, '/blog')
+blog_api.add_resource(PostRating, '/rating')

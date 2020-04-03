@@ -5,16 +5,39 @@
     {% for post in posts %}
 
         <div class="panel panel-primary">
-            <div class="panel-heading">Created {{ post.created_time }} User {{ post.user_id }}</div>
+            <div class="panel-heading"># {{ post.post_id }} Created {{ post.created_time }}
+                User {{ post.user_id }}</div>
             <div class="panel-body">{{ post.post_text }}</div>
             <div class="panel-footer">
-                <button type="button" class="btn btn-success">Primary <span class="badge">7</span></button>
-                <button type="button" class="btn btn-danger">Primary <span class="badge">7</span></button>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <form method="post">
+                            {{ rate_form.csrf_token }}
+                            {{ rate_form.like(value='1') }}
+                            {{ rate_form.post_id(value='%s'|format(post.post_id)) }}
+                            <button type="submit" class="btn btn-success">Like <span
+                                    class="badge">{{ post.likes }}</span>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-sm-2">
+                        <form method="post">
+                            {{ rate_form.csrf_token }}
+                            {{ rate_form.like(value='0') }}
+                            {{ rate_form.post_id(value='%s'|format(post.post_id)) }}
+                            <button type="submit" class="btn btn-danger">Dislike <span
+                                    class="badge">{{ post.dislikes }}</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
 
             </div>
         </div>
 
     {% endfor %}
+
+    <!--action="## {{ url_for('posts') }}" -->
 
     <form data-toggle="validator" role="form" method="post">
         {{ form.csrf_token }}

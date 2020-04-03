@@ -48,6 +48,30 @@ class Post(database.Model):
     id = database.Column(database.Integer, primary_key=True)
     user_id = database.Column(database.Integer)
     text = database.Column(database.UnicodeText)
+    likes = database.Column(database.Integer)
+    dislikes = database.Column(database.Integer)
+    created_time = database.Column(database.DateTime)
+
+    def store(self):
+        database.session.add(self)
+        database.session.commit()
+
+    def update(self):
+        database.session.commit()
+
+    @classmethod
+    def del_all_posts(cls):
+        database.session.query(cls).delete()
+        database.session.commit()
+
+
+class Rating(database.Model):
+    __tablename__ = 'ratings'
+
+    id = database.Column(database.Integer, primary_key=True)
+    user_id = database.Column(database.Integer)
+    post_like_id = database.Column(database.Integer)
+    post_dislike_id = database.Column(database.Integer)
     created_time = database.Column(database.DateTime)
 
     def store(self):
@@ -55,6 +79,6 @@ class Post(database.Model):
         database.session.commit()
 
     @classmethod
-    def del_all_posts(cls):
+    def del_all(cls):
         database.session.query(cls).delete()
         database.session.commit()
