@@ -78,6 +78,9 @@ class Rating(database.Model):
         database.session.add(self)
         database.session.commit()
 
+    def update(self):
+        database.session.commit()
+
     @classmethod
     def del_all(cls):
         database.session.query(cls).delete()

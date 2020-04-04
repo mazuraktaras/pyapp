@@ -111,7 +111,7 @@ class Blog(Resource):
         new_post = Post(user_id=user.id, text=arguments['post_text'], likes=0, dislikes=0, created_time=datetime.now())
         new_post.store()
 
-        return {'message': 'Post successfully created'}
+        return {'msg': 'Post successfully created'}
 
 
 class PostRating(Resource):
@@ -121,35 +121,60 @@ class PostRating(Resource):
 
         post_like_id = None
         post_dislike_id = None
-        post_id = None
 
         user = User.query.filter_by(username=get_jwt_identity()).first()
         arguments = rating_arguments_parser.parse_args()
+        post_id = arguments['post_id']
+
         query_result = Rating.query.filter_by(user_id=user.id).all()
 
-        if not Post.query.get(arguments['post_id']):
+        if not Post.query.get(post_id):
             return {'msg': 'Not such post_id in database'}
 
+        post = Post.query.filter_by(id=post_id).first()
+
         if arguments['like'] == 1:
-            post_like_id = arguments['post_id']
 
-            if post_like_id in [result.post_like_id for result in query_result]:
-                return {'msg': 'Post already liked by user'}
+            # print([result.post_like_id for result in query_result])
+            if post_id in [result.post_like_id for result in query_result]:
+                return {'msg': f'Post already liked by {user.username}'}
 
-            post = Post.query.filter_by(id=arguments['post_id']).first()
+            if post_id in [result.post_dislike_id for result in query_result]:
+                rating = Rating.query.filter_by(user_id=user.id, post_dislike_id=post_id).one()
+                rating.post_dislike_id = None
+                rating.post_like_id = post_id
+                rating.update()
+
+                post.likes = Post.likes + 1
+                post.dislikes = Post.dislikes - 1
+                post.update()
+
+                return {'msg': 'Rating updated to LIKE'}
+
             post.likes = Post.likes + 1
-            if post_dislike_id in [result.post_dislike_id for result in query_result]:
-                print('In dislikes')
-                rating = Rating.query.filter_by(user_id=user.id, post_dislike_id=None).all()
-            post.update()
-        else:
-            post_dislike_id = arguments['post_id']
+            post_like_id = post_id
 
-            if post_dislike_id in [result.post_dislike_id for result in query_result]:
-                return {'msg': 'Post already disliked by user'}
-            post = Post.query.filter_by(id=arguments['post_id']).first()
+        else:
+
+            if post_id in [result.post_dislike_id for result in query_result]:
+                return {'msg': f'Post already disliked by {user.username}'}
+
+            if post_id in [result.post_like_id for result in query_result]:
+                rating = Rating.query.filter_by(user_id=user.id, post_like_id=post_id).one()
+                rating.post_like_id = None
+                rating.post_dislike_id = post_id
+                rating.update()
+
+                post.dislikes = Post.dislikes + 1
+                post.likes = Post.likes - 1
+                post.update()
+
+                return {'msg': 'Rating updated to DISLIKE'}
+
             post.dislikes = Post.dislikes + 1
-            post.update()
+            post_dislike_id = post_id
+
+        post.update()
 
         new_rating = Rating(user_id=user.id, post_like_id=post_like_id, post_dislike_id=post_dislike_id,
                             created_time=datetime.now())

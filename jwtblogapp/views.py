@@ -24,7 +24,26 @@ class PostForm(FlaskForm):
 class RateForm(FlaskForm):
     post_id = HiddenField()
     like = HiddenField()
-    # submit = SubmitField('Like')
+
+
+@jwt.expired_token_loader
+def expired_token(callback):
+    if request.user_agent.browser:
+        response = make_response(redirect(url_for('index')))
+        session['logged'] = False
+        flash('You token is expired, please LogIn')
+        return response
+    return jsonify(msg='Token has expired'), 401
+
+
+@jwt.unauthorized_loader
+def unauthorized_token(callback):
+    if request.user_agent.browser:
+        response = make_response(redirect(url_for('index')))
+        session['logged'] = False
+        flash('Your token is unauthorized! LogIn, please.')
+        return response
+    return jsonify(msg='Your token is unauthorized!'), 401
 
 
 @app.before_first_request
@@ -91,9 +110,9 @@ def weblogin():
 @app.route('/weblogout', methods=['GET', 'POST'])
 @jwt_required
 def weblogout():
-    if not session['logged']:
-        flash('User do not logged in yet')
-        return redirect(url_for('index'))
+    # if not session['logged']:
+    #   flash('User do not logged in yet')
+    #  return redirect(url_for('index'))
 
     token = request.cookies.get('access_token_cookie')
     headers = {'Authorization': f'Bearer {token}'}
@@ -108,11 +127,11 @@ def weblogout():
 
 
 @app.route('/posts', methods=['GET', 'POST'])
-# @jwt_required
+@jwt_required
 def posts():
-    # current_user = get_jwt_identity()
+    current_user = get_jwt_identity()
 
-    # print(current_user)
+    print(current_user)
 
     form = PostForm()
     rate_form = RateForm()
@@ -140,10 +159,10 @@ def posts():
         payload = {'post_text': post_text}
         print(payload)
         response = requests.post('http://127.0.0.1:5000/blog', headers=headers, data=payload)
-        flash(response.text)
+        flash(response.json()['msg'])
         return redirect(url_for('posts'))
 
     response = requests.get('http://127.0.0.1:5000/blog')
-    posts_ = response.json()['posts']
+    blog_posts = response.json()['posts']
     # print(posts)
-    return render_template('blog_posts.j2', form=form, rate_form=rate_form, posts=posts_)
+    return render_template('blog_posts.j2', form=form, rate_form=rate_form, posts=blog_posts)
