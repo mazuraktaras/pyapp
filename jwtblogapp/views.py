@@ -6,6 +6,7 @@ from jwtblogapp import jwt
 from flask_jwt_extended import jwt_required, get_jwt_identity, set_access_cookies, unset_jwt_cookies
 
 from jwtblogapp.forms import LoginForm, PostForm, RateForm
+from jwtblogapp.bot import bot_run
 
 
 @jwt.expired_token_loader
@@ -38,6 +39,9 @@ def index():
     # TODO: what with it print(request.url_root) ?
     print(app.url_map)
     print(url_for('signupuser', _external=True))
+    bot_run()
+    print(app.config['MY_CONF_PARM'])
+    flash('Bot started')
     return render_template('blog_base.j2')
 
 

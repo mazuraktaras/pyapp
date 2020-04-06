@@ -1,3 +1,4 @@
+faker
 wtforms
 passlib
 amqp==2.5.2

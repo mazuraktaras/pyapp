@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'bmnkvsk'
@@ -15,6 +16,7 @@ app.config['JWT_TOKEN_LOCATION'] = ['headers', 'cookies']
 app.config['JWT_COOKIE_CSRF_PROTECT'] = False
 app.config['JWT_CSRF_CHECK_FORM'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
+app.config['MY_CONF_PARM'] = 33
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ueuser:12345678@mysqlserver:3306/uedatabase'
 
 database = SQLAlchemy(app)
