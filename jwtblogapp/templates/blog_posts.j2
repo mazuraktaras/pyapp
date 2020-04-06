@@ -5,8 +5,7 @@
     {% for post in posts %}
 
         <div class="panel panel-primary">
-            <div class="panel-heading"># {{ post.post_id }} Created {{ post.created_time }}
-                User {{ post.user_id }}</div>
+            <div class="panel-heading"># {{ post.post_id }} {{ post.created_time }} {{ post.username }}</div>
             <div class="panel-body">{{ post.post_text }}</div>
             <div class="panel-footer">
                 <div class="row">
@@ -15,7 +14,7 @@
                             {{ rate_form.csrf_token }}
                             {{ rate_form.like(value='1') }}
                             {{ rate_form.post_id(value='%s'|format(post.post_id)) }}
-                            <button type="submit" class="btn btn-success">Like <span
+                            <button type="submit" class="btn btn-success" style="width: 100px">Like <span
                                     class="badge">{{ post.likes }}</span>
                             </button>
                         </form>
@@ -25,7 +24,7 @@
                             {{ rate_form.csrf_token }}
                             {{ rate_form.like(value='0') }}
                             {{ rate_form.post_id(value='%s'|format(post.post_id)) }}
-                            <button type="submit" class="btn btn-danger">Dislike <span
+                            <button type="submit" class="btn btn-danger" style="width: 100px">Dislike <span
                                     class="badge">{{ post.dislikes }}</span>
                             </button>
                         </form>
@@ -37,7 +36,7 @@
 
     {% endfor %}
 
-    <!--action="## {{ url_for('posts') }}" -->
+    <!--action="## {{ url_for('blog') }}" -->
 
     <form data-toggle="validator" role="form" method="post">
         {{ form.csrf_token }}

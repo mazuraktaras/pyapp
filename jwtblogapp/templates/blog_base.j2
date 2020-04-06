@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ title }}</title>
+    <title>JWT BLOG</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -41,11 +41,14 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if not session.logged %}
-                    <li><a href="/weblogin"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-                    <li><a href="/websignup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="{{ url_for('web_login') }}"><span class="glyphicon glyphicon-log-in"></span> Log In</a>
+                    </li>
+                    <li><a href="{{ url_for('web_signup') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                    </li>
                 {% else %}
-                    <li><a href="/weblogout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
-
+                    <li style="color: lightgray; padding-top: 15px; text-align: center">{{ user }}</li>
+                    <li><a href="{{ url_for('web_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+                    </li>
                 {% endif %}
             </ul>
 

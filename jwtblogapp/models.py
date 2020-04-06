@@ -47,6 +47,7 @@ class Post(database.Model):
 
     id = database.Column(database.Integer, primary_key=True)
     user_id = database.Column(database.Integer)
+    username = database.Column(database.String(128))
     text = database.Column(database.UnicodeText)
     likes = database.Column(database.Integer)
     dislikes = database.Column(database.Integer)

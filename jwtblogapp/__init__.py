@@ -13,6 +13,8 @@ app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 app.config['JWT_TOKEN_LOCATION'] = ['headers', 'cookies']
 app.config['JWT_COOKIE_CSRF_PROTECT'] = False
+app.config['JWT_CSRF_CHECK_FORM'] = False
+app.config['PROPAGATE_EXCEPTIONS'] = True
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ueuser:12345678@mysqlserver:3306/uedatabase'
 
 database = SQLAlchemy(app)
@@ -21,13 +23,12 @@ jwt = JWTManager(app)
 
 # Views must be imported after app object created due Flask developers recommendation
 from jwtblogapp import views, models
-from jwtblogapp.resources import RegUser, LogUser, LogoutUser, AllUsers, Blog, PostRating
+from jwtblogapp.resources import SignupUser, LoginUser, LogoutUser, Posts, PostRating
 
 database.create_all()
 
-blog_api.add_resource(RegUser, '/signup')
-blog_api.add_resource(LogUser, '/login')
-blog_api.add_resource(LogoutUser, '/logout')
-blog_api.add_resource(AllUsers, '/all')
-blog_api.add_resource(Blog, '/blog')
-blog_api.add_resource(PostRating, '/rating')
+blog_api.add_resource(SignupUser, '/api/signup')
+blog_api.add_resource(LoginUser, '/api/login')
+blog_api.add_resource(LogoutUser, '/api/logout')
+blog_api.add_resource(Posts, '/api/posts')
+blog_api.add_resource(PostRating, '/api/rating')
