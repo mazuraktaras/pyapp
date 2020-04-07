@@ -39,7 +39,7 @@ def index():
     # TODO: what with it print(request.url_root) ?
     print(app.url_map)
     print(url_for('signupuser', _external=True))
-    bot_run()
+    # bot_run()
     print(app.config['MY_CONF_PARM'])
     flash('Bot started')
     return render_template('blog_base.j2')

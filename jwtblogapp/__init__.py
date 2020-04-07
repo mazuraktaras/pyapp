@@ -2,10 +2,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
+from jwtblogapp import config
 
 
 app = Flask(__name__)
 
+'''
 app.config['SECRET_KEY'] = 'bmnkvsk'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///jwtblog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -18,6 +20,9 @@ app.config['JWT_CSRF_CHECK_FORM'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.config['MY_CONF_PARM'] = 33
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ueuser:12345678@mysqlserver:3306/uedatabase'
+'''
+
+app.config.from_object(config)
 
 database = SQLAlchemy(app)
 blog_api = Api(app)
