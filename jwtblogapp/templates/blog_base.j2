@@ -29,10 +29,10 @@
 
 
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bot
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/">Home</a></li>
+                        <li><a href="{{ url_for('bot') }}">Run Bot</a></li>
                         <li><a href="#aboutModal" data-toggle="modal">About</a></li>
                     </ul>
                 </li>
@@ -56,8 +56,8 @@
 
     </nav>
 
-    {% for message in get_flashed_messages() %}
-        <div class="alert alert-success">
+    {% for category,  message in get_flashed_messages(with_categories=True) %}
+        <div class="alert alert-{{ category }}">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             {{ message }}
         </div>

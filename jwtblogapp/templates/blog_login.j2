@@ -19,13 +19,6 @@
 
     {% endif %}
 
-    {% for message in get_flashed_messages() %}
-        <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ message }}
-        </div>
-    {% endfor %}
-
     <div style="height: auto; width: auto;">
 
         <form data-toggle="validator" role="form" method="post">

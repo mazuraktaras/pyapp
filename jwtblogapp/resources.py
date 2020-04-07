@@ -31,29 +31,30 @@ def if_blacklisted(decrypted_token):
 # define a class for user registration
 class SignupUser(Resource):
 
-    # @staticmethod
-    def post(self):
+    @staticmethod
+    def post():
 
         arguments = auth_arguments_parser.parse_args()
-        fresh_user = User(username=arguments['username'], password=arguments['password'])
-        fresh_user.make_hash()
+        new_user = User(username=arguments['username'], password=arguments['password'])
+        new_user.make_hash()
 
         try:
-            fresh_user.store()
-            return {'msg': f'User {fresh_user.username} successfully signed up'}
+            new_user.store()
+            return {'msg': f'User {new_user.username} successfully signed up'}
         except IntegrityError:
-            return {'msg': f'User {fresh_user.username} already exist'}, 202
+            return {'msg': f'User {new_user.username} already exist'}, 202
 
 
 # define a class for user login
 class LoginUser(Resource):
 
-    def post(self):
+    @staticmethod
+    def post():
 
         arguments = auth_arguments_parser.parse_args()
         if not User.query.filter_by(username=arguments['username']).first():
 
-            return {'msg': 'Bad credentials. Login again or signup'}, 202
+            return {'msg': 'Bad credentials! Login again or signup'}, 401
 
         else:
             user = User.query.filter_by(username=arguments['username']).first()
@@ -64,7 +65,7 @@ class LoginUser(Resource):
 
                 return {'msg': f'User {arguments["username"]} successfully logged in', 'token': token}
             else:
-                return {'msg': 'Bad credentials'}
+                return {'msg': 'Bad credentials! Login again or signup'}, 401
 
 
 # define a class for user logout
@@ -79,13 +80,12 @@ class LogoutUser(Resource):
 
 class Posts(Resource):
 
-    @staticmethod
     @jwt_required
-    def get():
+    def get(self):
         posts_json = [{'post_id': post.id, 'user_id': post.user_id, 'username': post.username, 'post_text': post.text,
                        'likes': post.likes,
                        'dislikes': post.dislikes,
-                       'created_time': (post.created_time).strftime("%d-%m-%Y %H:%M:%S")
+                       'created_time': post.created_time.strftime("%d-%m-%Y %H:%M:%S")
                        } for post in Post.query.all()]
         return {'posts': posts_json}
 
@@ -115,7 +115,7 @@ class PostRating(Resource):
         query_result = Rating.query.filter_by(user_id=user.id).all()
 
         if not Post.query.get(post_id):
-            return {'msg': 'Not such post_id in database'}
+            return {'msg': 'Not such post_id in database'}, 404
 
         post = Post.query.filter_by(id=post_id).first()
 
@@ -123,7 +123,7 @@ class PostRating(Resource):
 
             # print([result.post_like_id for result in query_result])
             if post_id in [result.post_like_id for result in query_result]:
-                return {'msg': f'Post already liked by {user.username}'}
+                return {'msg': f'Post already liked by {user.username}'}, 202
 
             if post_id in [result.post_dislike_id for result in query_result]:
                 rating = Rating.query.filter_by(user_id=user.id, post_dislike_id=post_id).one()
@@ -143,7 +143,7 @@ class PostRating(Resource):
         else:
 
             if post_id in [result.post_dislike_id for result in query_result]:
-                return {'msg': f'Post already disliked by {user.username}'}
+                return {'msg': f'Post already disliked by {user.username}'}, 202
 
             if post_id in [result.post_like_id for result in query_result]:
                 rating = Rating.query.filter_by(user_id=user.id, post_like_id=post_id).one()

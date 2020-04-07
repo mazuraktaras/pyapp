@@ -7,7 +7,7 @@ class User(database.Model):
 
     id = database.Column(database.Integer, primary_key=True)
     username = database.Column(database.String(128), unique=True)
-    password = database.Column(database.String(128))
+    password = database.Column(database.String(512))
     created_time = database.Column(database.DateTime)
 
     def store(self):
@@ -57,7 +57,8 @@ class Post(database.Model):
         database.session.add(self)
         database.session.commit()
 
-    def update(self):
+    @staticmethod
+    def update():
         database.session.commit()
 
     @classmethod
@@ -79,7 +80,8 @@ class Rating(database.Model):
         database.session.add(self)
         database.session.commit()
 
-    def update(self):
+    @staticmethod
+    def update():
         database.session.commit()
 
     @classmethod
