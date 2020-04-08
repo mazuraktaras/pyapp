@@ -1,4 +1,4 @@
-
+# ----- App configuration section -----
 SECRET_KEY = '222bmnkvsk777'
 SQLALCHEMY_DATABASE_URI = 'sqlite:///jwtblog.db'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -10,6 +10,7 @@ JWT_COOKIE_CSRF_PROTECT = False
 JWT_CSRF_CHECK_FORM = False
 PROPAGATE_EXCEPTIONS = True
 
+# ----- Blog Bot configuration section -----
 BOT_NUMBER_OF_USERS = 5
 BOT_MAX_POSTS_PER_USER = 10
 BOT_MAX_LIKES_PER_USER = 20
