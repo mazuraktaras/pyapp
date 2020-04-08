@@ -4,6 +4,7 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 from jwtblogapp import config
 
+# Initialize application object
 app = Flask(__name__)
 
 # Configure app from python object i.e. from python module (config.py)
