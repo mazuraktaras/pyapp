@@ -14,7 +14,7 @@ class LoginForm(FlaskForm):
 
 class PostForm(FlaskForm):
     """
-    Describes the post text form in the frontend for signup and login
+    Describes the post text form in the frontend
     """
     post_text = TextAreaField('Message', validators=[DataRequired()])
     submit = SubmitField('Post')
@@ -22,7 +22,7 @@ class PostForm(FlaskForm):
 
 class RateForm(FlaskForm):
     """
-    Describes the 'like and dislike forms' in the frontend for signup and login
+    Describes the 'like and dislike forms' in the frontend for post rating
     """
     post_id = HiddenField()  # a hidden field for render post_id value
     like = HiddenField()  # a hidden field for render like 0 or 1 value
