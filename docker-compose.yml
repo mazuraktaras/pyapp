@@ -4,26 +4,3 @@ services:
     build: .
     ports:
       - "5000:5000"
-    depends_on:
-      - mysqlserver
-      - redis
-  celery:
-    build: .
-    environment:
-      C_FORCE_ROOT: 'true'
-    restart: always
-    command: celery -A jwtblogapp.celapp worker -l info
-    depends_on:
-      - mysqlserver
-      - redis
-  mysqlserver:
-    image: mysql:5.7
-    environment:
-      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
-      MYSQL_DATABASE: uedatabase
-      MYSQL_USER: ueuser
-      MYSQL_PASSWORD: 12345678
-    ports:
-      - "33060:3306"
-  redis:
-    image: redis
