@@ -131,7 +131,7 @@ def blog():
         payload = {'post_text': post_text}
 
         response = requests.post(url_for('posts', _external=True), headers=headers, data=payload)
-        flash(response.json()['msg'])
+        flash(response.json()['msg'], 'success')
         return redirect(url_for('blog'))
 
     response = requests.get(url_for('posts', _external=True), headers=headers)
