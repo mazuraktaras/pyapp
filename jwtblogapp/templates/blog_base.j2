@@ -27,18 +27,17 @@
 
             <ul class="nav navbar-nav">
 
-
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bot
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Blog Bot
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ url_for('bot') }}">Run Bot</a></li>
-                        <li><a href="#aboutModal" data-toggle="modal">About</a></li>
                     </ul>
                 </li>
                 <li><a href="#aboutModal" data-toggle="modal">About</a></li>
 
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 {% if not session.logged %}
                     <li><a href="{{ url_for('web_login') }}"><span class="glyphicon glyphicon-log-in"></span> Log In</a>
@@ -87,7 +86,7 @@
         </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer" style="margin-top: 70px">
         <p>© 2020 Taras Mazurak</p>
     </footer>
 
