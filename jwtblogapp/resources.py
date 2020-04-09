@@ -154,13 +154,21 @@ class Posts(Resource):
         user_ratings = Rating.query.filter_by(user_id=user.id).all()
 
         def likes_status(post_id):
+            """
+            Return status of post like for current user
+
+            :param post_id: Get post id
+            :return: 0 if post never
+            """
             like_it = 0
+            if user_ratings:
 
-            if post_id in [result.post_like_id for result in user_ratings]:
-                like_it = 1
+                if post_id in [result.post_like_id for result in user_ratings]:
+                    like_it = 1
 
-            elif post_id in [result.post_dislike_id for result in user_ratings]:
-                like_it = -1
+                elif post_id in [result.post_dislike_id for result in user_ratings]:
+                    like_it = -1
+
             return like_it
 
         # make a list of dictionaries by querying all post records from the database
@@ -169,6 +177,7 @@ class Posts(Resource):
                        'dislikes': post.dislikes, 'like_it': likes_status(post.id),
                        'created_time': post.created_time.strftime("%d-%m-%Y %H:%M:%S")
                        } for post in Post.query.all()]
+        #  likes_status(post.id)
         # posts_json.append({'new': 'new'})
         return {'posts': posts_json}
 
@@ -233,10 +242,25 @@ class PostRating(Resource):
         # if like
         if arguments['like'] == 1:
 
-            # if the user already 'like' the post response warning
+            # if the user already 'like' the post trigger indefferent
+
             if post_id in [result.post_like_id for result in user_ratings]:
-                return {'msg': f'Post already liked by {user.username}'}, 202
-            # if the user has never rated the post before as 'like'
+                # find 'liked' post's rating
+                like_rating = Rating.query.filter_by(user_id=user.id, post_like_id=post_id).one()
+
+                like_rating.post_like_id = None
+
+                # update rating
+                like_rating.update()
+                # change counts of likes and dislikes in post's record
+
+                post.likes = Post.likes - 1
+                # update post
+                post.update()
+
+                return {'msg': 'Rating updated to INDEF'}
+
+            '''# if the user has never rated the post before as 'like'
             if post_id in [result.post_dislike_id for result in user_ratings]:
                 # find 'disliked' post's rating
                 rating = Rating.query.filter_by(user_id=user.id, post_dislike_id=post_id).one()
@@ -251,7 +275,7 @@ class PostRating(Resource):
                 # update post
                 post.update()
                 # return response
-                return {'msg': 'Rating updated to LIKE'}
+                return {'msg': 'Rating updated to LIKE'}'''
             # If the post has never been 'likes' rated by current user
             post.likes = Post.likes + 1
             post_like_id = post_id
@@ -259,8 +283,21 @@ class PostRating(Resource):
         else:
             # if the user already 'dislike' the post response warning
             if post_id in [result.post_dislike_id for result in user_ratings]:
-                return {'msg': f'Post already disliked by {user.username}'}, 202
-            # if the user has never rated the post before as 'dislike'
+                rating = Rating.query.filter_by(user_id=user.id, post_dislike_id=post_id).one()
+                # reassign post's dislike and like ids
+                rating.post_dislike_id = None
+
+                # update rating
+                rating.update()
+                # change counts of likes and dislikes in post's record
+
+                post.dislikes = Post.dislikes - 1
+                # update post
+                post.update()
+                # return response
+                return {'msg': 'Rating updated to INDEF'}
+
+            '''# if the user has never rated the post before as 'dislike'
             if post_id in [result.post_like_id for result in user_ratings]:
                 # find 'liked' post's rating
                 rating = Rating.query.filter_by(user_id=user.id, post_like_id=post_id).one()
@@ -275,7 +312,7 @@ class PostRating(Resource):
                 # update post
                 post.update()
 
-                return {'msg': 'Rating updated to DISLIKE'}
+                return {'msg': 'Rating updated to DISLIKE'}'''
             # If the post has never been 'dislikes' rated by current user
             post.dislikes = Post.dislikes + 1
             post_dislike_id = post_id

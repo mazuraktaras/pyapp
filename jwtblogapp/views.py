@@ -117,9 +117,9 @@ def blog():
         payload = {'post_id': post_id, 'like': like}
 
         response = requests.post(url_for('postrating', _external=True), headers=headers, data=payload)
-        if response.status_code == 202:
+        '''if response.status_code == 202:
             flash(response.json()['msg'], 'warning')
-            return redirect(url_for('blog'))
+            return redirect(url_for('blog'))'''
 
         flash(response.json()['msg'], 'success')
 
