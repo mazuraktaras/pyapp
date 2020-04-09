@@ -146,16 +146,30 @@ class Posts(Resource):
         """
         Method for GET request. Return all posts.
         :returns: JSON response object, where are headers, JSON object with the 'posts' key with it members with keys
-        ['post_id', 'user_id', 'username', 'post_text', 'likes', 'dislikes', 'created_time'],
+        ['post_id', 'user_id', 'username', 'post_text', 'likes', 'dislikes', 'like_it', 'created_time'],
         status code.
         :rtype: object
         """
+        user = User.query.filter_by(username=get_jwt_identity()).first()
+        user_ratings = Rating.query.filter_by(user_id=user.id).all()
+
+        def likes_status(post_id):
+            like_it = 0
+
+            if post_id in [result.post_like_id for result in user_ratings]:
+                like_it = 1
+
+            elif post_id in [result.post_dislike_id for result in user_ratings]:
+                like_it = -1
+            return like_it
+
         # make a list of dictionaries by querying all post records from the database
         posts_json = [{'post_id': post.id, 'user_id': post.user_id, 'username': post.username, 'post_text': post.text,
                        'likes': post.likes,
-                       'dislikes': post.dislikes,
+                       'dislikes': post.dislikes, 'like_it': likes_status(post.id),
                        'created_time': post.created_time.strftime("%d-%m-%Y %H:%M:%S")
                        } for post in Post.query.all()]
+        # posts_json.append({'new': 'new'})
         return {'posts': posts_json}
 
     # protect the endpoint

@@ -14,9 +14,16 @@
                             {{ rate_form.csrf_token }}
                             {{ rate_form.like(value='1') }}
                             {{ rate_form.post_id(value='%s'|format(post.post_id)) }}
-                            <button type="submit" class="btn btn-success" style="width: 100px">Like <span
-                                    class="badge">{{ post.likes }}</span>
-                            </button>
+                            {% if post.like_it == 1 %}
+                                <button type="submit" class="btn btn-success" style="width: 100px">Like <span
+                                        class="badge">{{ post.likes }}</span>
+                                </button>
+                            {% else %}
+                                <button type="submit" class="btn btn-info" style="width: 100px">Like <span
+                                        class="badge">{{ post.likes }}</span>
+                                </button>
+                            {% endif %}
+
                         </form>
                     </div>
                     <div class="col-sm-2">
@@ -24,9 +31,15 @@
                             {{ rate_form.csrf_token }}
                             {{ rate_form.like(value='0') }}
                             {{ rate_form.post_id(value='%s'|format(post.post_id)) }}
-                            <button type="submit" class="btn btn-danger" style="width: 100px">Dislike <span
-                                    class="badge">{{ post.dislikes }}</span>
-                            </button>
+                            {% if post.like_it == -1 %}
+                                <button type="submit" class="btn btn-danger" style="width: 100px">Dislike <span
+                                        class="badge">{{ post.dislikes }}</span>
+                                </button>
+                            {% else %}
+                                <button type="submit" class="btn btn-info" style="width: 100px">Dislike <span
+                                        class="badge">{{ post.dislikes }}</span>
+                                </button>
+                            {% endif %}
                         </form>
                     </div>
                 </div>
