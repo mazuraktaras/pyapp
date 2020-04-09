@@ -102,3 +102,11 @@ class Rating(database.Model):
         Update a record in database
         """
         database.session.commit()
+
+    @staticmethod
+    def del_indifferent():
+        """
+        Delete unused(indifferent liked) record in database
+        """
+        database.session.query(Rating).filter_by(post_like_id=None, post_dislike_id=None).delete()
+        database.session.commit()
