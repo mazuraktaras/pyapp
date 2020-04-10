@@ -231,6 +231,7 @@ class PostRating(Resource):
         arguments = rating_arguments_parser.parse_args()
         post_id = arguments['post_id']
 
+        # delete unused (indifferent liked) records
         rating = Rating()
         rating.del_indifferent()
 
@@ -263,9 +264,6 @@ class PostRating(Resource):
                 post.likes = Post.likes - 1
                 # update post
                 post.update()
-                rating = Rating.query.filter_by(user_id=user.id, post_dislike_id=None, post_like_id=None, ).all()
-                print(rating)
-                # rating.delete()
 
                 return {'msg': 'Rating updated to indifferent'}
 
