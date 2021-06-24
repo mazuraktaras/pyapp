@@ -77,7 +77,7 @@ class SignupUser(Resource):
 # define a class for user login
 class LoginUser(Resource):
     """
-    Represents RESTful resource for user login endpoint.
+    Represents RESTfull resource for user login endpoint.
 
     """
 
