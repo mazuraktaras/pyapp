@@ -69,12 +69,3 @@ class BlogBot:
         thread = Thread(target=self.bot_logic, daemon=False)
         # start the thread
         thread.start()
-
-
-if __name__ == '__main__':
-    lst1 = [1, 2, 3, ]
-    lst2 = [4, 5, 6, ]
-    print(lst1 + lst2)
-    zp = zip(lst1, lst2)
-    print([k for k in zp].extend(lst1))
-    print()
