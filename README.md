@@ -2,12 +2,5 @@
 
 ##### Run in docker containers:
 
-docker-compose up
-
-##### Wait for the full launch of the services.
-
-`To run on the local machine`<br>
-http://127.0.0.1:5000/
-
-Test line!
+**Under construction now**
 
