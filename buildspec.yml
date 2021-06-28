@@ -13,7 +13,7 @@ phases:
       - virtualenv venv
       - ls -al
 #      - . venv/bin/activate
-      - source /venv/bin/activate
+      - source venv/bin/activate
 #      - which aws
 #      - pip3 --version
 #      - python --version
