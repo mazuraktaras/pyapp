@@ -9,6 +9,7 @@ phases:
     commands:
       - ls -al
       - echo "Phase install started...."
+      - echo "${CODEBUILD_SRC_DIR}"
 #      - mkdir -p "/go/src/$(dirname ${PACKAGE})"
 #      - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${PACKAGE}"
   pre_build:
