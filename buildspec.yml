@@ -16,16 +16,16 @@ phases:
 
       - virtualenv venv
 #      - ls -al
-      - . venv/bin/activate
-      - pip3 install --upgrade pip
+      - . venv/bin/activate && pip install -r requirements.txt && deactivate
+#      - pip3 install --upgrade pip
       - pip install -r requirements.txt
 
 
 #      - which aws
 #      - pip3 --version
 #      - python --version
-      - pip3 list
-      - . venv/bin/deactivate
+#      - pip3 list
+#      - . venv/bin/deactivate
   #      - mkdir -p "/go/src/$(dirname ${PACKAGE})"
   #      - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${PACKAGE}"
   pre_build:
