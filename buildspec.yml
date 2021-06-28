@@ -11,6 +11,7 @@ phases:
       - echo "Phase install started...."
       - echo "${CODEBUILD_SRC_DIR}"
       - virtualenv venv
+      - ls -al
 #      - which aws
 #      - pip3 --version
 #      - python --version
