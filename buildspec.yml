@@ -10,10 +10,12 @@ phases:
       - ls -al
       - echo "Phase install started...."
       - echo "${CODEBUILD_SRC_DIR}"
+      - pip3 install --upgrade pip
       - virtualenv venv
       - ls -al
-#      - . venv/bin/activate
-      - source venv/bin/activate
+      - . venv/bin/activate
+      -
+
 #      - which aws
 #      - pip3 --version
 #      - python --version
