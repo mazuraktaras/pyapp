@@ -12,6 +12,7 @@ phases:
       - echo "${CODEBUILD_SRC_DIR}"
       - virtualenv venv
       - ls -al
+      - ./venv/bin/activate
 #      - which aws
 #      - pip3 --version
 #      - python --version
