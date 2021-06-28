@@ -25,7 +25,7 @@ phases:
 #      - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./
 #      - bash pack_to_deb.sh application 1.0 tasks golang
 
-artifacts:
-  files:
-    - './*.deb'
-  discard-paths: yes
+#artifacts:
+#  files:
+#    - './*.deb'
+#  discard-paths: yes
