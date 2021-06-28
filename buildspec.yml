@@ -24,7 +24,7 @@ phases:
 #      - pip3 --version
 #      - python --version
       - pip3 list
-      - venv/bin/deactivate
+      - . venv/bin/deactivate
   #      - mkdir -p "/go/src/$(dirname ${PACKAGE})"
   #      - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${PACKAGE}"
   pre_build:
