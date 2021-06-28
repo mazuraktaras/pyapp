@@ -7,6 +7,7 @@ phases:
     runtime-versions:
       python: 3.7
     commands:
+      - apt-get update
       #      - ls -al
       #      - echo "Phase install started...."
       #      - echo "${CODEBUILD_SRC_DIR}"
@@ -23,6 +24,7 @@ phases:
 #      - pip3 --version
 #      - python --version
       - pip3 list
+      - deactivate
   #      - mkdir -p "/go/src/$(dirname ${PACKAGE})"
   #      - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${PACKAGE}"
   pre_build:
