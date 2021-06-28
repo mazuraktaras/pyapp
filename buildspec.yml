@@ -7,31 +7,34 @@ phases:
     runtime-versions:
       python: 3.7
     commands:
-      - ls -al
-      - echo "Phase install started...."
-      - echo "${CODEBUILD_SRC_DIR}"
-      - pip3 install --upgrade pip
+      #      - ls -al
+      #      - echo "Phase install started...."
+      #      - echo "${CODEBUILD_SRC_DIR}"
+
+
       - virtualenv venv
-      - ls -al
+#      - ls -al
       - . venv/bin/activate
+      - pip3 install --upgrade pip
       - pip install -r requirements.txt
+
 
 #      - which aws
 #      - pip3 --version
 #      - python --version
       - pip3 list
-#      - mkdir -p "/go/src/$(dirname ${PACKAGE})"
-#      - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${PACKAGE}"
+  #      - mkdir -p "/go/src/$(dirname ${PACKAGE})"
+  #      - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${PACKAGE}"
   pre_build:
     commands:
-#      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-#      - apt-get update && apt-get -y install sqlite3 awscli
-#      - cd "/go/src/${PACKAGE}"
-#      - go get -t ./...
-#      - cat schema.sql | sqlite3 tasks.db
+  #      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+  #      - apt-get update && apt-get -y install sqlite3 awscli
+  #      - cd "/go/src/${PACKAGE}"
+  #      - go get -t ./...
+  #      - cat schema.sql | sqlite3 tasks.db
   build:
     commands:
-#      - go build -o application
+  #      - go build -o application
   post_build:
     commands:
 #      - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./
