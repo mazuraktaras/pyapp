@@ -8,8 +8,8 @@ phases:
     runtime-versions:
       python: 3.7
     commands:
-      - apt update
-      - apt -y install awscli
+      - apt-get update
+      - apt-get -y install awscli
 
   #      - mkdir -p "/go/src/$(dirname ${PACKAGE})"
   #      - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${PACKAGE}"
