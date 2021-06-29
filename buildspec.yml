@@ -8,25 +8,15 @@ phases:
     runtime-versions:
       python: 3.7
     commands:
-      - apt-get update
-      - apt-get -y install awscli
-      #      - ls -al
-      #      - echo "Phase install started...."
-      #      - echo "${CODEBUILD_SRC_DIR}"
+      - apt update
+      - apt -y install awscli
 
-#      - ls -al
-      - pip3 install --upgrade pip
-
-#      - which aws
-#      - pip3 --version
-#      - python --version
-#      - pip3 list
-#      - . venv/bin/deactivate
   #      - mkdir -p "/go/src/$(dirname ${PACKAGE})"
   #      - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${PACKAGE}"
   pre_build:
     commands:
         - virtualenv venv
+
   #      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
   #      - apt-get update && apt-get -y install sqlite3 awscli
   #      - cd "/go/src/${PACKAGE}"
@@ -34,7 +24,7 @@ phases:
   #      - cat schema.sql | sqlite3 tasks.db
   build:
     commands:
-        - . venv/bin/activate && pip install -r requirements.txt && deactivate
+        - . venv/bin/activate && pip3 install --upgrade pip && pip install -r requirements.txt && deactivate
   #      - go build -o application
   post_build:
     commands:
