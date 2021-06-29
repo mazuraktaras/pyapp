@@ -10,7 +10,6 @@ VERSION=$2
 APP=$3
 DIR=$(mktemp -d)
 
-
 #echo "$CWD" $BIN_PATH $APP
 
 #function cleanup() {
@@ -24,7 +23,7 @@ cp -r ${CWD}/* data/usr/share/app/
 
 cat >data/usr/share/app/start.sh <<EOF
 #!/usr/bin/env bash
-##------
+
 set -e -x
 
 #function golang {
@@ -32,7 +31,6 @@ set -e -x
 #/usr/share/app/$BIN
 #}
 
-#----Python App----------
 function python {
 cd /usr/share/app/
 echo "/usr/share/app/$BIN" "It is working_____!"
@@ -54,8 +52,7 @@ EOF
 echo "Working directory>>>>>>>"
 pwd
 
-
-cat > data/etc/systemd/system/$APP.service <<EOF
+cat >data/etc/systemd/system/$APP.service <<EOF
 [Unit]
 Description=$APP
 [Service]
@@ -65,9 +62,9 @@ Type=simple
 WantedBy=multi-user.target
 EOF
 
-echo "/etc/systemd/system/$APP.service" > control/conffiles
+echo "/etc/systemd/system/$APP.service" >control/conffiles
 
-cat > control/control <<EOF
+cat >control/control <<EOF
 Package: $APP
 Version: ${VERSION}
 Architecture: all
@@ -82,39 +79,39 @@ EOF
 pwd
 
 cd data
-md5sum usr/share/app/$BIN > ../control/md5sums
+md5sum usr/share/app/$BIN >../control/md5sums
 cd -
 
 pwd
-#
-#cat >control/postinst <<EOF
-##!/bin/sh
-#set -e
-#if [ "\$1" = "configure" ] || [ "\$1" = "abort-upgrade" ] || [ "\$1" = "abort-deconfigure" ] || [ "\$1" = "abort-remove" ] ; then
-#    systemctl --system daemon-reload
-#        systemctl enable $APP
-#    systemctl start $APP
-#fi
-#exit 0
-#EOF
-#
-#cat >control/prerm <<EOF
-##!/bin/sh
-#set -e
-#systemctl stop $APP || exit 1
-#EOF
-#
-#cat >control/postrm <<EOF
-##!/bin/sh
-#set -e
-#APP=$APP
-#if [ "\$1" = "purge" ] ; then
-#        systemctl disable $APP >/dev/null
-#fi
-#systemctl --system daemon-reload >/dev/null || true
-#systemctl reset-failed
-#exit 0
-#EOF
+
+cat >control/postinst <<EOF
+#!/bin/sh
+set -e
+if [ "\$1" = "configure" ] || [ "\$1" = "abort-upgrade" ] || [ "\$1" = "abort-deconfigure" ] || [ "\$1" = "abort-remove" ] ; then
+  systemctl --system daemon-reload
+  systemctl enable $APP
+  systemctl start $APP
+fi
+exit 0
+EOF
+
+cat >control/prerm <<EOF
+#!/bin/sh
+set -e
+systemctl stop $APP || exit 1
+EOF
+
+cat >control/postrm <<EOF
+#!/bin/sh
+set -e
+APP=$APP
+if [ "\$1" = "purge" ] ; then
+  systemctl disable $APP >/dev/null
+fi
+systemctl --system daemon-reload >/dev/null || true
+systemctl reset-failed
+exit 0
+EOF
 
 cd control
 tar czf ../control.tar.gz .
@@ -126,7 +123,7 @@ cd data
 tar czf ../data.tar.gz .
 cd -
 
-echo "2.0" > debian-binary
+echo "2.0" >debian-binary
 
 #ar r ${CWD}/$APP.deb debian-binary control.tar.gz data.tar.gz
 #cd ${CWD}
