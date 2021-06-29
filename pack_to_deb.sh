@@ -32,6 +32,7 @@ set -e -x
 #/usr/share/app/$BIN
 #}
 
+#----Python App----------
 function python {
 cd /usr/share/app/
 echo "/usr/share/app/$BIN" "It is working_____!"
