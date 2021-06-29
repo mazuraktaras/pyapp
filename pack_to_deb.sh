@@ -13,6 +13,7 @@ DIR=$(mktemp -d)
 function cleanup() {
   rm -rf ${DIR}
 }
+
 trap cleanup EXIT
 
 cd ${DIR}
@@ -24,10 +25,10 @@ cat >data/usr/share/app/start.sh <<EOF
 
 set -e -x
 
-#function golang {
-#cd /usr/share/app/
-#/usr/share/app/$BIN
-#}
+function golang {
+cd /usr/share/app/
+/usr/share/app/$BIN
+}
 
 function python {
 cd /usr/share/app/
