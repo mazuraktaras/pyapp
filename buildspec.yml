@@ -8,14 +8,15 @@ phases:
     runtime-versions:
       python: 3.7
     commands:
-      - apt-get update
-      - apt-get -y install awscli
+      echo Package name `PACKAGE`
+#      - apt-get update
+#      - apt-get -y install awscli
 
   #      - mkdir -p "/go/src/$(dirname ${PACKAGE})"
   #      - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${PACKAGE}"
   pre_build:
     commands:
-        - virtualenv venv
+#        - virtualenv venv
 
   #      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
   #      - apt-get update && apt-get -y install sqlite3 awscli
@@ -24,7 +25,7 @@ phases:
   #      - cat schema.sql | sqlite3 tasks.db
   build:
     commands:
-        - . venv/bin/activate && pip3 install --upgrade pip && pip install -r requirements.txt && deactivate
+#        - . venv/bin/activate && pip3 install --upgrade pip && pip install -r requirements.txt && deactivate
   #      - go build -o application
   post_build:
     commands:
