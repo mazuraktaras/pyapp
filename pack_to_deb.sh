@@ -55,15 +55,15 @@ echo "Working directory>>>>>>>"
 pwd
 
 
-#cat >data/etc/systemd/system/$APP.service <<EOF
-#[Unit]
-#Description=$APP
-#[Service]
-#ExecStart=/bin/bash /usr/share/app/start.sh
-#Type=simple
-#[Install]
-#WantedBy=multi-user.target
-#EOF
+cat >data/etc/systemd/system/$APP.service <<EOF
+[Unit]
+Description=$APP
+[Service]
+ExecStart=/bin/bash /usr/share/app/start.sh
+Type=simple
+[Install]
+WantedBy=multi-user.target
+EOF
 #
 #echo "/etc/systemd/system/$APP.service" >control/conffiles
 #
