@@ -64,10 +64,10 @@ Type=simple
 [Install]
 WantedBy=multi-user.target
 EOF
-#
-#echo "/etc/systemd/system/$APP.service" > control/conffiles
-#
-#cat >control/control <<EOF
+
+echo "/etc/systemd/system/$APP.service" > control/conffiles
+
+#cat > control/control <<EOF
 #Package: $APP
 #Version: ${VERSION}
 #Architecture: all
