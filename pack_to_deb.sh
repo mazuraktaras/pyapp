@@ -67,18 +67,18 @@ EOF
 
 echo "/etc/systemd/system/$APP.service" > control/conffiles
 
-#cat > control/control <<EOF
-#Package: $APP
-#Version: ${VERSION}
-#Architecture: all
-#Maintainer: Oleh Palii <oleh_palii@epam.com>
-#Installed-Size: $(du -ks data/usr/share/app/$BIN | cut -f 1)
-#Depends: default-jre
-#Description: $APP
-#Section: devel
-#Priority: extra
-#EOF
-#
+cat > control/control <<EOF
+Package: $APP
+Version: ${VERSION}
+Architecture: all
+Maintainer: Oleh Palii <oleh_palii@epam.com>
+Installed-Size: $(du -ks data/usr/share/app/$BIN | cut -f 1)
+Depends: default-jre
+Description: $APP
+Section: devel
+Priority: extra
+EOF
+
 #cd data
 #md5sum usr/share/app/$BIN >../control/md5sums
 #cd -
