@@ -33,7 +33,9 @@ set -e -x
 
 function python {
 cd /usr/share/app/
-echo "/usr/share/app/$BIN" "It is working_____!"
+. venv/bin/activate
+export FLASK_APP=blog.py
+flask run --host=0.0.0.0 --port=8080
 }
 
 
