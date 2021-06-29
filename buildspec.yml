@@ -9,6 +9,7 @@ phases:
       python: 3.7
     commands:
       - echo Package name ${PACKAGE}
+      - echo Package name $(dirname ${PACKAGE})
 #      - apt-get update
 #      - apt-get -y install awscli
 
