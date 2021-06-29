@@ -17,13 +17,22 @@ echo CWD
 #}
 #trap cleanup EXIT
 #
-#cd ${DIR}
-#mkdir -v -p control data/{etc/systemd/system,usr/share/app}
+cd ${DIR}
+mkdir -v -p control data/{etc/systemd/system,usr/share/app}
 #cp -r ${CWD}/* data/usr/share/app/
 #
 #cat >data/usr/share/app/start.sh <<EOF
 ##!/usr/bin/env bash
 #set -e -x
+
+function python {
+cd /usr/share/app/
+echo "/usr/share/app/$BIN"
+}
+
+
+
+
 #function golang {
 #cd /usr/share/app/
 #/usr/share/app/$BIN
