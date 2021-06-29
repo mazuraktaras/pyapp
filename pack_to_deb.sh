@@ -10,13 +10,11 @@ VERSION=$2
 APP=$3
 DIR=$(mktemp -d)
 
-#echo "$CWD" $BIN_PATH $APP
+function cleanup() {
+  rm -rf ${DIR}
+}
+trap cleanup EXIT
 
-#function cleanup() {
-#  rm -rf ${DIR}
-#}
-#trap cleanup EXIT
-#
 cd ${DIR}
 mkdir -v -p control data/{etc/systemd/system,usr/share/app}
 cp -r ${CWD}/* data/usr/share/app/
