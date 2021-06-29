@@ -125,5 +125,5 @@ cd -
 
 echo "2.0" >debian-binary
 
-#ar r ${CWD}/$APP.deb debian-binary control.tar.gz data.tar.gz
-#cd ${CWD}
+ar r ${CWD}/$APP.deb debian-binary control.tar.gz data.tar.gz
+cd ${CWD}
