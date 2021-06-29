@@ -79,9 +79,13 @@ Section: devel
 Priority: extra
 EOF
 
-#cd data
-#md5sum usr/share/app/$BIN >../control/md5sums
-#cd -
+pwd
+
+cd data
+md5sum usr/share/app/$BIN > ../control/md5sums
+cd -
+
+pwd
 #
 #cat >control/postinst <<EOF
 ##!/bin/sh
