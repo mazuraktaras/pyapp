@@ -31,26 +31,20 @@ set -e -x
 
 function python {
 cd /usr/share/app/
-. venv/bin/activate
-export FLASK_APP=blog.py
-flask run --host=0.0.0.0 --port=8080
+  run.sh
 }
-
 
 lang=$4
 if [ \$lang = "golang" ]; then
-echo golang
+  golang
 elif [ \$lang = "java" ]; then
-echo java
+  java
 elif [ \$lang = "python" ]; then
-python
+  python
 else
 echo "This programming language isn't supported now"
 fi
 EOF
-
-echo "Working directory>>>>>>>"
-pwd
 
 cat >data/etc/systemd/system/$APP.service <<EOF
 [Unit]
@@ -76,13 +70,9 @@ Section: devel
 Priority: extra
 EOF
 
-pwd
-
 cd data
 md5sum usr/share/app/$BIN >../control/md5sums
 cd -
-
-pwd
 
 cat >control/postinst <<EOF
 #!/bin/sh
@@ -108,16 +98,14 @@ APP=$APP
 if [ "\$1" = "purge" ] ; then
   systemctl disable $APP >/dev/null
 fi
-systemctl --system daemon-reload >/dev/null || true
-systemctl reset-failed
+  systemctl --system daemon-reload >/dev/null || true
+  systemctl reset-failed
 exit 0
 EOF
 
 cd control
 tar czf ../control.tar.gz .
 cd -
-
-pwd
 
 cd data
 tar czf ../data.tar.gz .
@@ -126,4 +114,5 @@ cd -
 echo "2.0" >debian-binary
 
 ar r ${CWD}/$APP.deb debian-binary control.tar.gz data.tar.gz
+
 cd ${CWD}
