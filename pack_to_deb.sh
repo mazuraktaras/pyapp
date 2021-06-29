@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# some
 
 set -e -x
 
@@ -56,7 +55,7 @@ echo "Working directory>>>>>>>"
 pwd
 
 
-cat >data/etc/systemd/system/$APP.service <<EOF
+cat > data/etc/systemd/system/$APP.service <<EOF
 [Unit]
 Description=$APP
 [Service]
@@ -66,7 +65,7 @@ Type=simple
 WantedBy=multi-user.target
 EOF
 #
-#echo "/etc/systemd/system/$APP.service" >control/conffiles
+#echo "/etc/systemd/system/$APP.service" > control/conffiles
 #
 #cat >control/control <<EOF
 #Package: $APP
