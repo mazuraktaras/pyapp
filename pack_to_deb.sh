@@ -51,8 +51,10 @@ echo "This programming language isn't supported now"
 fi
 EOF
 
+echo "Working directory>>>>>>>"
+PWD
 
-#
+
 #cat >data/etc/systemd/system/$APP.service <<EOF
 #[Unit]
 #Description=$APP
