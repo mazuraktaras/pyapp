@@ -10,38 +10,51 @@ VERSION=$2
 APP=$3
 DIR=$(mktemp -d)
 
-echo CWD
+
+#echo "$CWD" $BIN_PATH $APP
 
 #function cleanup() {
 #  rm -rf ${DIR}
 #}
 #trap cleanup EXIT
 #
-#cd ${DIR}
-#mkdir -v -p control data/{etc/systemd/system,usr/share/app}
-#cp -r ${CWD}/* data/usr/share/app/
-#
-#cat >data/usr/share/app/start.sh <<EOF
-##!/usr/bin/env bash
-#set -e -x
+cd ${DIR}
+mkdir -v -p control data/{etc/systemd/system,usr/share/app}
+cp -r ${CWD}/* data/usr/share/app/
+
+cat >data/usr/share/app/start.sh <<EOF
+#!/usr/bin/env bash
+##------
+
+set -e -x
+
+
+
 #function golang {
 #cd /usr/share/app/
 #/usr/share/app/$BIN
 #}
-#function java {
-#ENV=\$(aws ec2 describe-tags --filters "Name=resource-id,Values=\$(curl -s http://169.254.169.254/latest/meta-data/instance-id)" --region $(curl --silent http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .region) --query "Tags[?Key=='aws:autoscaling:groupName'].Value" --output text | cut -f2 -d"-")
-## Running app with appropriate profiling group name.
-#/usr/bin/java -javaagent:/usr/share/app/codeguru-profiler-java-agent-standalone-0.3.2.jar="profilingGroupName:${APP}-\${ENV}" -jar /usr/share/app/$BIN
-#}
-#lang=$4
-#if [ \$lang = "golang" ]; then
-#golang
-#elif [ \$lang = "java" ]; then
-#java
-#else
-#echo "This programming language isn't supported now"
-#fi
-#EOF
+
+function python {
+cd /usr/share/app/
+echo "/usr/share/app/$BIN" "It is working_____!"
+}
+
+
+
+lang=$4
+if [ \$lang = "golang" ]; then
+echo golang
+elif [ \$lang = "java" ]; then
+echo java
+elif [ \$lang = "python" ]; then
+python
+else
+echo "This programming language isn't supported now"
+fi
+EOF
+
+
 #
 #cat >data/etc/systemd/system/$APP.service <<EOF
 #[Unit]
