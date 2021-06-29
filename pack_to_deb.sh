@@ -120,11 +120,13 @@ cd control
 tar czf ../control.tar.gz .
 cd -
 
-#cd data
-#tar czf ../data.tar.gz .
-#cd -
-#
-#echo "2.0" >debian-binary
-#
+pwd
+
+cd data
+tar czf ../data.tar.gz .
+cd -
+
+echo "2.0" > debian-binary
+
 #ar r ${CWD}/$APP.deb debian-binary control.tar.gz data.tar.gz
 #cd ${CWD}
