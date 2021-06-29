@@ -115,11 +115,11 @@ pwd
 #systemctl reset-failed
 #exit 0
 #EOF
-#
-#cd control
-#tar czf ../control.tar.gz .
-#cd -
-#
+
+cd control
+tar czf ../control.tar.gz .
+cd -
+
 #cd data
 #tar czf ../data.tar.gz .
 #cd -
