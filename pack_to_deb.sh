@@ -52,7 +52,7 @@ fi
 EOF
 
 echo "Working directory>>>>>>>"
-PWD
+pwd
 
 
 #cat >data/etc/systemd/system/$APP.service <<EOF
