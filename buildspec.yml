@@ -20,6 +20,7 @@ phases:
     commands:
       - . venv/bin/activate && pip3 install --upgrade pip && pip install -r requirements.txt && deactivate
       - chmod +x run.sh
+      - chmod +x ./scripts/pack_to_deb.sh
 
   post_build:
     commands:
