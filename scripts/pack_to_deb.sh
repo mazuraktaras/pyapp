@@ -8,13 +8,21 @@ BIN_PATH=$(readlink -f $1)
 BIN=$(echo $BIN_PATH | awk -F/ '{print $NF}')
 VERSION=$2
 APP=$3
+lang=$4
 DIR=$(mktemp -d)
 
 function cleanup() {
   rm -rf ${DIR}
 }
-
 trap cleanup EXIT
+
+if [ $lang = "golang" ] || [ $lang = "java" ] || [ $lang = "python" ]; then
+  echo "Building deb package with ${lang}"
+else
+  echo "This programming language isn't supported now"
+  exit 1
+
+fi
 
 cd ${DIR}
 mkdir -v -p control data/{etc/systemd/system,usr/share/app}
@@ -22,26 +30,20 @@ cp -r ${CWD}/* data/usr/share/app/
 
 cat >data/usr/share/app/start.sh <<EOF
 #!/usr/bin/env bash
-
 set -e -x
-
 function golang {
 cd /usr/share/app/
 /usr/share/app/$BIN
 }
-
 function java {
-ENV=\$(aws ec2 describe-tags --filters "Name=resource-id,Values=\$(curl -s http://169.254.169.254/latest/meta-data/instance-id)" --region `curl --silent http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .region` --query "Tags[?Key=='aws:autoscaling:groupName'].Value" --output text | cut -f2 -d"-")
-
+ENV=\$(aws ec2 describe-tags --filters "Name=resource-id,Values=\$(curl -s http://169.254.169.254/latest/meta-data/instance-id)" --region $(curl --silent http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .region) --query "Tags[?Key=='aws:autoscaling:groupName'].Value" --output text | cut -f2 -d"-")
 # Running app with appropriate profiling group name.
 /usr/bin/java -javaagent:/usr/share/app/codeguru-profiler-java-agent-standalone-0.3.2.jar="profilingGroupName:${APP}-\${ENV}" -jar /usr/share/app/$BIN
 }
-
 function python {
   cd /usr/share/app/
   ./run.sh
 }
-
 lang=$4
 if [ \$lang = "golang" ]; then
   golang
@@ -86,9 +88,9 @@ cat >control/postinst <<EOF
 #!/bin/sh
 set -e
 if [ "\$1" = "configure" ] || [ "\$1" = "abort-upgrade" ] || [ "\$1" = "abort-deconfigure" ] || [ "\$1" = "abort-remove" ] ; then
-  systemctl --system daemon-reload
-  systemctl enable $APP
-  systemctl start $APP
+    systemctl --system daemon-reload
+        systemctl enable $APP
+    systemctl start $APP
 fi
 exit 0
 EOF
@@ -104,10 +106,10 @@ cat >control/postrm <<EOF
 set -e
 APP=$APP
 if [ "\$1" = "purge" ] ; then
-  systemctl disable $APP >/dev/null
+        systemctl disable $APP >/dev/null
 fi
-  systemctl --system daemon-reload >/dev/null || true
-  systemctl reset-failed
+systemctl --system daemon-reload >/dev/null || true
+systemctl reset-failed
 exit 0
 EOF
 
@@ -122,5 +124,4 @@ cd -
 echo "2.0" >debian-binary
 
 ar r ${CWD}/$APP.deb debian-binary control.tar.gz data.tar.gz
-
 cd ${CWD}
