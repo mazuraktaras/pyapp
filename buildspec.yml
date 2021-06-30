@@ -10,8 +10,8 @@ phases:
       python: 3.7
     commands:
 
-  #      - apt-get update
-  #      - apt-get -y install awscli
+      - apt-get update
+      - apt-get -y install awscli
 
   pre_build:
     commands:
@@ -22,7 +22,6 @@ phases:
 
       - ./venv/bin/python -m pip install --upgrade pip
       - ./venv/bin/python -m pip install -r requirements.txt
-      - ./venv/bin/python -m pip list
       - chmod +x run.sh
 
   post_build:
