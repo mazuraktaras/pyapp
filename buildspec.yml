@@ -28,7 +28,7 @@ phases:
   post_build:
     commands:
     #      - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./
-      - bash ./scripts/pack_to_deb.sh blog.py 1.0 pyapp python
+      - ./scripts/pack_to_deb.sh blog.py 1.0 pyapp python
 
 artifacts:
   files:
