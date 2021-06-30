@@ -24,16 +24,13 @@ phases:
       - ./venv/bin/python -m pip install -r requirements.txt
       - ./venv/bin/python -m pip list
       - chmod +x run.sh
-      - chmod +x ./scripts/pack_to_deb.sh
 
   post_build:
     commands:
-    #      - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./
-      - ./scripts/pack_to_deb.sh blog.py 1.0 pyapp python
+      - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./
+      - bash pack_to_deb.sh blog.py 1.0 pyapp python
 
 artifacts:
   files:
     - './*.deb'
   discard-paths: yes
-#    - '**/*'
-#  discard-paths: no
