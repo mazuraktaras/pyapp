@@ -7,11 +7,11 @@ phases:
 
   install:
     runtime-versions:
-      python: 3.8
+      python: 3.7
     commands:
 
-#      - apt-get update
-#      - apt-get -y install awscli
+  #      - apt-get update
+  #      - apt-get -y install awscli
 
   pre_build:
     commands:
@@ -19,15 +19,20 @@ phases:
 
   build:
     commands:
-      - . venv/bin/activate && pip3 install --upgrade pip && pip install -r requirements.txt && deactivate
+#      - . venv/bin/activate && pip3 install --upgrade pip && pip install -r requirements.txt && deactivate
+      - ./venv/bin/python -m pip install --upgrade pip
+      - ./venv/bin/python -m pip install -r requirements.txt
+      - ./venv/bin/python -m pip list
       - chmod +x run.sh
 
   post_build:
     commands:
-#      - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./
-      - bash ./scripts/pack_to_deb.sh blog.py 1.0 pyapp python
+      #      - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./
+#      - bash ./scripts/pack_to_deb.sh blog.py 1.0 pyapp python
 
 artifacts:
   files:
-    - './*.deb'
-  discard-paths: yes
+#    - './*.deb'
+#  discard-paths: yes
+    - '**/*'
+  discard-paths: no
