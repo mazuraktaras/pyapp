@@ -33,6 +33,6 @@ phases:
 artifacts:
   files:
     - './*.deb'
-    discard-paths: yes
+  discard-paths: yes
 #    - '**/*'
 #  discard-paths: no
