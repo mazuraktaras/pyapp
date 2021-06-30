@@ -39,7 +39,7 @@ ENV=\$(aws ec2 describe-tags --filters "Name=resource-id,Values=\$(curl -s http:
 
 function python {
   cd /usr/share/app/
-  run.sh
+  ./run.sh
 }
 
 lang=$4
