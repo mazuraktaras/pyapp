@@ -19,7 +19,7 @@ phases:
 
   build:
     commands:
-#      - . venv/bin/activate && pip3 install --upgrade pip && pip install -r requirements.txt && deactivate
+
       - ./venv/bin/python -m pip install --upgrade pip
       - ./venv/bin/python -m pip install -r requirements.txt
       - ./venv/bin/python -m pip list
@@ -27,12 +27,12 @@ phases:
 
   post_build:
     commands:
-      #      - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./
-#      - bash ./scripts/pack_to_deb.sh blog.py 1.0 pyapp python
+    #      - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./
+      - bash ./scripts/pack_to_deb.sh blog.py 1.0 pyapp python
 
 artifacts:
   files:
-#    - './*.deb'
-#  discard-paths: yes
-    - '**/*'
-  discard-paths: no
+    - './*.deb'
+    discard-paths: yes
+#    - '**/*'
+#  discard-paths: no
