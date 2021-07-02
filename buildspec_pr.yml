@@ -1,0 +1,47 @@
+version: 0.2
+env:
+  parameter-store:        
+    LOGIN: /epmc-acm/pyapp/sonar/token
+  variables:
+    PACKAGE: "github.com/aws-cd/pyapp"
+    
+phases:
+  install:
+    runtime-versions:
+      java: openjdk11
+      golang: 1.13
+    commands:
+      - mkdir -p "/py/src/$(dirname ${PACKAGE})"
+      - ln -s "${CODEBUILD_SRC_DIR}" "/py/src/${PACKAGE}"
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - apt-get update
+      - apt-get install -y jq
+      - cd /tmp
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-linux.zip
+      - echo "Download completed."
+      - echo "Unziping downloaded file..."
+      - unzip sonar-scanner-cli-4.4.0.2170-linux.zip
+      - echo "Unzip completed."
+      - rm sonar-scanner-cli-4.4.0.2170-linux.zip
+      - export PATH=$PATH:/tmp/sonar-scanner-4.4.0.2170-linux/bin
+      
+  pre_build:
+    commands:
+      - cd "/py/src/${PACKAGE}"
+#Uncomment to add unit testing
+   #   - go get -t ./...
+   # Vet examines Go source code and reports suspicious constructs
+   #   - go vet ./...
+   # Run unit tests 
+   #   - go test ./...
+   #   comment just to trigger pipeline 2
+   
+  build:
+    commands:
+      - export PULL_NUM=$(echo $CODEBUILD_WEBHOOK_TRIGGER | awk 'BEGIN{FS="/"} {print $2}')
+      - export BASE_REF=$(echo $CODEBUILD_WEBHOOK_BASE_REF | awk 'BEGIN{FS="/"} {print $3}')
+      - sonar-scanner -Dsonar.organization="aws-cd" -Dsonar.projectKey="py_app" -Dsonar.login=$LOGIN -Dsonar.host.url="https://sonarcloud.io" -Dsonar.pullrequest.base=$BASE_REF -Dsonar.pullrequest.branch=$CODEBUILD_WEBHOOK_HEAD_REF -Dsonar.pullrequest.key="${PULL_NUM}" -Dsonar.pullrequest.provider=GitHub -Dsonar.pullrequest.github.repository=aws-cd/pyapp
+      - sleep 5
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=py_app >result.json
+      - cat result.json
+      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
