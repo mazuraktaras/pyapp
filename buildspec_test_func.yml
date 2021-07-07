@@ -3,21 +3,18 @@ env:
   variables:
     SELENIUM_SERVER_URL: http://127.0.0.1:4444/wd/hub
     PASS_RATE: 100
-    APP_TARGET_URL: ""
+    APP_TARGET_URL: http://52.91.166.81:8080
 phases:
   install:
-    runtime-versions:
-      docker: 18
     commands:
-      - docker pull selenium/standalone-chrome:latest
+      - docker version
+      - docker pull  --quiet selenium/standalone-chrome:latest
   pre_build:
     commands:
       - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm --name selenium selenium/standalone-chrome:latest
       - pip3 install selenium unittest-xml-reporting junitparser
   build:
     commands:
-      - env
-      - ls -la
       - |
         python3 scripts/test_func.py \
           --selenium-server-url "${SELENIUM_SERVER_URL}" \
