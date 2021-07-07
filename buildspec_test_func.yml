@@ -7,7 +7,6 @@ env:
 phases:
   install:
     commands:
-      - docker version
       - docker pull  --quiet selenium/standalone-chrome:latest
   pre_build:
     commands:
