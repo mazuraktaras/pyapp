@@ -12,18 +12,18 @@ from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from junitparser import JUnitXml
 
-# app_target_url = "http://52.91.166.81:8080"
+app_target_url = "http://52.91.166.81:8080"
 
 
 class PyAppTest(unittest.TestCase):
-    driver = webdriver.Chrome()
+    # driver = webdriver.Chrome()
 
     @classmethod
     def setUpClass(self):
-        # self.driver = webdriver.Remote(
-        #                 command_executor=args.selenium_server_url,
-        #                 desired_capabilities=DesiredCapabilities.CHROME
-        #               )
+        self.driver = webdriver.Remote(
+            command_executor=args.selenium_server_url,
+            desired_capabilities=DesiredCapabilities.CHROME
+        )
         self.driver.set_page_load_timeout(5)
         self.driver.maximize_window()
         self.driver.get(app_target_url)
@@ -45,7 +45,7 @@ class PyAppTest(unittest.TestCase):
         # self.driver.find_element_by_xpath('/html/body/div[1]/div[1]/div/form/input[3]').click()
         # assert "Pending" == self.driver.find_element_by_xpath("/html/body/nav/div/div/p").text
         self.driver.find_element_by_link_text('Sign Up').click()
-        time.sleep(5)
+        # time.sleep(5)
 
     # def test_tasks_page(self):
     #     self.driver.find_element_by_xpath('/html/body/div[2]/a').click();
@@ -60,9 +60,9 @@ class PyAppTest(unittest.TestCase):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    # parser.add_argument('--selenium-server-url', type=str, required=True)
+    parser.add_argument('--selenium-server-url', type=str, required=True)
     parser.add_argument('--app-target-url', type=str, required=True)
-    parser.add_argument('--output', type=str, default="/home/alex/tmp/results.xml")
+    parser.add_argument('--output', type=str, default="/tmp/results.xml")
     parser.add_argument('--pass-rate', type=int, default=100)
     args = parser.parse_args()
     print(args)
