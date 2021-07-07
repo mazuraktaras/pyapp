@@ -12,12 +12,13 @@ phases:
     commands:
       - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm --name selenium selenium/standalone-chrome:latest
       - pip3 install selenium unittest-xml-reporting junitparser
+      - echo "${APP_TARGET_URL} this is our ip"
   build:
     commands:
       - |
         python3 scripts/test_func.py \
           --selenium-server-url "${SELENIUM_SERVER_URL}" \
-          --app-target-url "${APP_TARGET_URL}" \
+          --app-target-url "http://52.91.166.81:8080" \
           --output ./report.xml \
           --pass-rate "${PASS_RATE}"
 reports:
