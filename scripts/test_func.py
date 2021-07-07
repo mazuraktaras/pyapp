@@ -32,7 +32,8 @@ class PyAppTest(unittest.TestCase):
     #     assert 1 == 0
 
     def test_success(self):
-        assert 1 == 1
+        # assert 1 == 1
+        pass
 
     def test_login_page(self):
         # self.driver.find_element_by_xpath('/html/body/div[1]/div[2]/div/form/input[1]').send_keys("Selenium2021");
