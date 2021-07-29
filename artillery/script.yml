@@ -1,0 +1,33 @@
+# https://artillery.io/docs/
+config:
+  plugins:
+    influxdb:
+      testName: test_case
+      measurementName: latency
+      errorMeasurementName: clientSideErrors
+      tags:
+        environment: xxx
+        testId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      influx:
+        host: xxxxx
+        username: admin
+        password: admin
+        database: db0
+        port: 80         # due to the fact that port 8086 has been already included in the domain name.
+  target: "xxx"
+  grafana:
+    host: xxxxx
+  phases:
+    - duration: 120
+      arrivalRate: 25
+      rampTo: 100
+      name: "Warm up the application"
+    - duration: 120
+      arrivalRate: 100
+      name: "Sustained max load"
+scenarios:
+  - flow:
+      - get:
+          url: "/web/signup/"
+      - get:
+          url: "/web/login/"
