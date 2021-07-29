@@ -1,0 +1,31 @@
+version: 0.2
+env:
+  variables:
+    PASS_RATE_SUCCESS: 91
+    PASS_RATE_P95: 41
+    APP_TARGET_URL: "http://pyapp-qa.poc17.paleg.me"
+    ENVIRONMENT: "qa"
+    INFLUX_DB: "influxdb.poc17.paleg.me"
+    GRAFANA: "grafana.poc17.paleg.me"
+    BUCKET: "epmc-acm-spinnaker-123408385862-eu-central-1"
+    GOPATH: "/tmp/go"
+    
+phases:
+  install:
+    runtime-versions:
+      golang: 1.15
+      nodejs: 12
+  pre_build:
+    commands:
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - cd ./artillery
+      - aws s3 cp s3://${BUCKET}/artillery/artillery.zip ./artillery.zip
+      - unzip artillery.zip
+      - go get github.com/krishicks/yaml-patch/cmd/yaml-patch
+      - npm install -g serverless@1.38.0 serverless-artillery@0.5.2
+      - apt-get update && apt-get install -y uuid-runtime
+      - pip3 install PyYAML influxdb
+  build:
+    commands:
+      - bash ./launch.sh
+
