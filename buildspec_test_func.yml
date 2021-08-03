@@ -8,7 +8,7 @@ phases:
   pre_build:
     commands:
       - docker run -d -p 4444:4444 -v /dev/shm:/dev/shm --name selenium selenium/standalone-firefox:3.141.59
-      - pip3 install selenium==2.48.0 unittest-xml-reporting junitparser
+      - pip3 install selenium unittest-xml-reporting junitparser
   build:
     commands:
       - |
