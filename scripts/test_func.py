@@ -20,7 +20,7 @@ class PyAppTest(unittest.TestCase):
     def setUpClass(self):
         self.driver = webdriver.Remote(
             command_executor=args.selenium_server_url,
-            desired_capabilities=DesiredCapabilities.CHROME
+            desired_capabilities=DesiredCapabilities.FIREFOX
         )
         # self.driver = webdriver.Chrome()
         self.driver.set_page_load_timeout(5)
