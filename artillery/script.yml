@@ -28,6 +28,6 @@ config:
 scenarios:
   - flow:
       - get:
-          url: "/web/login/"
+          url: "/"
       - get:
-          url: "/web/login/"
+          url: "/"
