@@ -40,8 +40,8 @@ phases:
     commands:
       - export PULL_NUM=$(echo $CODEBUILD_WEBHOOK_TRIGGER | awk 'BEGIN{FS="/"} {print $2}')
       - export BASE_REF=$(echo $CODEBUILD_WEBHOOK_BASE_REF | awk 'BEGIN{FS="/"} {print $3}')
-      - sonar-scanner -Dsonar.organization="aws-cd" -Dsonar.projectKey="py_app" -Dsonar.login=$LOGIN -Dsonar.host.url="https://sonarcloud.io" -Dsonar.pullrequest.base=$BASE_REF -Dsonar.pullrequest.branch=$CODEBUILD_WEBHOOK_HEAD_REF -Dsonar.pullrequest.key="${PULL_NUM}" -Dsonar.pullrequest.provider=GitHub -Dsonar.pullrequest.github.repository=aws-cd/pyapp
+      - sonar-scanner -Dsonar.organization="aws-cd" -Dsonar.projectKey="pyapp" -Dsonar.login=$LOGIN -Dsonar.host.url="https://sonarcloud.io" -Dsonar.pullrequest.base=$BASE_REF -Dsonar.pullrequest.branch=$CODEBUILD_WEBHOOK_HEAD_REF -Dsonar.pullrequest.key="${PULL_NUM}" -Dsonar.pullrequest.provider=GitHub -Dsonar.pullrequest.github.repository=aws-cd/pyapp
       - sleep 5
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=py_app >result.json
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=pyapp >result.json
       - cat result.json
       - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
