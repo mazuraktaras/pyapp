@@ -91,6 +91,38 @@ def web_signup():
     # render template for signup
     return render_template('blog_signup.j2', form=form)
 
+@app.route('signup', methods=['GET', 'POST'])
+def signup():
+    """
+    View for signup page
+
+    :return: Flask HTML response object
+    """
+    # instantiate credentials form object
+    form = LoginForm()
+    # checks if form was submitted an validated
+    if form.validate_on_submit():
+        # get values from form
+        username = form.username.data
+        password = form.password.data
+        # request signup from API
+        payload = {'username': username, 'password': password}
+        response = requests.post(url_for('signupuser', _external=True), data=payload)
+        # check if user already exist
+        if response.status_code == 202:
+            form.username.data = ''
+            form.password.data = ''
+            # show notification message in a web page
+            flash(response.json()['msg'], 'danger')
+            # if already exists redirect to signup view
+            return redirect(url_for('web_signup'))
+        # show notification message in a web page
+        flash(response.json()['msg'], 'success')
+        # # if user successfully signed up, redirect to login view
+        return redirect(url_for('web_login'))
+    # render template for signup
+    return render_template('blog_signup.j2', form=form)
+
 
 @app.route('/web/login', methods=['GET', 'POST'])
 def web_login():
