@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
     with open(args.output, 'wb') as output:
         suite = unittest.TestLoader().loadTestsFromTestCase(PyAppTest)
-        xmlrunner.XMLTestRunner(output=output, verbosity=2).run(suite)
+        xmlrunner.XMLTestRunner(output=output, failfast=False, buffer=False, warnings=None, verbosity=2).run(suite)
 
     # As a way to run test
     # with open(args.output, 'wt') as output:
