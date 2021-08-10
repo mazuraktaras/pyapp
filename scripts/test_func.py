@@ -30,7 +30,7 @@ class PyAppTest(unittest.TestCase):
         self.assertEqual(1, 2)
 
     def test_success(self):
-        self.assertEqual(1, 1)
+        self.assertEqual(1, 2)
 
     def test_login_page(self):
         self.driver.find_element_by_link_text('Sign Up').click()
