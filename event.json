@@ -1,6 +1,0 @@
-{
-  "eventName": "abc",
-  "payload": {
-    "details": "{\"source\": \"orca\", \"type\": \"orca:task:complete\"}"
-  }
-}
