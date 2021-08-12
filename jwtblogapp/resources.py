@@ -61,7 +61,7 @@ class SignupUser(Resource):
         # parse arguments to to the arguments dictionary
         arguments = auth_arguments_parser.parse_args()
         # instantiate User model
-        new_user = User(username=arguments['username'], password=arguments['password'])
+        new_user = User(username=arguments['username'], password=arguments['password'], created_time=datetime.now())
         # hash the new user password
         new_user.make_hash()
 

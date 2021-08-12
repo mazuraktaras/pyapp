@@ -26,11 +26,11 @@ class PyAppTest(unittest.TestCase):
         cls.driver.get(args.app_target_url)
 
     # Test for failing testing, uncomment it if need one test will be failed
-    # def test_fail(self):
-    #     self.assertEqual(1, 2)
+    def test_fail(self):
+        self.assertEqual(1, 2)
 
     def test_success(self):
-        self.assertEqual(1, 1)
+        self.assertEqual(1, 2)
 
     def test_login_page(self):
         self.driver.find_element_by_link_text('Sign Up').click()
@@ -81,7 +81,9 @@ if __name__ == "__main__":
 
     success_rate = int(100 - (xml.failures + xml.errors) * 100 / xml.tests if xml.tests > 0 else 100)
     print(f'Success rate {success_rate}% (total={xml.tests}, errors={xml.errors}, failures={xml.failures})')
-
+    print('Success rate >>>', success_rate)
+    print('Passs rate >>>', args.pass_rate)
+    print(success_rate < args.pass_rate)
     if success_rate < args.pass_rate:
         print(f'Failing build ({success_rate} < {args.pass_rate})')
         sys.exit(1)
