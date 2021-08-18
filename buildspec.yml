@@ -15,6 +15,7 @@ phases:
 
   pre_build:
     commands:
+      - echo "Hello from TESTING>>>>>>>>>>>>>><<<<<<<<<<<<<!"
 
   build:
     commands:
