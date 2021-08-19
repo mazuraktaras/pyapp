@@ -39,6 +39,7 @@ phases:
       - echo $INFRA
       - echo $TST
       - echo $TST2
+      - echo $TST3
       # - command
       # - command
   #post_build:
