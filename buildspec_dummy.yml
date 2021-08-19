@@ -38,6 +38,7 @@ phases:
       - echo ">>>>> Hello from Buildspec Dummy! <<<<<<"
       - echo $INFRA
       - echo $TST
+      - echo $TST2
       # - command
       # - command
   #post_build:
