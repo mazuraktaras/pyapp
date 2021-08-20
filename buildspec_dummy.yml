@@ -59,7 +59,7 @@ phases:
 artifacts:
   files:
     - './*.md'
-    discard-paths: yes
+  discard-paths: yes
     # - location
     # - location
     #name: $(date +%Y-%m-%d)
