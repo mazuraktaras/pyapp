@@ -58,7 +58,7 @@ phases:
     #file-format: JunitXml | CucumberJson
 artifacts:
   files:
-    - './*.deb'
+    - './*.md'
     discard-paths: yes
     # - location
     # - location
