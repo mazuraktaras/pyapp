@@ -56,8 +56,10 @@ phases:
     #base-directory: location
     #discard-paths: yes
     #file-format: JunitXml | CucumberJson
-    #artifacts:
-    #files:
+artifacts:
+  files:
+    - './*.deb'
+    discard-paths: yes
     # - location
     # - location
     #name: $(date +%Y-%m-%d)
