@@ -1,0 +1,25 @@
+{
+  "detail-type": [
+    "CodeBuild Build Phase Change"
+  ],
+  "source": [
+    "aws.codebuild"
+  ],
+  "account": [
+    "188178296807"
+  ],
+  "region": [
+    "eu-north-1"
+  ],
+  "detail": {
+    "completed-phase": [
+      "UPLOAD_ARTIFACTS"
+    ],
+    "project-name": [
+      "pyapp-12"
+    ],
+    "completed-phase-status": [
+      "SUCCEEDED"
+    ]
+  }
+}

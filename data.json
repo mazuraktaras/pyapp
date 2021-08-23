@@ -1,0 +1,120 @@
+{
+  "versionlessArn": "arn:aws:imagebuilder:eu-north-1:188178296807:image/pyapp-test-3",
+  "semver": 1237940039285380277046607875,
+  "arn": "arn:aws:imagebuilder:eu-north-1:188178296807:image/pyapp-test-3/1.0.2/3",
+  "name": "pyapp-test-3",
+  "version": "1.0.2",
+  "type": "AMI",
+  "buildVersion": 3,
+  "state": {
+    "status": "FAILED",
+    "reason": "SSM execution \u0027f0aef602-7f59-48f4-9f6e-2ffe6003213f\u0027 failed with status \\u003d \\u0027Failed\\u0027 in state \\u003d \\u0027BUILDING\\u0027 and failure message \\u003d \\u0027Document arn:aws:imagebuilder:eu-north-1:188178296807:component/user-data/1.0.1/1 failed!\\u0027"
+  },
+  "platform": "Linux",
+  "imageRecipe": {
+    "arn": "arn:aws:imagebuilder:eu-north-1:188178296807:image-recipe/pyapp-test-3/1.0.2",
+    "name": "pyapp-test-3",
+    "version": "1.0.2",
+    "components": [
+      {
+        "componentArn": "arn:aws:imagebuilder:eu-north-1:405227749426:component/amazon-cloudwatch-agent-linux/1.0.0/1"
+      },
+      {
+        "componentArn": "arn:aws:imagebuilder:eu-north-1:188178296807:component/user-data/1.0.1/1"
+      }
+    ],
+    "platform": "Linux",
+    "parentImage": "arn:aws:imagebuilder:eu-north-1:405227749426:image/ubuntu-server-18-lts-x86/2021.8.18/1",
+    "blockDeviceMappings": [
+      {
+        "deviceName": "/dev/sda1",
+        "ebs": {
+          "encrypted": false,
+          "deleteOnTermination": true,
+          "volumeSize": 8,
+          "volumeType": "gp2"
+        }
+      }
+    ],
+    "dateCreated": "Aug 23, 2021 10:37:03 AM",
+    "tags": {
+      "internalId": "2d235370-385d-4f6d-9f7a-cf95cde942f4",
+      "resourceArn": "arn:aws:imagebuilder:eu-north-1:188178296807:image-recipe/pyapp-test-3/1.0.2"
+    },
+    "workingDirectory": "/tmp",
+    "accountId": "188178296807",
+    "additionalInstanceConfiguration": {
+      "systemsManagerAgent": {
+        "uninstallAfterBuild": true
+      }
+    }
+  },
+  "sourcePipelineArn": "arn:aws:imagebuilder:eu-north-1:188178296807:image-pipeline/pyapp-test-3",
+  "infrastructureConfiguration": {
+    "arn": "arn:aws:imagebuilder:eu-north-1:188178296807:infrastructure-configuration/pyapp-a551c635-0ad8-4454-b935-86dc020b6192",
+    "name": "pyapp-a551c635-0ad8-4454-b935-86dc020b6192",
+    "instanceTypes": [
+      "t3.micro"
+    ],
+    "instanceProfileName": "EC2InstanceProfileForImageBuilder",
+    "securityGroupIds": [
+      "sg-65993104"
+    ],
+    "subnetId": "subnet-595ff430",
+    "tags": {
+      "internalId": "7826d7c5-1d85-455e-9597-95d7bc105e85",
+      "resourceArn": "arn:aws:imagebuilder:eu-north-1:188178296807:infrastructure-configuration/pyapp-a551c635-0ad8-4454-b935-86dc020b6192"
+    },
+    "logging": {
+      "s3Logs": {}
+    },
+    "keyPair": "jenmachine",
+    "terminateInstanceOnFailure": true,
+    "snsTopicArn": "arn:aws:sns:eu-north-1:188178296807:pyapp-test-3",
+    "dateCreated": "Aug 13, 2021 2:55:51 PM",
+    "dateUpdated": "Aug 23, 2021 2:05:16 PM",
+    "accountId": "188178296807"
+  },
+  "imageTestsConfigurationDocument": {
+    "imageTestsEnabled": true,
+    "timeoutMinutes": 720
+  },
+  "distributionConfiguration": {
+    "arn": "arn:aws:imagebuilder:eu-north-1:188178296807:distribution-configuration/pyapp-test-3",
+    "name": "pyapp-test-3",
+    "dateCreated": "Aug 23, 2021 10:57:42 AM",
+    "distributions": [
+      {
+        "region": "eu-north-1",
+        "amiDistributionConfiguration": {
+          "name": "pyapp-test-3 2021-08-23T14-10-58.402Z"
+        },
+        "launchTemplateConfigurations": [
+          {
+            "launchTemplateId": "lt-09c6415bf9e2c5af3",
+            "accountId": "188178296807",
+            "setDefaultVersion": true
+          }
+        ]
+      }
+    ],
+    "tags": {
+      "internalId": "13aeff88-9c5a-46e7-a233-790fe974a57d",
+      "resourceArn": "arn:aws:imagebuilder:eu-north-1:188178296807:distribution-configuration/pyapp-test-3"
+    },
+    "accountId": "188178296807"
+  },
+  "dateCreated": "Aug 23, 2021 2:10:58 PM",
+  "outputResources": {
+    "amis": []
+  },
+  "buildExecutionId": "f0aef602-7f59-48f4-9f6e-2ffe6003213f",
+  "accountId": "188178296807",
+  "enhancedImageMetadataEnabled": true,
+  "tags": {
+    "internalId": "f1b275d8-de5f-42c6-8c10-9ef72fbf7fec",
+    "resourceArn": "arn:aws:imagebuilder:eu-north-1:188178296807:image/pyapp-test-3/1.0.2/3"
+
+
+  }
+}
