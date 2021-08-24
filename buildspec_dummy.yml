@@ -37,6 +37,7 @@ phases:
   # - command
   build:
     commands:
+      - env
       - echo ">>>>> Hello from Buildspec Dummy! <<<<<<"
       - echo $INFRA
       - echo $TST

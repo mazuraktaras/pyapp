@@ -106,13 +106,13 @@
   },
   "dateCreated": "Aug 23, 2021 2:10:58 PM",
   "outputResources": {
-    "amis": []
+    "amis": [{"region": "eu-north-1", "image": "ami-0127dcff3ced7d0dc", "name": "pyapp-test-3 2021-08-24T17-54-28.141Z", "accountId": "188178296807"}]
   },
-  "buildExecutionId": "f0aef602-7f59-48f4-9f6e-2ffe6003213f",
-  "accountId": "188178296807",
   "enhancedImageMetadataEnabled": true,
   "tags": {
     "internalId": "f1b275d8-de5f-42c6-8c10-9ef72fbf7fec",
+  "buildExecutionId": "f0aef602-7f59-48f4-9f6e-2ffe6003213f",
+  "accountId": "188178296807",
     "resourceArn": "arn:aws:imagebuilder:eu-north-1:188178296807:image/pyapp-test-3/1.0.2/3"
 
 
