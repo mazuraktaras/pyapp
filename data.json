@@ -7,7 +7,7 @@
   "type": "AMI",
   "buildVersion": 3,
   "state": {
-    "status": "FAILED",
+    "status": "AVAILABLE",
     "reason": "SSM execution \u0027f0aef602-7f59-48f4-9f6e-2ffe6003213f\u0027 failed with status \\u003d \\u0027Failed\\u0027 in state \\u003d \\u0027BUILDING\\u0027 and failure message \\u003d \\u0027Document arn:aws:imagebuilder:eu-north-1:188178296807:component/user-data/1.0.1/1 failed!\\u0027"
   },
   "platform": "Linux",
