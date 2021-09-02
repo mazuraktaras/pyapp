@@ -83,7 +83,7 @@ if __name__ == "__main__":
     print(f'Success rate {success_rate}% (total={xml.tests}, errors={xml.errors}, failures={xml.failures})')
     print('Success rate >>>', success_rate)
     print('Pass rate >>>', args.pass_rate)
-    print(success_rate < args.pass_rate)
+
     if success_rate < args.pass_rate:
         print(f'Failing build ({success_rate} < {args.pass_rate})')
         sys.exit(1)
