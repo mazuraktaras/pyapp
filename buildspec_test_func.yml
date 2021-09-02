@@ -3,7 +3,7 @@ env:
   variables:
     SELENIUM_SERVER_URL: http://127.0.0.1:4444/wd/hub
     PASS_RATE: 100
-    APP_TARGET_URL: ""
+    APP_TARGET_URL: http://16.170.148.183:8080
 phases:
   pre_build:
     commands:

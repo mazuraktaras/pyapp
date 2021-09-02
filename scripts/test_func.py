@@ -26,11 +26,11 @@ class PyAppTest(unittest.TestCase):
         cls.driver.get(args.app_target_url)
 
     # Test for failing testing, uncomment it if need one test will be failed
-    def test_fail(self):
-        self.assertEqual(1, 2)
+    # def test_fail(self):
+    #     self.assertEqual(1, 2)
 
     def test_success(self):
-        self.assertEqual(1, 2)
+        self.assertEqual(1, 1)
 
     def test_login_page(self):
         self.driver.find_element_by_link_text('Sign Up').click()
