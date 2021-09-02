@@ -30,7 +30,7 @@ def lambda_handler(event, context):
 
         response = autoscaling_client.start_instance_refresh(AutoScalingGroupName=asg_name,
                                                              Preferences={'InstanceWarmup': 40,
-                                                                          'MinHealthyPercentage': 90, })
+                                                                          'MinHealthyPercentage': 90})
 
     publish_object = f'EC2ImageBuilder pipeline {name} has status {status} Reason: {reason}'
 
