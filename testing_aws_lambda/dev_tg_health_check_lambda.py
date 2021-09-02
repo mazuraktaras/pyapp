@@ -1,12 +1,16 @@
 import json
 import boto3
 import time
+import os
 
 
 def lambda_handler(event, context):
-    target_group_arn = 'arn:aws:elasticloadbalancing:eu-north-1:188178296807:targetgroup/test-tg/4e169a853d589c2d'
-    sns_topic_arn = 'arn:aws:sns:eu-north-1:188178296807:message-from-lambda'
-    build_proj_name = 'pyapp'
+    # target_group_arn = 'arn:aws:elasticloadbalancing:eu-north-1:188178296807:targetgroup/test-tg/4e169a853d589c2d'
+    target_group_arn = os.environ['TARG_GROUP_ARN']
+    # sns_topic_arn = 'arn:aws:sns:eu-north-1:188178296807:message-from-lambda'
+    sns_topic_arn = os.environ['SNS_TOPIC_ARN']
+    # build_proj_name = 'pyapp'
+    build_proj_name = os.environ['BUILD_PROJ_NAME']
 
     # interval of checks in seconds to avoid retry timeout
     check_interval = 1
@@ -53,7 +57,7 @@ def lambda_handler(event, context):
     # publish to topic
     sns_client.publish(TopicArn=sns_topic_arn,
                        Message=json.dumps(publish_object),
-                       Subject='App health Notification')
+                       Subject=f'Target group health Notification from {context.function_name}')
 
     return {
         'statusCode': 200,
