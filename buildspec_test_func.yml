@@ -2,7 +2,7 @@ version: 0.2
 env:
   variables:
     SELENIUM_SERVER_URL: http://127.0.0.1:4444/wd/hub
-    PASS_RATE: 100
+    PASS_RATE: 30
     APP_TARGET_URL: http://test-alb-1002100182.eu-north-1.elb.amazonaws.com
 phases:
   pre_build:
