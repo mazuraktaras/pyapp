@@ -5,18 +5,19 @@ import os
 
 
 def lambda_handler(event, context):
-    # target_group_arn = 'arn:aws:elasticloadbalancing:eu-north-1:188178296807:targetgroup/test-tg/4e169a853d589c2d'
+    # load balancer's target group arn to check health
     target_group_arn = os.environ['TARG_GROUP_ARN']
-    # sns_topic_arn = 'arn:aws:sns:eu-north-1:188178296807:message-from-lambda'
+    # sns topic arn to email notification
     sns_topic_arn = os.environ['SNS_TOPIC_ARN']
-    # build_proj_name = 'pyapp'
+    # name of the CodeBuild project to start if the target group is healthy
     build_proj_name = os.environ['BUILD_PROJ_NAME']
 
     # interval of checks in seconds to avoid retry timeout
     check_interval = 1
 
     health_status = None
-    message = f'Lamda function exited with timeout limit {context.get_remaining_time_in_millis() / 1000} sec.'
+
+    message = f'Lambda function exited with timeout limit {context.get_remaining_time_in_millis() / 1000} sec.'
 
     # initialize elbv2 client
     elb_client = boto3.client('elbv2')
@@ -63,3 +64,4 @@ def lambda_handler(event, context):
         'statusCode': 200,
         'body': json.dumps(f'Lambda function {context.function_name} completed.')
     }
+
