@@ -1,0 +1,7 @@
+{
+  "source": ["aws.autoscaling"],
+  "detail-type": ["EC2 Auto Scaling Instance Refresh Succeeded"],
+  "detail": {
+    "AutoScalingGroupName": ["___OUR_ASG_NAME___"]
+  }
+}

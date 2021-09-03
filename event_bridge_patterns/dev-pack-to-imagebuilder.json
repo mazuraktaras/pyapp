@@ -1,0 +1,9 @@
+{
+  "detail-type": ["CodeBuild Build Phase Change"],
+  "source": ["aws.codebuild"],
+  "detail": {
+    "completed-phase": ["UPLOAD_ARTIFACTS"],
+    "project-name": ["___OUR_CODEBUILD_PROJECT___"],
+    "completed-phase-status": ["SUCCEEDED"]
+  }
+}
