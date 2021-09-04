@@ -4,6 +4,7 @@ env:
 #  parameter-store:        # it's better to use secrets manager here
 #    LOGIN: /epmc-acm/pyapp/sonar/token
   variables:
+    LOGIN: a9ef1dbc62959f8110d07d83918ce9a72f2cc05b
     PACKAGE: "github.com/aws-cd/pyapp"
 
 
@@ -14,6 +15,7 @@ phases:
     commands:
       - env
       - echo "/py/src/$(dirname ${PACKAGE})"
+      - echo "LOGIN ${LOGIN})"
 #      - mkdir -p "/py/src/$(dirname ${PACKAGE})"
 #      - ln -s "${CODEBUILD_SRC_DIR}" "/py/src/${PACKAGE}"
 #      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
