@@ -19,7 +19,7 @@ phases:
       - mkdir -p "/py/src/$(dirname ${PACKAGE})"
       - ln -s "${CODEBUILD_SRC_DIR}" "/py/src/${PACKAGE}"
 #      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-      - apt-get update
+      - apt-get update -q
       - apt-get install -y jq
       - cd /tmp
       - wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-linux.zip
