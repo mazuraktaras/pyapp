@@ -3,7 +3,7 @@ env:
   shell: bash
 #  parameter-store:        # it's better to use secrets manager here
 #    LOGIN: /epmc-acm/pyapp/sonar/token
-#  variables:
+  variables:
     PACKAGE: "github.com/aws-cd/pyapp"
 
 
