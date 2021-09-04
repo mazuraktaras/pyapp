@@ -1,8 +1,8 @@
 version: 0.2
 env:
-  parameter-store:        # it's better to use secrets manager here
-    LOGIN: /epmc-acm/pyapp/sonar/token
-  variables:
+#  parameter-store:        # it's better to use secrets manager here
+#    LOGIN: /epmc-acm/pyapp/sonar/token
+#  variables:
     PACKAGE: "github.com/aws-cd/pyapp"
 
 
@@ -37,11 +37,11 @@ phases:
 
   build:
     commands:
-      - sonar-scanner -Dsonar.organization="aws-cd" -Dsonar.projectKey="pyapp" -Dsonar.login=$LOGIN -Dsonar.host.url="https://sonarcloud.io"
-      - sleep 5
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=pyapp >result.json
-      - cat result.json
-      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
+#      - sonar-scanner -Dsonar.organization="aws-cd" -Dsonar.projectKey="pyapp" -Dsonar.login=$LOGIN -Dsonar.host.url="https://sonarcloud.io"
+#      - sleep 5
+#      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=pyapp >result.json
+#      - cat result.json
+#      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
 
 artifacts:
   files:
