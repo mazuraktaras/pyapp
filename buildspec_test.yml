@@ -12,7 +12,7 @@ phases:
       python: 3.8
     commands:
       - env
-      - echo "/py/src/$(dirname ${PACKAGE})"
+      - echo "/py/src/$(dirname $PACKAGE)"
 #      - mkdir -p "/py/src/$(dirname ${PACKAGE})"
 #      - ln -s "${CODEBUILD_SRC_DIR}" "/py/src/${PACKAGE}"
 #      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
