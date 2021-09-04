@@ -32,7 +32,7 @@ phases:
 
   pre_build:
     commands:
-#      - cd "/py/src/${PACKAGE}"
+      - cd "/py/src/${PACKAGE}"
 #Uncomment it to add unit testing
    #   - go get -t ./...
    # Vet examines Go source code and reports suspicious constructs
