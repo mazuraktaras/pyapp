@@ -18,7 +18,7 @@ phases:
 #      - echo "LOGIN ${LOGIN}"
       - mkdir -p "/py/src/$(dirname ${PACKAGE})"
       - ln -s "${CODEBUILD_SRC_DIR}" "/py/src/${PACKAGE}"
-      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+#      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
       - apt-get update
       - apt-get install -y jq
       - cd /tmp
@@ -44,8 +44,8 @@ phases:
     commands:
       - sonar-scanner -Dsonar.organization="mazuraktaras" -Dsonar.projectKey="mazuraktaras_pyapp" -Dsonar.login=$LOGIN -Dsonar.host.url="https://sonarcloud.io"
       - sleep 5
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=mazuraktaras_pyapp > result.json
-      - cat result.json
+#      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=mazuraktaras_pyapp > result.json
+#      - cat result.json
 #      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
 
 artifacts:
