@@ -10,8 +10,8 @@ env:
 
 phases:
   install:
-    runtime-versions:
-      python: 3.8
+#    runtime-versions:
+#      python: 3.8
     commands:
 #      - env
 #      - echo "/py/src/$(dirname ${PACKAGE})"
