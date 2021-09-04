@@ -5,6 +5,7 @@ from sqlalchemy.exc import IntegrityError
 from jwtblogapp import jwt
 from flask_jwt_extended import jwt_required, create_access_token, get_raw_jwt, get_jwt_identity
 
+API_ARG_HELP = 'Can not be blank'
 # ---Instantiate the argument's parsers---
 
 # parser for parse credentials
@@ -17,15 +18,15 @@ rating_arguments_parser = reqparse.RequestParser()
 # ---Add arguments for parsing in API endpoints---
 
 # add credentials arguments for parsing
-auth_arguments_parser.add_argument('username', required=True, help='Can not be blank')
-auth_arguments_parser.add_argument('password', required=True, help='Can not be blank')
+auth_arguments_parser.add_argument('username', required=True, help=API_ARG_HELP)
+auth_arguments_parser.add_argument('password', required=True, help=API_ARG_HELP)
 
 # add post_text argument for parsing
-post_arguments_parser.add_argument('post_text', required=True, help='Can not be blank')
+post_arguments_parser.add_argument('post_text', required=True, help=API_ARG_HELP)
 
 # add post_id and like arguments for parsing
-rating_arguments_parser.add_argument('post_id', type=int, required=True, help='Can not be blank')
-rating_arguments_parser.add_argument('like', type=int, required=True, help='Can not be blank')
+rating_arguments_parser.add_argument('post_id', type=int, required=True, help=API_ARG_HELP)
+rating_arguments_parser.add_argument('like', type=int, required=True, help=API_ARG_HELP)
 
 
 @jwt.token_in_blacklist_loader
