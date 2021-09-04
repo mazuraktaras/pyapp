@@ -43,9 +43,9 @@ phases:
   build:
     commands:
       - sonar-scanner -Dsonar.organization="mazuraktaras" -Dsonar.projectKey="mazuraktaras_pyapp" -Dsonar.login=$LOGIN -Dsonar.host.url="https://sonarcloud.io"
-#      - sleep 5
-#      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=pyapp >result.json
-#      - cat result.json
+      - sleep 5
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=mazuraktaras_pyapp > result.json
+      - cat result.json
 #      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
 
 artifacts:
