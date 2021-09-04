@@ -34,10 +34,11 @@ class PyAppTest(unittest.TestCase):
 
     def test_login_page(self):
         self.driver.find_element_by_link_text('Sign Up').click()
-        self.driver.find_element_by_xpath('/html/body/div/nav/div/div/a')
-        test = self.driver.find_element_by_xpath('/html/body/div/nav/div/div/a').text
+        path = '/html/body/div/nav/div/div/a'
+        self.driver.find_element_by_xpath(path)
+        test = self.driver.find_element_by_xpath(path).text
         print(test)
-        self.assertTrue("JWT BLOG" in self.driver.find_element_by_xpath('/html/body/div/nav/div/div/a').text)
+        self.assertTrue("JWT BLOG" in self.driver.find_element_by_xpath(path).text)
 
     # def test_password(self):
     #     for handle in self.driver.window_handles:
