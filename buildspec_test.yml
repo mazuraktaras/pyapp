@@ -22,7 +22,7 @@ phases:
       - apt-get update
       - apt-get install -y jq
       - cd /tmp
-      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-linux.zip
+      - wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-linux.zip
       - echo "Download completed."
       - echo "Unziping downloaded file..."
       - unzip -q sonar-scanner-cli-4.4.0.2170-linux.zip
