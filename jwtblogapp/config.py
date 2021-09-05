@@ -1,7 +1,7 @@
 # ----- App configuration section -----
 SECRET_KEY = '222bmnkvsk777'
-# SQLALCHEMY_DATABASE_URI = 'sqlite:///jwtblog.db'
-SQLALCHEMY_DATABASE_URI = 'mysql://root:12345677@ec2-13-53-78-95.eu-north-1.compute.amazonaws.com:3306/blog'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///jwtblog.db'
+# SQLALCHEMY_DATABASE_URI = 'mysql://root:12345677@ec2-13-53-78-95.eu-north-1.compute.amazonaws.com:3306/blog'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 JWT_SECRET_KEY = '777kjnpsj222'
 JWT_BLACKLIST_ENABLED = True
