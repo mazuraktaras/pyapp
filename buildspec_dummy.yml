@@ -3,7 +3,7 @@ version: 0.2
 env:
   variables:
     INFRA: "7777"
-    FRA: "value"
+    FRA: ""
     #parameter-store:
     # key: "value"
     # key: "value"
@@ -11,8 +11,8 @@ env:
     # key: secret-id:json-key:version-stage:version-id
     # key: secret-id:json-key:version-stage:version-id
   exported-variables:
-    - INFRA
-    - FRA
+#    - INFRA
+#    - FRA
       # - variable
     # - variable
   #git-credential-helper: yes
@@ -40,9 +40,8 @@ phases:
       - env
       - echo ">>>>> Hello from Buildspec Dummy! <<<<<<"
       - echo $INFRA
-      - echo $TST
-      - echo $TST2
-      - echo $TST3
+      - echo $FRA
+
       # - command
       # - command
       #post_build:
