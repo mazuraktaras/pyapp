@@ -10,7 +10,7 @@ env:
     #secrets-manager:
     # key: secret-id:json-key:version-stage:version-id
     # key: secret-id:json-key:version-stage:version-id
-  exported-variables:
+#  exported-variables:
 #    - INFRA
 #    - FRA
       # - variable
