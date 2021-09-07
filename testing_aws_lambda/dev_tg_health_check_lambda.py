@@ -17,7 +17,7 @@ def lambda_handler(event, context):
 
     health_status = None
 
-    message = f'Lambda function exited with timeout limit {context.get_remaining_time_in_millis() / 1000} sec.'
+    message = f'Lamda function exited with timeout limit {context.get_remaining_time_in_millis() / 1000} sec.'
 
     # initialize elbv2 client
     elb_client = boto3.client('elbv2')
@@ -25,8 +25,8 @@ def lambda_handler(event, context):
     # initialize sns client
     sns_client = boto3.client('sns')
 
-    # initialize codebuild client
-    code_build_client = boto3.client('codebuild')
+    # initialize codepipline client
+    code_pipeline_client = boto3.client('codepipeline')
 
     # compute loops count accordingly remaining timeout
     checks_count = int((context.get_remaining_time_in_millis() / 1000 - 2) / check_interval)
@@ -41,10 +41,13 @@ def lambda_handler(event, context):
         health_status = response['TargetHealthDescriptions'][0]['TargetHealth']['State']
 
         if health_status == 'healthy':
-            # start codeBuild project
-            response = code_build_client.start_build(projectName=build_proj_name)
+            # enable codepipeline transititon after Package Build stage
+            response = code_pipeline_client.enable_stage_transition(pipelineName='dev-sonar-pack-pipeline',
+                                                                    stageName='Package-Build',
+                                                                    transitionType='Outbound'
+                                                                    )
 
-            message = f'CodeBuild project Selenium started successfully'
+            message = f'CodePipeline stage Selenium-DEV started successfully!'
 
             break
         # wait to avoid retry timeout
@@ -64,4 +67,3 @@ def lambda_handler(event, context):
         'statusCode': 200,
         'body': json.dumps(f'Lambda function {context.function_name} completed.')
     }
-
