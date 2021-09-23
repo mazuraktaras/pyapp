@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-dpkg -i /home/ubuntu/pyapp/pyapp.deb
+#dpkg -i /home/ubuntu/pyapp/pyapp.deb
+echo "Hello>>>>>>>>>>>>>>>"
