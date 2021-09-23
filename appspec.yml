@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/pyapp
+hooks:
+  BeforeInstall:
+    - location: scripts/install_dependences.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/install.sh
+      timeout: 300
+      runas: root
