@@ -36,6 +36,7 @@ build {
       "echo Installing >>>>>>>>>>>>>>>> Labels",
       "sleep 30",
       "sudo apt-get update",
+      "env"
 #      "sudo apt-get install -y redis-server",
 #      "echo \"FOO is $FOO\" > example.txt",
     ]
