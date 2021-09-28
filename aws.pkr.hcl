@@ -8,7 +8,7 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "l-linux-aws"
+  ami_name      = "ll-linux-aws"
   instance_type = "t3.micro"
   region        = "eu-north-1"
   source_ami_filter {
@@ -24,7 +24,7 @@ source "amazon-ebs" "ubuntu" {
 }
 
 build {
-  name    = "learn-packer"
+  name    = "aws-packer"
   sources = [
     "source.amazon-ebs.ubuntu"
   ]
@@ -36,7 +36,7 @@ build {
       "echo Installing >>>>>>>>>>>>>>>> Labels",
       "sleep 30",
       "sudo apt-get update",
-      "env"
+#      "env"
 #      "sudo apt-get install -y redis-server",
 #      "echo \"FOO is $FOO\" > example.txt",
     ]
