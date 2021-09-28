@@ -33,7 +33,7 @@ build {
 #      "FOO=hello world",
 #    ]
     inline = [
-      "echo Installing >>>>>>>>>>>>>>>> Labels",
+      "echo Installing Labels",
       "sleep 30",
       "sudo apt-get update",
 #      "env"
