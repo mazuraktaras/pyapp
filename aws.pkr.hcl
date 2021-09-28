@@ -9,6 +9,7 @@ packer {
 
 variable "package" {
   type = string
+   default = "my>>>>password"
 }
 
 source "amazon-ebs" "ubuntu" {
