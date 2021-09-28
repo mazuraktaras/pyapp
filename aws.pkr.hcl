@@ -7,6 +7,10 @@ packer {
   }
 }
 
+variable "package" {
+  type = string
+}
+
 source "amazon-ebs" "ubuntu" {
   ami_name      = "lll-linux-aws"
   instance_type = "t3.micro"
@@ -34,6 +38,7 @@ build {
 #    ]
     inline = [
       "echo Installing Labels",
+      "echo ${var.package}",
 #      "sleep 30",
 #      "sudo apt-get update",
       "env",
