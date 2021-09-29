@@ -13,7 +13,8 @@ variable "package" {
 }
 
 locals {
-  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
+  timestamp = timestamp()
+  #  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
 
 
@@ -47,11 +48,11 @@ build {
       "echo Installing Labels",
       "echo ${var.package}",
       #      "sleep 30",
-            "sudo apt-get update -y",
+      "sudo apt-get update -y",
       #      "sleep 5",
       #      "sudo apt-get upgrade -y",
       #      "sudo apt install awscli -y",
-            "sudo apt-get install awscli unzip virtualenv -y",
+      "sudo apt-get install awscli unzip virtualenv -y",
       #      "aws s3 cp ${var.package} ./package.zip",
       #      "unzip -o package.zip",
       #      "ls -alh",
