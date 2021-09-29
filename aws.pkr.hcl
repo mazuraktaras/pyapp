@@ -51,7 +51,8 @@ build {
       "aws s3 cp s3://${var.package} ./package.zip",
       "unzip -o package.zip",
       "ls -alh",
-      "env",
+      "dpkg -i blog.deb",
+#      "env",
       "exit 1"
       #      "sudo apt-get install -y redis-server",
       #      "echo \"FOO is $FOO\" > example.txt",
