@@ -41,7 +41,7 @@ build {
       "echo Installing Labels",
       "echo ${var.package}",
 #      "sleep 30",
-#      "sudo apt-get update",
+      "apt-get update",
       "env",
 #      "exit 1"
 #      "sudo apt-get install -y redis-server",
