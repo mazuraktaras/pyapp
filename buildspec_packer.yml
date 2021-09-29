@@ -4,16 +4,16 @@ env:
   variables:
     INFRA: "7777"
     FRA: ""
-    #parameter-store:
-    # key: "value"
-    # key: "value"
-    #secrets-manager:
-    # key: secret-id:json-key:version-stage:version-id
-    # key: secret-id:json-key:version-stage:version-id
-#  exported-variables:
-#    - INFRA
-#    - FRA
-      # - variable
+      #parameter-store:
+      # key: "value"
+      # key: "value"
+      #secrets-manager:
+      # key: secret-id:json-key:version-stage:version-id
+      # key: secret-id:json-key:version-stage:version-id
+      #  exported-variables:
+      #    - INFRA
+      #    - FRA
+    # - variable
     # - variable
   #git-credential-helper: yes
   #batch:
@@ -37,9 +37,13 @@ phases:
   # - command
   build:
     commands:
+      - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+      - apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+      - apt-get update && sudo apt-get install packer
+      - packer init .
       - env
       - echo ">>>>> Hello from Buildspec Packer! <<<<<<"
-      - ls -alh
+#      - ls -alh
 
 
       # - command
