@@ -41,6 +41,7 @@ phases:
       - apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
       - apt-get update && apt-get install packer
       - packer init .
+      - packer build .
       - env
       - echo ">>>>> Hello from Buildspec Packer! <<<<<<"
 #      - ls -alh
