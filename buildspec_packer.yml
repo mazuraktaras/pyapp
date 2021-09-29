@@ -43,7 +43,7 @@ phases:
       - env
       - echo ">>>>> Hello from Buildspec Packer! <<<<<<"
       - echo $CODEBUILD_SOURCE_VERSION
-      - PACKAGE=$(echo $CODEBUILD_SOURCE_VERSION | sed 's/.*://')
+      - PACKAGE=$(echo $CODEBUILD_SOURCE_VERSION | sed 's/.*:/s3:\/\//')
       - echo $PACKAGE
       -
       - packer init .
