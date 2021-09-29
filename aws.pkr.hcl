@@ -12,9 +12,14 @@ variable "package" {
   default = ""
 }
 
+locals {
+  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
+}
+
+
 source "amazon-ebs" "ubuntu" {
 
-  ami_name             = "pyapp-ubuntu-aws"
+  ami_name             = "pyapp-ubuntu-${local.timestamp}"
   instance_type        = "t3.micro"
   region               = "eu-north-1"
   iam_instance_profile = "EC2_S3Role"
@@ -41,7 +46,7 @@ build {
     inline = [
       "echo Installing Labels",
       "echo ${var.package}",
-      #      "sleep 30",,
+      #      "sleep 30",
             "sudo apt-get update -y",
       #      "sleep 5",
       #      "sudo apt-get upgrade -y",
