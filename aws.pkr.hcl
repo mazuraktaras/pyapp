@@ -49,7 +49,7 @@ build {
       #      "sleep 30",
             "sudo apt-get update -y",
       #      "sleep 5",
-      #      "sudo apt-get upgrade -y",
+            "sudo apt-get upgrade -y",
       #      "sudo apt install awscli -y",
             "sudo apt-get install awscli unzip virtualenv -y",
       #      "aws s3 cp ${var.package} ./package.zip",
