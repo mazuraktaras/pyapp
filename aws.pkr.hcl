@@ -9,7 +9,7 @@ packer {
 
 variable "package" {
   type    = string
-  default = "Hi"
+  default = ""
 }
 
 source "amazon-ebs" "ubuntu" {
