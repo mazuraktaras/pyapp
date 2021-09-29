@@ -41,8 +41,8 @@ build {
       "echo Installing Labels",
       "echo ${var.package}",
 #      "sleep 30",
-      "sudo apt-get update",
-      "sudo apt-get install awscli",
+      "sudo apt-get update -y",
+      "sudo apt-get install awscli -y",
       "aws s3 ls",
       "env",
       "exit 1"
