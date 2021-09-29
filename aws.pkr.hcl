@@ -9,11 +9,11 @@ packer {
 
 variable "package" {
   type = string
-  default = "mypassword"
+  default = "Hi"
 }
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "lll-linux-aws"
+  ami_name      = "pyapp-linux-aws"
   instance_type = "t3.micro"
   region        = "eu-north-1"
   source_ami_filter {
