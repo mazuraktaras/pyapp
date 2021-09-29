@@ -20,11 +20,11 @@ source "amazon-ebs" "ubuntu" {
   iam_instance_profile = "EC2_S3Role"
   source_ami_filter {
     filters     = {
-      name                = "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*"
+      name                = "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-20210907"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }
-    most_recent = true
+#    most_recent = true
     owners      = ["099720109477"]
   }
   ssh_username  = "ubuntu"
