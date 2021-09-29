@@ -10,8 +10,8 @@ phases:
       python: 3.8
     commands:
 
-      - apt-get update
-      - apt-get -y install awscli
+#      - apt-get update
+#      - apt-get -y install awscli
 
   pre_build:
     commands:
