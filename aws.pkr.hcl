@@ -37,22 +37,20 @@ build {
     "source.amazon-ebs.ubuntu"
   ]
   provisioner "shell" {
-    #    environment_vars = [
-    #      "FOO=hello world",
-    #    ]
+
     inline = [
       "echo Installing Labels",
       "echo ${var.package}",
       #      "sleep 30",
-      "sudo apt-get update -y",
+      #      "sudo apt-get update -y",
       #      "sleep 5",
       #      "sudo apt-get upgrade -y",
       #      "sudo apt install awscli -y",
-      "sudo apt-get install awscli unzip virtualenv -y",
-      "aws s3 cp ${var.package} ./package.zip",
-      "unzip -o package.zip",
-      "ls -alh",
-      "sudo dpkg -i blog.deb",
+      #      "sudo apt-get install awscli unzip virtualenv -y",
+      #      "aws s3 cp ${var.package} ./package.zip",
+      #      "unzip -o package.zip",
+      #      "ls -alh",
+      #      "sudo dpkg -i blog.deb",
       #      "env",
       #      "exit 1"
       #      "sudo apt-get install -y redis-server",
