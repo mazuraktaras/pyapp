@@ -14,21 +14,21 @@ variable "package" {
 
 source "amazon-ebs" "ubuntu" {
 
-  ami_name      = "pyapp-ubuntu-aws"
-  instance_type = "t3.micro"
-  region        = "eu-north-1"
+  ami_name             = "pyapp-ubuntu-aws"
+  instance_type        = "t3.micro"
+  region               = "eu-north-1"
   iam_instance_profile = "EC2_S3Role"
   source_ami_filter {
-    filters     = {
+    filters = {
       name                = "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-20210907"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }
-#    most_recent = true
-    owners      = ["099720109477"]
+    #    most_recent = true
+    owners  = ["099720109477"]
   }
-  ssh_username  = "ubuntu"
-  ssh_pty = true
+  ssh_username         = "ubuntu"
+  ssh_pty              = true
 }
 
 build {
@@ -45,7 +45,7 @@ build {
       "echo ${var.package}",
       #      "sleep 30",
       "sudo apt-get update -y -q",
-      "sleep 5",
+      #      "sleep 5",
       #      "sudo apt-get upgrade -y",
       #      "sudo apt install awscli -y",
       "sudo apt-get install awscli unzip virtualenv -y",
@@ -53,7 +53,7 @@ build {
       "unzip -o package.zip",
       "ls -alh",
       "sudo dpkg -i blog.deb",
-#      "env",
+      #      "env",
       "exit 1"
       #      "sudo apt-get install -y redis-server",
       #      "echo \"FOO is $FOO\" > example.txt",
