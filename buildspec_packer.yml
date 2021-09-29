@@ -44,7 +44,8 @@ phases:
       - echo ">>>>> Hello from Buildspec Packer! <<<<<<"
       - echo $CODEBUILD_SOURCE_VERSION
       - packer init .
-      - packer build -var "package=${CODEBUILD_SOURCE_VERSION}" .
+#      - packer build -var "package=${CODEBUILD_SOURCE_VERSION}" .
+      - packer build .
 
 #      - ls -alh
 
