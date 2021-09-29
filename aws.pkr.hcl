@@ -46,7 +46,7 @@ build {
       "sudo apt-get update -y",
       #      "sudo apt-get upgrade -y",
       #      "sudo apt install awscli -y",
-      "sudo apt-get install unzip -y",
+      "sudo apt-get install unzip virtualenv -y",
       "curl 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip' -o 'awscliv2.zip'",
       "unzip awscliv2.zip",
       "sudo ./aws/install",
