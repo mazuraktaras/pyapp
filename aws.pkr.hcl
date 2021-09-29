@@ -8,7 +8,7 @@ packer {
 }
 
 variable "package" {
-  type = string
+  type    = string
   default = "Hi"
 }
 
@@ -17,7 +17,7 @@ source "amazon-ebs" "ubuntu" {
   instance_type = "t3.micro"
   region        = "eu-north-1"
   source_ami_filter {
-    filters = {
+    filters     = {
       name                = "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
@@ -25,7 +25,7 @@ source "amazon-ebs" "ubuntu" {
     most_recent = true
     owners      = ["099720109477"]
   }
-  ssh_username = "ubuntu"
+  ssh_username  = "ubuntu"
 }
 
 build {
@@ -34,21 +34,24 @@ build {
     "source.amazon-ebs.ubuntu"
   ]
   provisioner "shell" {
-#    environment_vars = [
-#      "FOO=hello world",
-#    ]
+    #    environment_vars = [
+    #      "FOO=hello world",
+    #    ]
     inline = [
       "echo Installing Labels",
       "echo ${var.package}",
-#      "sleep 30",
+      #      "sleep 30",
       "sudo apt update -y",
-#      "sudo apt-get upgrade -y",
-      "sudo apt install awscli -y",
+      #      "sudo apt-get upgrade -y",
+      #      "sudo apt install awscli -y",
+      "curl 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip' -o 'awscliv2.zip'",
+      "unzip awscliv2.zip",
+      "sudo ./aws/install",
       "aws s3 ls",
       "env",
       "exit 1"
-#      "sudo apt-get install -y redis-server",
-#      "echo \"FOO is $FOO\" > example.txt",
+      #      "sudo apt-get install -y redis-server",
+      #      "echo \"FOO is $FOO\" > example.txt",
     ]
   }
 }
