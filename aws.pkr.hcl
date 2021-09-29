@@ -41,7 +41,7 @@ build {
     inline = [
       "echo Installing Labels",
       "echo ${var.package}",
-      #      "sleep 30",
+      #      "sleep 30",,
             "sudo apt-get update -y",
       #      "sleep 5",
       #      "sudo apt-get upgrade -y",
