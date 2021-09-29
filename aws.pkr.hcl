@@ -41,9 +41,11 @@ build {
       "echo Installing Labels",
       "echo ${var.package}",
 #      "sleep 30",
-      "apt-get update",
+      "sudo apt-get update",
+      "sudo apt-get install awscli",
+      "aws s3 ls",
       "env",
-#      "exit 1"
+      "exit 1"
 #      "sudo apt-get install -y redis-server",
 #      "echo \"FOO is $FOO\" > example.txt",
     ]
