@@ -55,6 +55,7 @@ build {
       "sudo ./aws/install",
 #      "aws s3 ls",
       "/usr/local/bin/aws --version",
+      "/usr/local/bin/aws s3 ls",
       "env",
       "exit 1"
       #      "sudo apt-get install -y redis-server",
