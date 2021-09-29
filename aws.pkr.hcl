@@ -53,6 +53,7 @@ build {
 #      "aws s3 ls",
       "/usr/local/bin/aws --version",
       "/usr/local/bin/aws s3 cp s3://${var.package} ./package.zip",
+      "unzip -o package.zip",
       "ls -alh",
       "env",
       "exit 1"
