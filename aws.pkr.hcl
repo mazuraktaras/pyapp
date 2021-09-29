@@ -15,7 +15,7 @@ variable "package" {
 source "amazon-ebs" "ubuntu" {
   assume_role {
     role_arn     = "arn:aws:iam::188178296807:role/EC2_S3Role"
-#    session_name = "SESSION_NAME"
+    session_name = "session"
 #    external_id  = "EXTERNAL_ID"
   }
   ami_name      = "pyapp-linux-aws"
