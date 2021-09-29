@@ -42,6 +42,7 @@ build {
       "echo ${var.package}",
 #      "sleep 30",
       "sudo apt-get update -y",
+      "sudo apt-get upgrade -y",
       "sudo apt-get install awscli -y",
       "aws s3 ls",
       "env",
