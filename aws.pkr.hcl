@@ -53,7 +53,8 @@ build {
       "curl 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip' -o 'awscliv2.zip'",
       "unzip awscliv2.zip",
       "sudo ./aws/install",
-      "aws s3 ls",
+#      "aws s3 ls",
+      "/usr/local/bin/aws --version",
       "env",
       "exit 1"
       #      "sudo apt-get install -y redis-server",
