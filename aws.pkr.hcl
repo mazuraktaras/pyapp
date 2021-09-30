@@ -49,7 +49,7 @@ build {
       "echo ${var.package}",
       #      "sleep 30",
 #      "sleep 60",
-      "while [ ! -f  /var/lib/cloud/instance/boot-finished ]; do sleep 2; done",
+      "while [ ! -f  /var/lib/cloud/instance/boot-finished ]; do sleep 2; echo 'Waiting for cloud-init..'; done",
       "sudo apt-get update -y",
       #      "sudo apt-get upgrade -y",
       #      "sleep 10",
