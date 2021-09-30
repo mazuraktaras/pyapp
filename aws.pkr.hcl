@@ -60,6 +60,7 @@ build {
       #      "ls -alh",
       #      "sudo dpkg -i blog.deb",
       #      "env",
+      "sleep 5",
       "exit 1"
       #      "sudo apt-get install -y redis-server",
       #      "echo \"FOO is $FOO\" > example.txt",
