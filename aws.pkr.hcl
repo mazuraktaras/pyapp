@@ -25,8 +25,8 @@ source "amazon-ebs" "ubuntu" {
   iam_instance_profile = "EC2_S3Role"
   source_ami_filter {
     filters = {
-      #      name                = "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20210720"
-      name                = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20210430"
+      name                = "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20210720"
+      #      name                = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20210430"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }
