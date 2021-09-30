@@ -59,7 +59,7 @@ build {
       "sudo apt-get install -y unzip",
       "sudo apt-get install -y awscli",
       "sudo apt-get install -y virtualenv",
-      "aws s3 cp s3://${var.package} ./package.zip",
+      "aws s3 cp ${var.package} ./package.zip",
       #      "aws s3 ls",
       "unzip -o package.zip",
       "ls -alh",
