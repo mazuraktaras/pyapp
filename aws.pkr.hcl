@@ -50,6 +50,7 @@ build {
       #      "sleep 30",
       "sudo apt-get update -y",
       "sudo apt-get upgrade -y",
+      "sleep 10",
       #      "sleep 5",
       #            "sudo apt-get upgrade -y",
       #      "sudo apt install awscli -y",
@@ -60,7 +61,7 @@ build {
       #      "ls -alh",
       #      "sudo dpkg -i blog.deb",
       #      "env",
-      "sleep 5",
+#      "sleep 5",
       "exit 1"
       #      "sudo apt-get install -y redis-server",
       #      "echo \"FOO is $FOO\" > example.txt",
