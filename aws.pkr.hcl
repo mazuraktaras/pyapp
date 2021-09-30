@@ -22,7 +22,7 @@ source "amazon-ebs" "ubuntu" {
   ami_name             = "pyapp-ubuntu-${local.timestamp}"
   instance_type        = "t3.micro"
   region               = "eu-north-1"
-  iam_instance_profile = "EC2_S3Role"
+  iam_instance_profile = "EC2_Role"
   source_ami_filter {
     filters = {
       name                = "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20210720"
