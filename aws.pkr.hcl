@@ -25,7 +25,7 @@ source "amazon-ebs" "ubuntu" {
   iam_instance_profile = "EC2_S3Role"
   source_ami_filter {
     filters = {
-#      name                = "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20210720"
+      #      name                = "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20210720"
       name                = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20210430"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
@@ -48,12 +48,12 @@ build {
       "echo Installing Labels",
       "echo ${var.package}",
       #      "sleep 30",
-      "sudo apt-get update",
+      "sudo apt update",
       #      "sleep 5",
       #            "sudo apt-get upgrade -y",
       #      "sudo apt install awscli -y",
-      "sudo apt-get install unzip -y",
-      "sudo apt-get install awscli -y",
+      "sudo apt install unzip -y",
+      #      "sudo apt-get install awscli -y",
       #      "aws s3 cp ${var.package} ./package.zip",
       #      "unzip -o package.zip",
       #      "ls -alh",
