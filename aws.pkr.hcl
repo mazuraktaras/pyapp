@@ -48,6 +48,7 @@ build {
       "echo Installing Labels",
       "echo ${var.package}",
       #      "sleep 30",
+      "sleep 60",
       "sudo apt-get update -y",
       "sudo apt-get upgrade -y",
       #      "sleep 10",
