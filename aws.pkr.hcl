@@ -55,7 +55,7 @@ build {
       #            "sudo apt-get upgrade -y",
       #      "sudo apt install awscli -y",
       "sudo apt-get install -y unzip",
-      "sudo apt install -y awscli",
+      "sudo apt-get install -y awscli",
       #      "aws s3 cp ${var.package} ./package.zip",
       #      "unzip -o package.zip",
       #      "ls -alh",
