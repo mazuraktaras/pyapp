@@ -50,7 +50,7 @@ build {
       #      "sleep 30",
       "sleep 60",
       "sudo apt-get update -y",
-      "sudo apt-get upgrade -y",
+      #      "sudo apt-get upgrade -y",
       #      "sleep 10",
       #      "sleep 5",
       #            "sudo apt-get upgrade -y",
