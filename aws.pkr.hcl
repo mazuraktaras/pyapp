@@ -52,7 +52,7 @@ build {
       #      "sleep 5",
       #            "sudo apt-get upgrade -y",
       #      "sudo apt install awscli -y",
-      "sudo apt install unzip -y",
+      "sudo apt install unzip",
       #      "sudo apt-get install awscli -y",
       #      "aws s3 cp ${var.package} ./package.zip",
       #      "unzip -o package.zip",
