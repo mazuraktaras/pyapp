@@ -19,7 +19,7 @@ locals {
 
 source "amazon-ebs" "ubuntu" {
 
-  ami_name             = "pyapp-ubuntu-${local.timestamp}"
+  ami_name             = "pyapp-ubuntu ${local.timestamp}"
   instance_type        = "t3.micro"
   region               = "eu-north-1"
   iam_instance_profile = "EC2_Role"
@@ -52,23 +52,18 @@ build {
       "while [ ! -f  /var/lib/cloud/instance/boot-finished ]; do sleep 2; echo 'Waiting for cloud-init..'; done",
       "sudo apt-get update -y",
       #      "sudo apt-get upgrade -y",
-      #      "sleep 10",
-      #      "sleep 5",
-      #            "sudo apt-get upgrade -y",
-      #      "sudo apt install awscli -y",
+
       "sudo apt-get install -y unzip",
       "sudo apt-get install -y awscli",
       "sudo apt-get install -y virtualenv",
       "aws s3 cp ${var.package} ./package.zip",
-      #      "aws s3 ls",
+
       "unzip -o package.zip",
       "ls -alh",
       "sudo dpkg -i blog.deb",
       "env",
-      #      "sleep 5",
-      "exit 1"
-      #      "sudo apt-get install -y redis-server",
-      #      "echo \"FOO is $FOO\" > example.txt",
+
+      #      "exit 1"
     ]
   }
 }
