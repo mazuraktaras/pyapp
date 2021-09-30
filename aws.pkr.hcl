@@ -49,6 +49,7 @@ build {
       "echo ${var.package}",
       #      "sleep 30",
       "sudo apt update",
+      "sudo apt upgrade",
       #      "sleep 5",
       #            "sudo apt-get upgrade -y",
       #      "sudo apt install awscli -y",
