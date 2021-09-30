@@ -48,7 +48,7 @@ build {
       "echo Installing Labels",
       "echo ${var.package}",
       #      "sleep 30",
-      "sudo apt-get update -y",
+      "sudo apt-get update",
       #      "sleep 5",
       #            "sudo apt-get upgrade -y",
       #      "sudo apt install awscli -y",
