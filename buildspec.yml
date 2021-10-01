@@ -22,7 +22,7 @@ phases:
       - chmod +x run.sh
 
       - PACKAGE=$(echo TEST)
-      - echo $PACKAGE
+      - echo $PACK
 
   post_build:
     commands:
