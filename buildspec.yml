@@ -10,8 +10,8 @@ phases:
       python: 3.8
     commands:
 
-#      - apt-get update
-#      - apt-get -y install awscli
+  #      - apt-get update
+  #      - apt-get -y install awscli
 
   pre_build:
     commands:
@@ -23,11 +23,11 @@ phases:
 
   post_build:
     commands:
-      # - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./
-      - bash ./scripts/pack_to_deb.sh blog.py 1.0 blog python
+#      - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./
+#      - bash ./scripts/pack_to_deb.sh blog.py 1.0 blog python
 
 artifacts:
   files:
-#    - './*.deb'
+    #    - './*.deb'
     - '**/*'
   discard-paths: yes

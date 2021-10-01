@@ -12,7 +12,7 @@ env:
       # key: secret-id:json-key:version-stage:version-id
       #  exported-variables:
       #    - INFRA
-      #    - FRA
+    #    - FRA
     # - variable
     # - variable
   #git-credential-helper: yes
@@ -37,20 +37,23 @@ phases:
   # - command
   build:
     commands:
-      - curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
-      - apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-      - apt-get update && apt-get install packer
-      - env
-      - echo ">>>>> Hello from Buildspec Packer! <<<<<<"
-      - echo $CODEBUILD_SOURCE_VERSION
-      - PACKAGE=$(echo $CODEBUILD_SOURCE_VERSION | sed 's/.*:/s3:\/\//')
-      - echo $PACKAGE
-      -
-      - packer init .
-      - packer build -var "package=${PACKAGE}" .
-#      - packer build .
+      #      - curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
+      #      - apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+      #      - apt-get update && apt-get install packer
+      #      - env
+      #      - echo ">>>>> Hello from Buildspec Packer! <<<<<<"
+      #      - echo $CODEBUILD_SOURCE_VERSION
+      #      - PACKAGE=$(echo $CODEBUILD_SOURCE_VERSION | sed 's/.*:/s3:\/\//')
+      #      - echo $PACKAGE
+      #      -
+      #      - packer init .
+      #      - packer build -var "package=${PACKAGE}" .
 
-#      - ls -alh
+      #      - packer build .
+
+      - PACKAGE=$(echo TEST)
+      - echo $PACKAGE
+      #      - ls -alh
 
 
       # - command
@@ -63,7 +66,7 @@ phases:
       #report-name-or-arn:
       #files:
       # - location
-      # - location
+    # - location
     #base-directory: location
     #discard-paths: yes
     #file-format: JunitXml | CucumberJson
