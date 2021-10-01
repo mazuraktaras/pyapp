@@ -21,6 +21,9 @@ phases:
     commands:
       - chmod +x run.sh
 
+      - PACKAGE=$(echo TEST)
+      - echo $PACKAGE
+
   post_build:
     commands:
 #      - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./

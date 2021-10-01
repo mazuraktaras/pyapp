@@ -51,8 +51,6 @@ phases:
 
       #      - packer build .
 
-      - PACKAGE=$(echo TEST)
-      - echo $PACKAGE
       #      - ls -alh
 
 
