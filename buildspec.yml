@@ -1,15 +1,15 @@
 version: 0.2
 env:
   shell: bash
-  variables:
-    PACKAGE: "github.com/aws-cd/pyapp"
-  exported-variables:
-    - PACKAGE
+#  variables:
+#    PACKAGE: "github.com/aws-cd/pyapp"
+#  exported-variables:
+#    - PACKAGE
 phases:
 
   install:
-    runtime-versions:
-      python: 3.8
+#    runtime-versions:
+#      python: 3.8
     commands:
 
   #      - apt-get update
@@ -17,15 +17,15 @@ phases:
 
   pre_build:
     commands:
-      - echo "Hello from TESTING>>>>>>>>>>>>>><<<<<<<<<<<<<!"
+      - echo "Hello from >>>>>>>>>> buildspec <<<<<<<<<<<"
 
   build:
     commands:
       - chmod +x run.sh
 
-      - export PACKAGE=$(echo FRANTINFRA)
-      - echo $PACK
-      - echo $PACKAGE
+#      - export PACKAGE=$(echo FRANTINFRA)
+#      - echo $PACK
+#      - echo $PACKAGE
 
   post_build:
     commands:
