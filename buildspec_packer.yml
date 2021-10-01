@@ -1,16 +1,18 @@
 version: 0.2
-#env:
-##  variables:
+env:
+  variables:
+    AMI_ID: "jjajgjkgjgeqo-2021"
+  exported-variables:
+    - AMI_ID
+
 
 #parameter-store:
 # key: "value"
 # key: "value"
 #secrets-manager:
-# key: secret-id:json-key:version-stage:version-id
+# key: secret-id:jsn-key:version-stage:version-id
 # key: secret-id:json-key:version-stage:version-id
 #  exported-variables:
-#    - INFRA
-#    - FRA
 # - variable
 # - variable
 #git-credential-helper: yes
@@ -20,7 +22,8 @@ version: 0.2
 #build-matrix:
 #build-graph:
 phases:
-  #install:
+  install:
+     - echo "Hello from >>>>>>>>>> buildspec_packer <<<<<<<<<<<"
   #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
   #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
   #runtime-versions:
@@ -50,6 +53,7 @@ phases:
       #      - packer build .
 
       - ls -alh
+      - echo $AMI_ID
       # - command
       # - command
       #post_build:
