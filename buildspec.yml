@@ -21,8 +21,9 @@ phases:
     commands:
       - chmod +x run.sh
 
-      - PACKAGE=$(echo TEST)
+      - export PACKAGE=$(echo FRANTINFRA)
       - echo $PACK
+      - echo $PACKAGE
 
   post_build:
     commands:
