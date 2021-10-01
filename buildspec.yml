@@ -4,7 +4,7 @@ env:
   variables:
     PACKAGE: "github.com/aws-cd/pyapp"
   exported-variables:
-    EXP: 'newwwwwwww'
+    - PACKAGE
 phases:
 
   install:
