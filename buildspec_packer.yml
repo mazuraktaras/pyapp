@@ -11,7 +11,7 @@ env:
       # key: secret-id:json-key:version-stage:version-id
       # key: secret-id:json-key:version-stage:version-id
       #  exported-variables:
-      #    - INFRA
+    #    - INFRA
     #    - FRA
     # - variable
     # - variable
@@ -51,7 +51,8 @@ phases:
 
       #      - packer build .
 
-      #      - ls -alh
+      - ls -alh
+      - echo $NEW
 
 
       # - command
