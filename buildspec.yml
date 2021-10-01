@@ -3,6 +3,8 @@ env:
   shell: bash
   variables:
     PACKAGE: "github.com/aws-cd/pyapp"
+  exported-variables:
+    EXP: 'newwwwwwww'
 phases:
 
   install:
