@@ -50,6 +50,7 @@ build {
       "while [ ! -f  /var/lib/cloud/instance/boot-finished ]; do sleep 2; echo 'Waiting for cloud-init..'; done",
       #      "sudo apt-get update -y",
       #      #      "sudo apt-get upgrade -y",
+
       #
       #      "sudo apt-get install -y unzip",
       #      "sudo apt-get install -y awscli",

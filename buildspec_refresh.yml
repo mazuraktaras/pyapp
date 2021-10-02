@@ -1,0 +1,36 @@
+version: 0.2
+env:
+  shell: bash
+#  variables:
+#    PACKAGE: "github.com/aws-cd/pyapp"
+#  exported-variables:
+#    - PACKAGE
+phases:
+
+  install:
+    #    runtime-versions:
+    #      python: 3.8
+    commands:
+
+  #      - apt-get update
+  #      - apt-get -y install awscli
+
+  pre_build:
+    commands:
+      - echo "Hello from >>>>>>>>>> buildspec_refresh <<<<<<<<<<<"
+
+  build:
+    commands:
+      - echo $AMI_ID
+
+
+  post_build:
+    commands:
+#      - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./
+#      - bash ./scripts/pack_to_deb.sh blog.py 1.0 blog python
+
+#artifacts:
+#  files:
+#    #    - './*.deb'
+#    - '**/*'
+#  discard-paths: yes

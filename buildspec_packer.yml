@@ -1,4 +1,5 @@
 version: 0.2
+
 env:
   shell: bash
   variables:
@@ -6,22 +7,6 @@ env:
   exported-variables:
     - AMI_ID
 
-
-#parameter-store:
-# key: "value"
-# key: "value"
-#secrets-manager:
-# key: secret-id:jsn-key:version-stage:version-id
-# key: secret-id:json-key:version-stage:version-id
-#  exported-variables:
-# - variable
-# - variable
-#git-credential-helper: yes
-#batch:
-#fast-fail: true
-#build-list:
-#build-matrix:
-#build-graph:
 phases:
   install:
     commands:
@@ -31,64 +16,23 @@ phases:
       - apt-get update -y
       - apt-get install -y packer
       - apt-get install -y jq
-  #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
-  #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
-  #runtime-versions:
-  # name: version
-  # name: version
-  #commands:
-  # - command
-  # - command
-  #pre_build:
-  #commands:
-  # - command
-  # - command
+
   build:
     commands:
-      #      - curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
-      #      - apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-      #      - apt-get update && apt-get install packer
-      #      - env
-      #      - echo ">>>>> Hello from Buildspec Packer! <<<<<<"
       - echo $CODEBUILD_SOURCE_VERSION
       - PACKAGE=$(echo $CODEBUILD_SOURCE_VERSION | sed 's/.*:/s3:\/\//')
       - echo $PACKAGE
-      -
-      - packer init .
-#      - packer build -var "package=${PACKAGE}" . | tee packer.log
-      - packer build -var "package=${PACKAGE}" .
-      - test -s packer-manifest.json || exit 1
-      - AMI_ID=$(jq -r '.builds[-1].artifact_id' packer-manifest.json | cut -d ":" -f2)
 
-#      - REGION=eu-north-1
-#      - echo $REGION
-#      - tail packer.log | grep "$REGION:" | sed "s/$REGION:.//"
+#      - packer init .
+#
+#      - packer build -var "package=${PACKAGE}" .
+#      - test -s packer-manifest.json || exit 1
+#      - AMI_ID=$(jq -r '.builds[-1].artifact_id' packer-manifest.json | cut -d ":" -f2)
+      - AMI_ID=ami-0c9e71cdf86b98348
+
+      #      - packer build -var "package=${PACKAGE}" . | tee packer.log
+      #      - REGION=eu-north-1
+      #      - echo $REGION
+      #      - tail packer.log | grep "$REGION:" | sed "s/$REGION:.//"
       - ls -alh
       - echo $AMI_ID
-      # - command
-      # - command
-      #post_build:
-      #commands:
-      # - command
-      # - command
-      #reports:
-      #report-name-or-arn:
-      #files:
-      # - location
-    # - location
-    #base-directory: location
-    #discard-paths: yes
-    #file-format: JunitXml | CucumberJson
-#artifacts:
-#  files:
-##    - './*.md'
-#    - '**/*'
-#  discard-paths: yes
-#    # - location
-#    # - location
-#    #name: $(date +%Y-%m-%d)
-#    #discard-paths: yes
-#    #base-directory: location
-#    #cache:
-#    #paths:
-#    # - paths
