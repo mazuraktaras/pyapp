@@ -56,9 +56,9 @@ build {
       "sudo apt-get install -y unzip",
       "sudo apt-get install -y awscli",
       "sudo apt-get install -y virtualenv",
-      #      "aws s3 cp ${var.package} ./package.zip",
-      #
-      #      "unzip -o package.zip",
+      "aws s3 cp ${var.package} ./package.zip",
+
+      "unzip -o package.zip",
       "ls -alh",
       #      "sudo dpkg -i blog.deb",
       "env",
