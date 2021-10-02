@@ -2,7 +2,7 @@ version: 0.2
 env:
   shell: bash
   variables:
-    AMI_ID: "jjajgjkgjgeqo-2021"
+    AMI_ID: ""
   exported-variables:
     - AMI_ID
 

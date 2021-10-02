@@ -48,26 +48,26 @@ build {
       "echo Preparing Initial Installation",
       "echo ${var.package}",
       "while [ ! -f  /var/lib/cloud/instance/boot-finished ]; do sleep 2; echo 'Waiting for cloud-init..'; done",
-#      "sudo apt-get update -y",
-#      #      "sudo apt-get upgrade -y",
-#
-#      "sudo apt-get install -y unzip",
-#      "sudo apt-get install -y awscli",
-#      "sudo apt-get install -y virtualenv",
-#      "aws s3 cp ${var.package} ./package.zip",
-#
-#      "unzip -o package.zip",
-#      "ls -alh",
-#      #      "sudo dpkg -i blog.deb",
-      "exit 1"
+      #      "sudo apt-get update -y",
+      #      #      "sudo apt-get upgrade -y",
+      #
+      #      "sudo apt-get install -y unzip",
+      #      "sudo apt-get install -y awscli",
+      #      "sudo apt-get install -y virtualenv",
+      #      "aws s3 cp ${var.package} ./package.zip",
+      #
+      #      "unzip -o package.zip",
+      #      "ls -alh",
+      #      #      "sudo dpkg -i blog.deb",
+      #      "exit 1"
     ]
   }
   post-processor "manifest" {
-#    output      = "manifest.json"
-#    strip_path  = true
-#    custom_data = {
-#      my_custom_data = "example"
-#    }
+    #    output      = "manifest.json"
+    #    strip_path  = true
+    #    custom_data = {
+    #      my_custom_data = "example"
+    #    }
   }
 
 }
