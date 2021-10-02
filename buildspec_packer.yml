@@ -54,9 +54,7 @@ phases:
       - echo $PACKAGE
       -
       - packer init .
-      - packer build -var "package=${PACKAGE}" .
-
-      - packer build . | tee packer.log
+      - packer build -var "package=${PACKAGE}" . | tee packer.log
       - REGION=eu-north-1
       - echo $REGION
       - tail packer.log | grep "$REGION:" | sed "s/$REGION:.//"
