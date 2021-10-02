@@ -56,8 +56,10 @@ phases:
       - packer init .
       - packer build -var "package=${PACKAGE}" .
 
-      - packer build .
-
+      - packer build . | tee packer.log
+      - REGION=eu-north-1
+      - echo $REGION
+      - tail packer.log | grep "$REGION:" | sed "s/$REGION:.//"
       - ls -alh
       - echo $AMI_ID
       # - command
