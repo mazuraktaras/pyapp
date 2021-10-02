@@ -59,7 +59,7 @@ build {
 #      "unzip -o package.zip",
 #      "ls -alh",
 #      #      "sudo dpkg -i blog.deb",
-#      "exit 1"
+      "exit 1"
     ]
   }
   post-processor "manifest" {
