@@ -26,6 +26,10 @@ phases:
   install:
     commands:
       - echo "Hello from >>>>>>>>>> buildspec_packer <<<<<<<<<<<"
+      - curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
+      - apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+      - apt-get update -y
+      - apt-get install -y packer
   #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
   #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
   #runtime-versions:
