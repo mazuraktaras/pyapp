@@ -63,7 +63,8 @@ build {
       #      "sudo dpkg -i blog.deb",
       "env",
 
-      "exit 1"
+#      "exit 1"
     ]
   }
 }
+# s3://codepipeline-eu-north-1-71516852472/pipeline-12/BuildArtif/2sP9x1S
