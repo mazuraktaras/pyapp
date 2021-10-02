@@ -56,15 +56,17 @@ build {
       "sudo apt-get install -y unzip",
       "sudo apt-get install -y awscli",
       "sudo apt-get install -y virtualenv",
-      "aws s3 cp ${var.package} ./package.zip",
-
-      "unzip -o package.zip",
+      #      "aws s3 cp ${var.package} ./package.zip",
+      #
+      #      "unzip -o package.zip",
       "ls -alh",
       #      "sudo dpkg -i blog.deb",
       "env",
 
-#      "exit 1"
+      #      "exit 1"
     ]
   }
 }
+
+
 # s3://codepipeline-eu-north-1-71516852472/pipeline-12/BuildArtif/2sP9x1S
