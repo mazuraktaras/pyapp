@@ -45,10 +45,8 @@ build {
   provisioner "shell" {
 
     inline = [
-      "echo Installing Labels",
+      "echo Preparing Initial Installation",
       "echo ${var.package}",
-      #      "sleep 30",
-      #      "sleep 60",
       "while [ ! -f  /var/lib/cloud/instance/boot-finished ]; do sleep 2; echo 'Waiting for cloud-init..'; done",
       "sudo apt-get update -y",
       #      "sudo apt-get upgrade -y",
@@ -61,14 +59,15 @@ build {
       "unzip -o package.zip",
       "ls -alh",
       #      "sudo dpkg -i blog.deb",
-      "env",
-
-      #      "exit 1"
+      "exit 1"
     ]
   }
+  post-processor "manifest" {
+    output      = "manifest.json"
+    strip_path  = true
+    custom_data = {
+      my_custom_data = "example"
+    }
+  }
+
 }
-
-post-processor "manifest" {}
-
-
-# s3://codepipeline-eu-north-1-71516852472/pipeline-12/BuildArtif/2sP9x1S
