@@ -68,5 +68,7 @@ build {
   }
 }
 
+post-processor "manifest" {}
+
 
 # s3://codepipeline-eu-north-1-71516852472/pipeline-12/BuildArtif/2sP9x1S
