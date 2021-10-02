@@ -30,6 +30,7 @@ phases:
       - apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
       - apt-get update -y
       - apt-get install -y packer
+      - apt-get install -y jq
   #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
   #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
   #runtime-versions:
@@ -55,9 +56,11 @@ phases:
       -
       - packer init .
       - packer build -var "package=${PACKAGE}" . | tee packer.log
-      - REGION=eu-north-1
-      - echo $REGION
-      - tail packer.log | grep "$REGION:" | sed "s/$REGION:.//"
+      - AMI_ID=$(jq -r '.builds[-1].artifact_id' manifest.json | cut -d ":" -f2)
+
+#      - REGION=eu-north-1
+#      - echo $REGION
+#      - tail packer.log | grep "$REGION:" | sed "s/$REGION:.//"
       - ls -alh
       - echo $AMI_ID
       # - command
