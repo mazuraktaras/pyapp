@@ -60,7 +60,7 @@ build {
 
       "unzip -o package.zip",
       "ls -alh",
-      "sudo dpkg -i blog.deb",
+#      "sudo dpkg -i blog.deb",
       "env",
 
       #      "exit 1"

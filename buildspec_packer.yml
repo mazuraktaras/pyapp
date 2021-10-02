@@ -49,14 +49,14 @@ phases:
       #      - apt-get update && apt-get install packer
       #      - env
       #      - echo ">>>>> Hello from Buildspec Packer! <<<<<<"
-      #      - echo $CODEBUILD_SOURCE_VERSION
-      #      - PACKAGE=$(echo $CODEBUILD_SOURCE_VERSION | sed 's/.*:/s3:\/\//')
-      #      - echo $PACKAGE
-      #      -
-      #      - packer init .
-      #      - packer build -var "package=${PACKAGE}" .
+      - echo $CODEBUILD_SOURCE_VERSION
+      - PACKAGE=$(echo $CODEBUILD_SOURCE_VERSION | sed 's/.*:/s3:\/\//')
+      - echo $PACKAGE
+      -
+      - packer init .
+      - packer build -var "package=${PACKAGE}" .
 
-      #      - packer build .
+      - packer build .
 
       - ls -alh
       - echo $AMI_ID
