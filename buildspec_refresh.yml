@@ -21,7 +21,7 @@ phases:
     commands:
       - echo $AMI_ID
       - TEMPLATE_ID=$(aws ec2 describe-launch-templates --query "LaunchTemplates[?LaunchTemplateName=='pyapp-test-3'].LaunchTemplateId" --output text)
-      - echo TEMPLATE_ID
+      - echo $TEMPLATE_ID
 
   post_build:
     commands:
