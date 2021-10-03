@@ -22,7 +22,7 @@ phases:
       - echo $AMI_ID
       - TEMPLATE_ID=$(aws ec2 describe-launch-templates --query "LaunchTemplates[?LaunchTemplateName=='pyapp-test-3'].LaunchTemplateId" --output text)
       - echo $TEMPLATE_ID
-      - aws ec2 create-launch-template-version --launch-template-id $TEMPLATE_ID --source-version 1 --launch-template-data ImageId=$AMI_ID --output table
+      - aws ec2 create-launch-template-version --launch-template-id $TEMPLATE_ID --source-version 1 --launch-template-data ImageId=$AMI_ID
       - aws autoscaling start-instance-refresh --auto-scaling-group-name DEV-asg
 
   post_build:
