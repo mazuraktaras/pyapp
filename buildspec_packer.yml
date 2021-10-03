@@ -28,7 +28,7 @@ phases:
 #      - packer build -var "package=${PACKAGE}" .
 #      - test -s packer-manifest.json || exit 1
 #      - AMI_ID=$(jq -r '.builds[-1].artifact_id' packer-manifest.json | cut -d ":" -f2)
-      - AMI_ID=ami-0c9e71cdf86b98348
+      - AMI_ID=ami-0a2609b8026d7aeec
 
       #      - packer build -var "package=${PACKAGE}" . | tee packer.log
       #      - REGION=eu-north-1
