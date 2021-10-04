@@ -39,8 +39,7 @@ phases:
     commands:
       - env
       - echo ">>>>> Hello from Buildspec Dummy! <<<<<<"
-      - echo $INFRA
-      - echo $FRA
+
 
       # - command
       # - command
