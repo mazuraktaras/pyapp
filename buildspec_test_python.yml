@@ -38,10 +38,10 @@ phases:
   # - command
   build:
     commands:
-      - env
+#      - env
       - echo ">>>>> Hello from Buildspec Test Python! <<<<<<"
       - python -V
-      - pip list
+#      - pip list
       - python check_asg_refresh.py
 
 
