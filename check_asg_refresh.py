@@ -13,8 +13,9 @@ status = 'Successful'
 print(status)
 for i in range(10):
     print('From script')
-while True:
-    print('From script')
+    print(time.perf_counter())
+# while True:
+#     print('From script')
 
 # while status == 'Successful':
 #
