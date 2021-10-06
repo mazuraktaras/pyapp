@@ -5,7 +5,7 @@ import boto3
 
 ASG_NAME = 'DEV-asg'
 INST_REFRESH_ID = '3d97896d-cb83-46da-a8db-5eb1cfe4f705'
-TIMEOUT = 200
+TIMEOUT = 12
 
 client = boto3.client('autoscaling')
 
@@ -24,29 +24,29 @@ print(stop_time - start_time)
 # while True:
 #     print('From script')
 
-# while status == 'Successful':
-#     print(time.perf_counter())
+while status == 'Successful':
+    print(time.perf_counter())
+
+    if time.perf_counter() - start_time > TIMEOUT:
+        print('I am gonna exiting!')
+        print(f'Autoscaling group {ASG_NAME} instance refresh check exited with timeout {TIMEOUT} sec.')
+        exit(1)
 #
-#     if time.perf_counter() > TIMEOUT:
-#         print('I am gonna exiting!')
-#         print(f'Autoscaling group {ASG_NAME} instance refresh check exited with timeout {TIMEOUT} sec.')
-#         exit(1)
-# #
-#     response = client.describe_instance_refreshes(
-#         AutoScalingGroupName=ASG_NAME,
-#         InstanceRefreshIds=[INST_REFRESH_ID],
-#         MaxRecords=1
-#     )
-#
-#     print('Wait ASG refresh.....')
-#     time.sleep(2)
-#
-#     # pprint(response)
-#     # pprint(response['InstanceRefreshes'][0]['Status'])
-#     time.sleep(3)
-#     # print(time.perf_counter())
-#     print('Testing')
-#     # status = response['InstanceRefreshes'][0]['Status']
-#     # if status == 'Successful':
-#     #     print('Do stuff')
-#     #     #break
+    response = client.describe_instance_refreshes(
+        AutoScalingGroupName=ASG_NAME,
+        InstanceRefreshIds=[INST_REFRESH_ID],
+        MaxRecords=1
+    )
+
+    print('Wait ASG refresh.....')
+    time.sleep(2)
+
+    # pprint(response)
+    # pprint(response['InstanceRefreshes'][0]['Status'])
+    # time.sleep(3)
+    # print(time.perf_counter())
+    # print('Testing')
+    # status = response['InstanceRefreshes'][0]['Status']
+    # if status == 'Successful':
+    #     print('Do stuff')
+    #     #break
