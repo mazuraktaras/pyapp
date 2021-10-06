@@ -42,7 +42,8 @@ phases:
       - echo ">>>>> Hello from Buildspec Test Python! <<<<<<"
       - python -V
 #      - pip list
-      - export SSD=34
+      - SSD=34
+      - echo $SSD
       - python check_asg_refresh.py
 
 
