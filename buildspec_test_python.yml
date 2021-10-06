@@ -1,19 +1,20 @@
 version: 0.2
 
 env:
+  shell: bash
   variables:
     INFRA: "7777"
     FRA: ""
-    #parameter-store:
-    # key: "value"
-    # key: "value"
-    #secrets-manager:
-    # key: secret-id:json-key:version-stage:version-id
-    # key: secret-id:json-key:version-stage:version-id
-#  exported-variables:
-#    - INFRA
-#    - FRA
-      # - variable
+      #parameter-store:
+      # key: "value"
+      # key: "value"
+      #secrets-manager:
+      # key: secret-id:json-key:version-stage:version-id
+      # key: secret-id:json-key:version-stage:version-id
+      #  exported-variables:
+      #    - INFRA
+      #    - FRA
+    # - variable
     # - variable
   #git-credential-helper: yes
   #batch:
@@ -58,7 +59,7 @@ phases:
     #base-directory: location
     #discard-paths: yes
     #file-format: JunitXml | CucumberJson
-#artifacts:
+    #artifacts:
     #  files:
     ##    - './*.md'
     #    - '**/*'

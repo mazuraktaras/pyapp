@@ -10,6 +10,8 @@ TIMEOUT = 60
 
 status = 'Successful'
 
+print(status)
+
 while status == 'Successful':
 
     # if time.perf_counter() > TIMEOUT:
