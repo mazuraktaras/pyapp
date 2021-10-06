@@ -40,6 +40,7 @@ phases:
       - env
       - echo ">>>>> Hello from Buildspec Test Python! <<<<<<"
       - python -V
+      - python check_asg_refresh.py
 
 
       # - command

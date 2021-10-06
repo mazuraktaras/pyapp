@@ -1,11 +1,10 @@
 import time
-from datetime import datetime
 from pprint import pprint
 import boto3
 
 ASG_NAME = 'DEV-asg'
 INST_REFRESH_ID = '3d97896d-cb83-46da-a8db-5eb1cfe4f705'
-TIMEOUT = 5
+TIMEOUT = 12
 
 client = boto3.client('autoscaling')
 
