@@ -9,7 +9,8 @@ TIMEOUT = 12
 
 client = boto3.client('autoscaling')
 
-status = 'Successful'
+status = None
+# status = 'Successful'
 
 print(status)
 print(time.perf_counter())
@@ -24,7 +25,7 @@ start_time = time.perf_counter()
 # while True:
 #     print('From script')
 
-while status == 'Successful':
+while status != 'Successful':
     print(time.perf_counter())
 
     if time.perf_counter() - start_time > TIMEOUT:
@@ -51,4 +52,4 @@ while status == 'Successful':
 
     if status == 'Successful':
         print('Do stuff')
-        #break
+        break
