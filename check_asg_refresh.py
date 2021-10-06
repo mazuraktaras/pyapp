@@ -4,8 +4,8 @@ from pprint import pprint
 import boto3
 
 ASG_NAME = 'DEV-asg'
-INST_REFRESH_ID = '3d97896d-cb83-46da-a8db-5eb1cfe4f705'
-TIMEOUT = 12
+INST_REFRESH_ID = '17b9585b-d570-40f1-aed2-39582809885e'
+TIMEOUT = 700
 
 client = boto3.client('autoscaling')
 
