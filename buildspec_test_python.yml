@@ -39,6 +39,7 @@ phases:
     commands:
       - env
       - echo ">>>>> Hello from Buildspec Test Python! <<<<<<"
+      - python -V
 
 
       # - command
