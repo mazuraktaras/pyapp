@@ -1,3 +1,4 @@
+import os
 import time
 from pprint import pprint
 
@@ -11,7 +12,8 @@ client = boto3.client('autoscaling')
 
 status = None
 # status = 'Successful'
-
+print(os.environ['SSD'])
+print(os.environ['NEW'])
 print(status)
 print(time.perf_counter())
 start_time = time.perf_counter()
@@ -25,31 +27,31 @@ start_time = time.perf_counter()
 # while True:
 #     print('From script')
 
-while status != 'Successfu':
-    print(time.perf_counter())
-
-    if time.perf_counter() - start_time > TIMEOUT:
-        print('I am gonna exiting!')
-        print(f'Autoscaling group {ASG_NAME} instance refresh check exited with timeout {TIMEOUT} sec.')
-        exit(1)
+# while status != 'Successfu':
+#     print(time.perf_counter())
 #
-    response = client.describe_instance_refreshes(
-        AutoScalingGroupName=ASG_NAME,
-        InstanceRefreshIds=[INST_REFRESH_ID],
-        MaxRecords=1
-    )
-
-
-
-    # pprint(response)
-    # pprint(response['InstanceRefreshes'][0]['Status'])
-    # time.sleep(3)
-    # print(time.perf_counter())
-    # print('Testing')
-    status = response['InstanceRefreshes'][0]['Status']
-    print(f'Wait ASG refresh..... Current status {status}')
-    time.sleep(2)
-
-    if status == 'Successful':
-        print('Do stuff')
-        break
+#     if time.perf_counter() - start_time > TIMEOUT:
+#         print('I am gonna exiting!')
+#         print(f'Autoscaling group {ASG_NAME} instance refresh check exited with timeout {TIMEOUT} sec.')
+#         exit(1)
+# #
+#     response = client.describe_instance_refreshes(
+#         AutoScalingGroupName=ASG_NAME,
+#         InstanceRefreshIds=[INST_REFRESH_ID],
+#         MaxRecords=1
+#     )
+#
+#
+#
+#     # pprint(response)
+#     # pprint(response['InstanceRefreshes'][0]['Status'])
+#     # time.sleep(3)
+#     # print(time.perf_counter())
+#     # print('Testing')
+#     status = response['InstanceRefreshes'][0]['Status']
+#     print(f'Wait ASG refresh..... Current status {status}')
+#     time.sleep(2)
+#
+#     if status == 'Successful':
+#         print('Do stuff')
+#         #break
