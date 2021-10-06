@@ -12,25 +12,25 @@ status = 'Successful'
 
 print(status)
 
-while status == 'Successful':
-
-    # if time.perf_counter() > TIMEOUT:
-    #     print('I am gonna exiting!')
-    #     print(f'Autoscaling group {ASG_NAME} instance refresh check exited with timeout {TIMEOUT} sec.')
-    #     exit(1)
-
-    # response = client.describe_instance_refreshes(
-    #     AutoScalingGroupName=ASG_NAME,
-    #     InstanceRefreshIds=[INST_REFRESH_ID],
-    #     MaxRecords=1
-    # )
-
-    # pprint(response)
-    # pprint(response['InstanceRefreshes'][0]['Status'])
-    time.sleep(3)
-    # print(time.perf_counter())
-    print('Testing')
-    # status = response['InstanceRefreshes'][0]['Status']
-    # if status == 'Successful':
-    #     print('Do stuff')
-    #     #break
+# while status == 'Successful':
+#
+#     # if time.perf_counter() > TIMEOUT:
+#     #     print('I am gonna exiting!')
+#     #     print(f'Autoscaling group {ASG_NAME} instance refresh check exited with timeout {TIMEOUT} sec.')
+#     #     exit(1)
+#
+#     # response = client.describe_instance_refreshes(
+#     #     AutoScalingGroupName=ASG_NAME,
+#     #     InstanceRefreshIds=[INST_REFRESH_ID],
+#     #     MaxRecords=1
+#     # )
+#
+#     # pprint(response)
+#     # pprint(response['InstanceRefreshes'][0]['Status'])
+#     time.sleep(3)
+#     # print(time.perf_counter())
+#     print('Testing')
+#     # status = response['InstanceRefreshes'][0]['Status']
+#     # if status == 'Successful':
+#     #     print('Do stuff')
+#     #     #break
