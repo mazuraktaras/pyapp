@@ -15,12 +15,12 @@ print(status)
 print(time.perf_counter())
 start_time = time.perf_counter()
 
-for i in range(5):
-    print('From script')
-    print(time.perf_counter())
-    time.sleep(1)
-stop_time = time.perf_counter()
-print(stop_time - start_time)
+# for i in range(5):
+#     print('From script')
+#     print(time.perf_counter())
+#     time.sleep(1)
+# stop_time = time.perf_counter()
+# print(stop_time - start_time)
 # while True:
 #     print('From script')
 
@@ -38,15 +38,17 @@ while status == 'Successful':
         MaxRecords=1
     )
 
-    print('Wait ASG refresh.....')
-    time.sleep(2)
+
 
     # pprint(response)
     # pprint(response['InstanceRefreshes'][0]['Status'])
     # time.sleep(3)
     # print(time.perf_counter())
     # print('Testing')
-    # status = response['InstanceRefreshes'][0]['Status']
-    # if status == 'Successful':
-    #     print('Do stuff')
-    #     #break
+    status = response['InstanceRefreshes'][0]['Status']
+    print(f'Wait ASG refresh..... Current status {status}')
+    time.sleep(2)
+
+    if status == 'Successful':
+        print('Do stuff')
+        #break
