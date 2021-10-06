@@ -26,7 +26,8 @@ while status == 'Successful':
     # pprint(response)
     # pprint(response['InstanceRefreshes'][0]['Status'])
     time.sleep(3)
-    print(time.perf_counter())
+    # print(time.perf_counter())
+    print('Testing')
     # status = response['InstanceRefreshes'][0]['Status']
     # if status == 'Successful':
     #     print('Do stuff')
