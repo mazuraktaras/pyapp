@@ -3,7 +3,7 @@ version: 0.2
 env:
   shell: bash
   variables:
-    INFRA: "7777"
+    NEW: "7777"
     FRA: ""
       #parameter-store:
       # key: "value"
@@ -42,6 +42,7 @@ phases:
       - echo ">>>>> Hello from Buildspec Test Python! <<<<<<"
       - python -V
 #      - pip list
+      - export SSD=34
       - python check_asg_refresh.py
 
 
