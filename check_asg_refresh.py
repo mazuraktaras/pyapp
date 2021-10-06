@@ -5,7 +5,7 @@ import boto3
 
 ASG_NAME = 'DEV-asg'
 INST_REFRESH_ID = '17b9585b-d570-40f1-aed2-39582809885e'
-TIMEOUT = 700
+TIMEOUT = 60
 
 client = boto3.client('autoscaling')
 
@@ -25,7 +25,7 @@ start_time = time.perf_counter()
 # while True:
 #     print('From script')
 
-while status != 'Successful':
+while status != 'Successfu':
     print(time.perf_counter())
 
     if time.perf_counter() - start_time > TIMEOUT:
