@@ -1,13 +1,13 @@
 import time
 from pprint import pprint
 
-# import boto3
+import boto3
 
 ASG_NAME = 'DEV-asg'
 INST_REFRESH_ID = '3d97896d-cb83-46da-a8db-5eb1cfe4f705'
-TIMEOUT = 60
+TIMEOUT = 200
 
-# client = boto3.client('autoscaling')
+client = boto3.client('autoscaling')
 
 status = 'Successful'
 
@@ -28,11 +28,14 @@ while status == 'Successful':
         print(f'Autoscaling group {ASG_NAME} instance refresh check exited with timeout {TIMEOUT} sec.')
         exit(1)
 #
-#     # response = client.describe_instance_refreshes(
-#     #     AutoScalingGroupName=ASG_NAME,
-#     #     InstanceRefreshIds=[INST_REFRESH_ID],
-#     #     MaxRecords=1
-#     # )
+    response = client.describe_instance_refreshes(
+        AutoScalingGroupName=ASG_NAME,
+        InstanceRefreshIds=[INST_REFRESH_ID],
+        MaxRecords=1
+    )
+
+    print('Wait ASG refresh.....')
+    time.sleep(2)
 #
 #     # pprint(response)
 #     # pprint(response['InstanceRefreshes'][0]['Status'])
