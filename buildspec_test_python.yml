@@ -56,10 +56,10 @@ phases:
     #discard-paths: yes
     #file-format: JunitXml | CucumberJson
 #artifacts:
-#  files:
-##    - './*.md'
-#    - '**/*'
-#  discard-paths: yes
+    #  files:
+    ##    - './*.md'
+    #    - '**/*'
+    #  discard-paths: yes
     # - location
     # - location
     #name: $(date +%Y-%m-%d)
