@@ -13,6 +13,9 @@ status = 'Successful'
 print(status)
 for i in range(10):
     print('From script')
+while True:
+    print('From script')
+
 # while status == 'Successful':
 #
 #     # if time.perf_counter() > TIMEOUT:
