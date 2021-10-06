@@ -11,13 +11,17 @@ TIMEOUT = 60
 status = 'Successful'
 
 print(status)
-for i in range(10):
+print(time.perf_counter())
+
+for i in range(5):
     print('From script')
     print(time.perf_counter())
 # while True:
 #     print('From script')
 
-# while status == 'Successful':
+while status == 'Successful':
+    print(time.perf_counter())
+
 #
 #     # if time.perf_counter() > TIMEOUT:
 #     #     print('I am gonna exiting!')
