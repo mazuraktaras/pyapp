@@ -4,7 +4,7 @@ import boto3
 
 ASG_NAME = 'DEV-asg'
 INST_REFRESH_ID = '3d97896d-cb83-46da-a8db-5eb1cfe4f705'
-TIMEOUT = 12
+TIMEOUT = 60
 
 client = boto3.client('autoscaling')
 
