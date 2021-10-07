@@ -34,7 +34,7 @@ while status != 'Successfu':
     )
 
     status = response['InstanceRefreshes'][0]['Status']
-    elapsed_time = TIMEOUT - time.perf_counter() - start_time
+    elapsed_time = TIMEOUT - (time.perf_counter() - start_time)
     print(f'Wait {ASG_NAME} refresh..... \nRefresh current status is \'{status}\' Time elapsed {elapsed_time} sec.')
     time.sleep(2)
 
@@ -58,7 +58,16 @@ while status != 'Successfu':
             # parse status
             health_status = response['TargetHealthDescriptions'][0]['TargetHealth']['State']
 
-            elapsed_time = TIMEOUT - time.perf_counter() - start_time
+            if health_status == 'healthy':
+                code_pipeline_client = boto3.client('codepipeline')
+                # enable codepipeline transititon after Package Build stage
+                response = code_pipeline_client.enable_stage_transition(pipelineName='dev-sonar-pack-pipeline',
+                                                                        stageName='Package-Build',
+                                                                        transitionType='Outbound')
+                print(response)
+                exit(0)
+
+            elapsed_time = TIMEOUT - (time.perf_counter() - start_time)
             print(health_status, f'Time elapsed {elapsed_time} sec.')
             time.sleep(2)
 
