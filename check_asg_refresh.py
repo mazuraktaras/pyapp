@@ -59,12 +59,8 @@ while status != 'Successfu':
             health_status = response['TargetHealthDescriptions'][0]['TargetHealth']['State']
 
             if health_status == 'healthy':
-                code_pipeline_client = boto3.client('codepipeline')
-                # enable codepipeline transititon after Package Build stage
-                response = code_pipeline_client.enable_stage_transition(pipelineName='dev-sonar-pack-pipeline',
-                                                                        stageName='Package-Build',
-                                                                        transitionType='Outbound')
-                print(response)
+
+                print('Target group DEV-tg is \'healthy\'. Pipeline continue to next stage')
                 exit(0)
 
             elapsed_time = TIMEOUT - (time.perf_counter() - start_time)
