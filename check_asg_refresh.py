@@ -58,7 +58,8 @@ while status != 'Successfu':
             # parse status
             health_status = response['TargetHealthDescriptions'][0]['TargetHealth']['State']
 
-            print(health_status)
+            elapsed_time = TIMEOUT - time.perf_counter() - start_time
+            print(health_status, f'Time elapsed {elapsed_time} sec.')
             time.sleep(2)
 
         # break
