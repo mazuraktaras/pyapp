@@ -24,7 +24,7 @@ phases:
       - echo $TEMPLATE_ID
       - aws ec2 create-launch-template-version --launch-template-id $TEMPLATE_ID --source-version 1 --launch-template-data ImageId=$AMI_ID
       - INST_REFRESH_ID=$(aws autoscaling start-instance-refresh --auto-scaling-group-name DEV-asg --output text)
-      - python check_asg_refresh.py
+      - python ./scripts/check_asg_refresh.py
   post_build:
     commands:
 #      - aws s3 cp s3://pack-to-deb-script/pack_to_deb.sh ./
