@@ -6,7 +6,7 @@ import boto3
 
 ASG_NAME = 'DEV-asg'
 INST_REFRESH_ID = '825cddc4-df71-4d4b-b6f3-809b8b3954bc'
-TIMEOUT = 60
+TIMEOUT = 600
 TARG_GROUP_ARN = 'arn:aws:elasticloadbalancing:eu-north-1:188178296807:targetgroup/DEV-tg/8e9797c856a1f915'
 
 client = boto3.client('autoscaling')
