@@ -1,6 +1,6 @@
 FROM python:3.7
 
-LABEL Author="Taras Mazurak"
+LABEL author="Taras Mazurak"
 LABEL E-mail="xperia.t.mazurak@gmail.com"
 LABEL version="0.0.1b"
 
