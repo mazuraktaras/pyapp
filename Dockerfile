@@ -13,10 +13,10 @@ ENV FLASK_DEBUG False
 RUN mkdir /jwtblog
 WORKDIR /jwtblog
 
-RUN pip install --upgrade pip
+RUN pip install --no-cache-dir --upgrade pip
 
 COPY ./requirements.txt /jwtblog/requirements.txt
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 ADD . /jwtblog
 
