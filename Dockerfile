@@ -1,7 +1,7 @@
 FROM python:3.7
 
 LABEL author="Taras Mazurak"
-LABEL E-mail="xperia.t.mazurak@gmail.com"
+LABEL e-mail="xperia.t.mazurak@gmail.com"
 LABEL version="0.0.1b"
 
 ENV PYTHONDONTWRITEBYTECODE 1
